@@ -443,6 +443,11 @@ export default {
   // // src(s0).out()`,
   //   },
     {
+      desc: "normal",
+      code: `
+  src(s0).out()`,
+    },
+    {
       desc: "pixelate",
       code: `
   src(s0).pixelate(16,16).out()`,
@@ -461,6 +466,16 @@ export default {
       desc: "red and blue",
       code: `
   src(s0).color(1,0,-1).out()`,
+    },
+    {
+      desc: "red and green",
+      code: `
+  src(s0).color(1,-1,0).out()`,
+    },
+    {
+      desc: "green and blue",
+      code: `
+  src(s0).color(0,1,-1).out()`,
     },
     {
       desc: "invert color",
