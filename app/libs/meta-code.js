@@ -543,12 +543,12 @@ export default {
     {
       desc: "tunnel vision",
       code: `
-  src(o0).scale(1.1).layer(src(s0).mask(shape(4))).out()`,
+  src(o0).scale(1.1).layer(src(s0).mask(shape(4,0.5,0))).out()`,
     },
     {
       desc: "swirl",
       code: `
-  src(o0).rotate(0.02).scale(1.03).layer(src(s0).mask(shape(999))).out()`,
+  src(o0).rotate(0.02).scale(1.03).layer(src(s0).scale(0.5).mask(shape(999,0.3,0))).out()`,
     },
     {
       desc: "party",
