@@ -16,11 +16,11 @@ export default function(state, emit) {
             ${ e.desc }
           </button>
         `) }
-        <div class="">
-        <pre>
-          <code>${ state.code }</code>
-        </pre>
-        </div>
+      </div>
+      <div class="absolute bottom-0 w-full z-10 overflow-scroll">
+      <pre>
+        <code>${ state.code }</code>
+      </pre>
       </div>
       ${ state.cache(HydraCanvas, 'my-hydra').render(state, emit) }
     </div>
