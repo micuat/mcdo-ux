@@ -2,6 +2,7 @@
 import html from "choo/html";
 
 import HydraCanvas from "../components/hydra-canvas.js";
+import Editor from "../components/editor.js";
 
 import code from "../libs/meta-code.js";
 
@@ -22,7 +23,8 @@ export default function(state, emit) {
         <code>${ state.code }</code>
       </pre>
       </div>
-      ${ state.cache(HydraCanvas, 'my-hydra').render(state, emit) }
+      ${ state.cache(Editor, 'editor').render() }
+      ${ state.cache(HydraCanvas, 'hydra').render(state, emit) }
     </div>
   `;
   
