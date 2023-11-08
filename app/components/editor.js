@@ -6,6 +6,9 @@ import { defaultHighlightStyle } from '@codemirror/highlight'
 import { EditorView, keymap } from '@codemirror/view'
 import { defaultKeymap } from '@codemirror/commands'
 import { javascript } from '@codemirror/lang-javascript'
+import { syntaxHighlighting } from "@codemirror/language"
+
+import { hydraSyntaxStyle, hydraEditorTheme } from "../libs/hydra-cm6-theme.js";
 
 const defaultStyle = {
   // fontFamily: "'IBM Plex Mono', monospace",
@@ -99,6 +102,8 @@ export default class CodeMirror extends Component {
         // defaultHighlightStyle.fallback,
         EditorView.editable.of(this.editable),
         EditorView.lineWrapping,
+        syntaxHighlighting(hydraSyntaxStyle),
+        hydraEditorTheme
       ],
     })
 
