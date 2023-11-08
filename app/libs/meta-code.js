@@ -531,7 +531,7 @@ export default {
   src(s0).modulateScale(shape(999,0,1)).modulate(osc(2,1).rotate(Math.PI/2)).out()`,
     },
     {
-      desc: "enlarge the eyes",
+      desc: "weird enlarge",
       code: `
   src(s0).modulateScale(src(s0).pixelate(32,32).thresh(),-1,2).out()`,
     },
