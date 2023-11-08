@@ -1,173 +1,173 @@
 [
   {
-    desc: "How can I draw a circle?",
+    desc: "circle",
     code: `
 shape(999).out()`,
   },
   {
-    desc: "How can I draw a big circle?",
+    desc: "big circle",
     code: `
 shape(999, 1).out()`,
   },
   {
-    desc: "How can I draw a red circle?",
+    desc: "red circle",
     code: `
 shape(999).color(1,0,0).out()`,
   },
   {
-    desc: "How can I draw a blue circle on yellow?",
+    desc: "blue circle on yellow",
     code: `
 solid(1,1,0).layer(shape(999).luma().color(0,0,1)).out()`,
   },
   {
-    desc: "Can the blue circle on yellow go up and down?",
+    desc: "blue circle on yellow going up and down",
     code: `
 solid(1,1,0).layer(shape(999).luma().color(0,0,1)).scrollY([-0.3,0.3]).out()`,
   },
   {
-    desc: "Can the blue circle on yellow bounce?",
+    desc: "blue circle on yellow bouncing",
     code: `
 solid(1,1,0).layer(shape(999).luma().color(0,0,1)).scrollY([-0.3,0.3].smooth()).out()`,
   },
   {
-    desc: "Can I make traffic lights?",
+    desc: "traffic lights?",
     code: `
 shape(999).color(1,0,0).scrollY(0.3)
   .add(shape(999).color(1,1,0))
   .add(shape(999).color(0,1,0).scrollY(-0.3)).out()`,
   },
   {
-    desc: "Can the traffic lights blink?",
+    desc: "traffic lights blinking",
     code: `
 shape(999).color([1,0].fast(3),0,0).scrollY(0.3)
   .add(shape(999).color(1,1,0))
   .add(shape(999).color(0,1,0).scrollY(-0.3)).out()`,
   },
   {
-    desc: "How can I blend red, blue and green circles?",
+    desc: "blend red, blue and green circles",
     code: `
 shape(999).color(1,0,0).scroll(0,0.1)
   .add(shape(999).color(0,0,1).scroll(0.1,0))
   .add(shape(999).color(0,1,0).scroll(-0.1,0)).out()`,
   },
   {
-    desc: "How can I draw stripes?",
+    desc: "moving stripes",
     code: `
 osc().out()`,
   },
   {
-    desc: "I want crisp stripes!",
+    desc: "moving crisp stripes",
     code: `
 osc().thresh().out()`,
   },
   {
-    desc: "How can I stop the stripes?",
+    desc: "still stripes",
     code: `
 osc(60,0).thresh().out()`,
   },
   {
-    desc: "How can I fill a circle with the stripes?",
+    desc: "circle filled with the stripes",
     code: `
 osc(60,0).thresh().mask(shape(999,0.6)).out()`,
   },
   {
-    desc: "I want wavy stripes!",
+    desc: "wavy stripes",
     code: `
 osc().thresh().modulate(osc().rotate(1)).out()`,
   },
   {
-    desc: "I want slightly wavy stripes!",
+    desc: "slightly wavy stripes",
     code: `
 osc().thresh().modulate(osc().rotate(1),0.03).out()`,
   },
   {
-    desc: "How can I make thinner stripes?",
+    desc: "thinner white stripes",
     code: `
 osc().thresh(0.8).out()`,
   },
   {
-    desc: "I mean, thinner black stripes!",
+    desc: "thinner black stripes",
     code: `
 osc().thresh(0.2).out()`,
   },
   {
-    desc: "I want rings!",
+    desc: "rings",
     code: `
 osc().kaleid(999).out()`,
   },
   {
-    desc: "I want triangle rings!",
+    desc: "triangle rings",
     code: `
 osc().kaleid(3).out()`,
   },
   {
-    desc: "How can I make stripes appearing from the center?",
+    desc: "stripes appearing from the center",
     code: `
 osc(60,-0.1).kaleid(2).rotate(Math.PI/2).out()`,
   },
   {
-    desc: "How can I make flying dots?",
+    desc: "flying dots",
     code: `
 voronoi(10,0.1,10).out()`,
   },
   {
-    desc: "I want a hexagon!",
+    desc: "hexagon",
     code: `
 shape(6).out()`,
   },
   {
-    desc: "I want a square!",
+    desc: "square",
     code: `
 shape(4).out()`,
   },
   {
-    desc: "How can I rotate the square?",
+    desc: "rotating square",
     code: `
 shape(4).rotate(0,0.1).out()`,
   },
   {
-    desc: "How can I rotate the square in 3D?",
+    desc: "rotating square in 3D",
     code: `
 shape(4).scale(1,()=>Math.sin(time)).out()`,
   },
   {
-    desc: "How can I make the square color switch between red and blue?",
+    desc: "square switch between red and blue",
     code: `
 shape(4).color([1,0],0,[0,1]).out()`,
   },
   {
-    desc: "How can I make the square color switch between red and blue with smooth transition?",
+    desc: "square switch between red and blue with smooth transition",
     code: `
 shape(4).color([1,0].smooth(),0,[0,1].smooth()).out()`,
   },
   {
-    desc: "I want a diamond!",
+    desc: "diamond",
     code: `
 shape(4).rotate(3.14/4).out()`,
   },
   {
-    desc: "I want tiled diamonds!",
+    desc: "tiled diamonds",
     code: `
 shape(4).repeat(4,4).rotate(3.14/4).out()`,
   },
   {
-    desc: "I want a grid of squares!",
+    desc: "grid of squares",
     code: `
 shape(4,0.4).repeat(8,8).out()`,
   },
   {
-    desc: "I want a grid of squares in 3D!",
+    desc: "grid of squares in 3D",
     code: `
 shape(4,0.4).repeat(12,12).modulateScale(gradient().g(),2).out()`,
   },
   {
-    desc: "I want to fly over a pink grid in 3D!",
+    desc: "flying over a pink grid in 3D",
     code: `
 shape(4,0.9).repeat(12,12).invert().color(1,0,1).scrollY(0,-0.1)
   .modulateScale(gradient().g(),2).out()`,
   },
   {
-    desc: "I want to fly over a pink grid with cyan background in 3D!",
+    desc: "flying over a pink grid with cyan background in 3D",
     code: `
 solid(0,1,1).layer(
   shape(4,0.9).repeat(12,12).invert().luma().color(1,0,1).scrollY(0,-0.1)
@@ -175,7 +175,7 @@ solid(0,1,1).layer(
   .modulateScale(gradient().g(),2).out()`,
   },
   {
-    desc: "I want a vaporwave grid!",
+    desc: "vaporwave grid",
     code: `
 solid(0,1,1).layer(
   shape(4,0.9).repeat(12,12).invert().luma().color(1,0,1)
@@ -186,41 +186,41 @@ solid(0,1,1).layer(
   .out()`,
   },
   {
-    desc: "I want a grid of alternating squares!",
+    desc: "grid of alternating squares",
     code: `
 shape(4,0.4).scale(1,1,2).repeat(4,8,.5).out()`,
   },
   {
-    desc: "What about Polka dots?",
+    desc: "Polka dots",
     code: `
 shape(999,0.5).repeat(4,4).rotate(3.14/4).out()`,
   },
   {
-    desc: "I want red Polka dots on yellow background!",
+    desc: "red Polka dots on yellow background",
     code: `
 solid(1,1,0).layer(shape(999,0.5).repeat(4,4).rotate(3.14/4).luma().color(1,0,0)).out()`,
   },
   {
-    desc: "Can you make dots looking through a water surface?",
+    desc: "dots behind a water surface",
     code: `
 shape(999,0.5).repeat(4,4).rotate(3.14/4)
   .modulate(noise(3)).out()`,
   },
   {
-    desc: "Or dots through ripples?",
+    desc: "dots behind ripples",
     code: `
 shape(999,0.5).repeat(4,4).rotate(3.14/4)
   .modulate(osc().kaleid(999)).out()`,
   },
   {
-    desc: "How can I move a circle with mouse?",
+    desc: "move a circle with mouse",
     code: `
 shape(999).scroll(
   ()=>0.5-mouse.x/window.innerWidth,
   ()=>0.5-mouse.y/window.innerHeight).out()`,
   },
   {
-    desc: "How can I make a drawing app?",
+    desc: "drawing app",
     code: `
 src(o0).layer(
   shape(999,0.1).scroll(
@@ -228,7 +228,7 @@ src(o0).layer(
   ()=>0.5-mouse.y/window.innerHeight).luma()).out()`,
   },
   {
-    desc: "Can I make a drawing app with changing colors?",
+    desc: "drawing app with changing colors",
     code: `
 src(o0).layer(
   shape(999,0.1).scroll(
@@ -236,12 +236,12 @@ src(o0).layer(
   ()=>0.5-mouse.y/window.innerHeight).luma().color(1,0,0).hue(()=>time/5)).out()`,
   },
   {
-    desc: "I want a circle with chromatic aberration!",
+    desc: "circle with chromatic aberration",
     code: `
 shape(999,0.5).color(0,1,1).add(shape(999,0.5).color(1,0,0).scrollX(0.01)).invert().out()`,
   },
   {
-    desc: "I want a circle with scan line glitch effect!",
+    desc: "circle with scan line glitch effect",
     code: `
 shape(999,0.5).color(0,1,1)
   .modulate(noise(999,1).pixelate(1,9999).color(1,0))
@@ -250,18 +250,18 @@ shape(999,0.5).color(0,1,1)
    .modulate(noise(998,1).pixelate(1,9999).color(1,0))).out()`,
   },
   {
-    desc: "I want a circle with block noise glitch effect!",
+    desc: "circle with block noise glitch effect",
     code: `
 shape(999,0.5)
   .modulatePixelate(noise(6).thresh(-0.5,0.1).pixelate(8,8),1000,8).out()`,
   },
   {
-    desc: "How can I make a right-angled triangle?",
+    desc: "right-angled triangle",
     code: `
 shape(1,0).rotate(3.14/4).out()`,
   },
   {
-    desc: "How can I make a triangle grid?",
+    desc: "triangle grid",
     code: `
 shape(1,0).rotate(3.14/4).repeat(6,6).out()`,
   },
