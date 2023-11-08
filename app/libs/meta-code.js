@@ -266,122 +266,122 @@ shape(1,0).rotate(3.14/4).out()`,
 shape(1,0).rotate(3.14/4).repeat(6,6).out()`,
   },
   {
-    desc: "No, I want an angled grid made of triangles!",
+    desc: "angled grid made of triangles",
     code: `
 shape(3,0.5).repeat(6,6,0.5).out()`,
   },
   {
-    desc: "I want a bouncing square!",
+    desc: "bouncing square with deformation",
     code: `
 shape(4).modulateScrollY(osc(1,1)).out()`,
   },
   {
-    desc: "I want a bouncing square but without deformation!",
+    desc: "bouncing square without deformation",
     code: `
 shape(4).modulateScrollY(osc(1,1).pixelate(1,1)).out()`,
   },
   {
-    desc: "I want a bouncing square chopped into pieces!",
+    desc: "bouncing square chopped into pieces",
     code: `
 shape(4).modulateScrollY(osc(1,1).pixelate(16,1)).out()`,
   },
   {
-    desc: "How can I make a 3D cube?",
+    desc: "3D cube",
     code: `
 shape(4).scrollY(0.15).modulateScale(gradient().g().color(1,0)).color(0,1,0).mask(shape(4,1)).scale(1,1/1.5,0.5)
   .add(shape(4).scrollY(-0.15).color(1,0,0)).out()`,
   },
   {
-    desc: "Can I make a house?",
+    desc: "house",
     code: `
 shape(4).scrollY(0.15).modulateScale(gradient().g().color(1,0)).color(1,.5,0)
   .add(shape(4).scrollY(-0.15).color(1,1,0)).scale(1,1,0.8).out()`,
   },
   {
-    desc: "I want a window on the house!",
+    desc: "house with a window",
     code: `
 shape(4).scrollY(0.15).modulateScale(gradient().g().color(1,0)).color(1,.5,0)
   .add(shape(4).scrollY(-0.15).color(1,1,0))
   .layer(shape(4,0.1).luma().scrollY(-0.1).color(0,1,1)).scale(1,1,0.8).out()`,
   },
   {
-    desc: "I want a rainbow (easy)!",
+    desc: "easy rainbow",
     code: `
 osc(10,0.1,1.5).out()`,
   },
   {
-    desc: "I want a circle with rainbow colors!",
+    desc: "circle with rainbow",
     code: `
 osc(10,0.1,1.5).mask(shape(999,0.6)).out()`,
   },
   {
-    desc: "I want a rainbow (hard)!",
+    desc: "accurate rainbow",
     code: `
 src(o0).hue(0.01).scrollY(0.01).layer(shape(1,-0.9,0).r().color(1,0,0)).out()`,
   },
   {
-    desc: "I want a circle inside a square!",
+    desc: "circle inside a square",
     code: `
 shape(4).diff(shape(999)).out()`,
   },
   {
-    desc: "Can I make Swiss cheese?",
+    desc: "Swiss cheese",
     code: `
 shape(4).color(1,1,0).mult(shape(999).repeat(10,10,0.5).invert()).out()`,
   },
   {
-    desc: "Can I make Pacman?",
+    desc: "Pacman",
     code: `
 shape(999).mult(shape(4,0.5).scroll(0.25,0.25).rotate(-3.14/4).invert()).color(1,1,0).out()`,
   },
   {
-    desc: "What about creepy Pacman? lol",
+    desc: "creepy Pacman",
     code: `
 shape(999).mult(shape(4,0.5).scroll(0.25,0.25).rotate(-3.14/4).mask(shape(4,10,0)).modulateScale(osc(10,1).color(0,1),-0.5,1).invert()).color(1,1,0).out()`,
   },
   {
-    desc: "I want creepy Pacman chasing Swiss cheese!",
+    desc: "creepy Pacman chasing Swiss cheese",
     code: `
 shape(999).mult(shape(4,0.5).scroll(0.25,0.25).rotate(-3.14/4).mask(shape(4,10,0)).modulateScale(osc(10,1).color(0,1),-0.5,1).invert()).color(1,1,0)
   .add(shape(4).color(1,1,0).mult(shape(999).repeat(10,10,0.5).invert()).scale(0.5).rotate(0,0.1).scrollX(0.3)).scrollX(0,0.1).out()`,
   },
   {
-    desc: "I want a mouse chasing Swiss cheese!",
+    desc: "mouse chasing Swiss cheese",
     code: `
 shape(999,0.2).add(shape(999,0.1).scroll(.1,.1)).add(shape(999,0.1).scroll(-.1,.1))
   .thresh().luma().color(.5,.5,.5).modulateScrollY(osc(0.1,40),0.1)
   .add(shape(4).color(1,1,0).mult(shape(999).repeat(10,10,0.5).invert()).scale(0.5).rotate(0,0.1).scrollX(0.4)).scrollX(0,0.1).out()`,
   },
   {
-    desc: "How can I make sunny side up?",
+    desc: "sunny side up",
     code: `
 shape(999,0.5).diff(shape(999,0.3).color(0,0,1)).out()`,
   },
   {
-    desc: "Can I add salt and pepper?",
+    desc: "sunny side up with salt and pepper",
     code: `
 shape(999,0.5).diff(shape(999,0.3).color(0,0,1))
   .diff(noise(99).thresh(0.9)).out()`,
   },
   {
-    desc: "How can I make eyes?",
+    desc: "eyes",
     code: `
 shape(999,0.4).diff(shape(999,0.2)).scale(1,2,1)
   .repeat(2,1).out()`,
   },
   {
-    desc: "Can I make wiggly eyes?",
+    desc: "wiggly eyes",
     code: `
 shape(999,0.4).diff(shape(999,0.2).modulateScrollX(osc(1,1),0.1).scrollX(-0.05)).scale(1,2,1)
   .repeat(2,1).out()`,
   },
   {
-    desc: "How can I make a beak?",
+    desc: "beak",
     code: `
 shape(999).color(1,1,0).mult(shape(2,0.01).invert()).scale(1,2,1).out()`,
   },
   {
-    desc: "How can I combine wiggly eyes and a beak?",
+    desc: "wiggly eyes and a beak",
     code: `
 shape(999,0.4).diff(shape(999,0.2).modulateScrollX(osc(1,1),0.1).scrollX(-0.05)).scale(1,2,1)
   .repeat(2,1).mask(shape(4,1)).scale(0.5).scrollY(0.1)
@@ -390,7 +390,7 @@ shape(999,0.4).diff(shape(999,0.2).modulateScrollX(osc(1,1),0.1).scrollX(-0.05))
   .out()`,
   },
   {
-    desc: "How can I draw a chubby bird?",
+    desc: "chubby bird facing forward",
     code: `
 shape(999).color(0,1,1).layer(
 shape(999,0.2).r().layer(shape(999,0.1).modulateScrollX(osc(1,1),0.05).scrollX(-0.05).r().color(0,0,0)).scale(1,4,1)
@@ -400,7 +400,7 @@ shape(999,0.2).r().layer(shape(999,0.1).modulateScrollX(osc(1,1),0.05).scrollX(-
   .out()`,
   },
   {
-    desc: "Can the chubby bird facing right?",
+    desc: "chubby bird facing right",
     code: `
 shape(999).color(0,1,1).layer(
 shape(999,0.2).r().layer(shape(999,0.1).modulateScrollX(osc(1,1),0.05).scrollX(-0.05).r().color(0,0,0))
@@ -410,7 +410,7 @@ shape(999,0.2).r().layer(shape(999,0.1).modulateScrollX(osc(1,1),0.05).scrollX(-
   .out()`,
   },
   {
-    desc: "Can the chubby bird flap?",
+    desc: "chubby bird flapping",
     code: `
 shape(999).color(0,1,1).layer(
 shape(999,0.2).r().layer(shape(999,0.1).modulateScrollX(osc(1,1),0.05).scrollX(-0.05).r().color(0,0,0))
@@ -421,7 +421,7 @@ shape(999,0.2).r().layer(shape(999,0.1).modulateScrollX(osc(1,1),0.05).scrollX(-
   .out()`,
   },
   {
-    desc: "Can I make flappy bird?",
+    desc: "flappy bird",
     code: `
 shape(4).repeat(2,1)
   .modulateScrollY(noise(3,0).pixelate(2,1))
@@ -434,155 +434,132 @@ shape(999,0.2).r().layer(shape(999,0.1).modulateScrollX(osc(1,1),0.05).scrollX(-
 .modulateScrollY(noise(3,0).modulate(solid(0.1,0),()=>time).pixelate(1,1)))
   .out()`,
   },
+//   {
+//     desc: "How can I load a cat image? (also check out [how to upload](cat?id=how-to-upload-image))",
+//     code: `
+// // src(s0).out()`,
+//   },
   {
-    desc: "How can I load a cat image? (also check out [how to upload](cat?id=how-to-upload-image))",
+    desc: "pixelate",
     code: `
-s0.initImage("https://i.ibb.co/qk4pXnz/pexels-dominika-roseclay-977935-jpg.jpg")
-src(s0).out()`,
-  },
-  {
-    desc: "Can I pixelate the cat image?",
-    code: `
-s0.initImage("https://i.ibb.co/qk4pXnz/pexels-dominika-roseclay-977935-jpg.jpg")
 src(s0).pixelate(16,16).out()`,
   },
   {
-    desc: "Can I make the cat image grayscale?",
+    desc: "grayscale",
     code: `
-s0.initImage("https://i.ibb.co/qk4pXnz/pexels-dominika-roseclay-977935-jpg.jpg")
 src(s0).saturate(0).out()`,
   },
   {
-    desc: "Can I make the cat image black and white?",
+    desc: "black and white",
     code: `
-s0.initImage("https://i.ibb.co/qk4pXnz/pexels-dominika-roseclay-977935-jpg.jpg")
 src(s0).thresh().out()`,
   },
   {
-    desc: "Can I make the cat image red and blue?",
+    desc: "red and blue",
     code: `
-s0.initImage("https://i.ibb.co/qk4pXnz/pexels-dominika-roseclay-977935-jpg.jpg")
 src(s0).color(1,0,-1).out()`,
   },
   {
-    desc: "How can I invert color of the cat image?",
+    desc: "invert color",
     code: `
-s0.initImage("https://i.ibb.co/qk4pXnz/pexels-dominika-roseclay-977935-jpg.jpg")
 src(s0).invert().out()`,
   },
   {
-    desc: "Can I make the cat rainbow?",
+    desc: "rainbow color",
     code: `
-s0.initImage("https://i.ibb.co/qk4pXnz/pexels-dominika-roseclay-977935-jpg.jpg")
 osc(30,0.1,1.5).layer(src(s0).luma()).out()`,
   },
   {
-    desc: "Can I completely change the color of the cat?",
+    desc: "completely change the color",
     code: `
-s0.initImage("https://i.ibb.co/qk4pXnz/pexels-dominika-roseclay-977935-jpg.jpg")
 src(s0).colorama(0.2).out()`,
   },
   {
-    desc: "How can I make a wavy cat?",
+    desc: "wavy",
     code: `
-s0.initImage("https://i.ibb.co/qk4pXnz/pexels-dominika-roseclay-977935-jpg.jpg")
 src(s0).modulate(osc().rotate(3.14/2),0.02).out()`,
   },
   {
-    desc: "How can I make the cat underwater?",
+    desc: "underwater",
     code: `
-s0.initImage("https://i.ibb.co/qk4pXnz/pexels-dominika-roseclay-977935-jpg.jpg")
 src(s0).modulate(noise(6),0.03).out()`,
   },
   {
-    desc: "How can I make a kaleidoscopic cat?",
+    desc: "kaleidoscopic",
     code: `
-s0.initImage("https://i.ibb.co/qk4pXnz/pexels-dominika-roseclay-977935-jpg.jpg")
 src(s0).scrollY(0,.1).kaleid(4).out()`,
   },
+//   {
+//     desc: "Can the cat follow the mouse?",
+//     code: `
+// src(s0).scroll(
+//   ()=>0.5-mouse.x/window.innerWidth,
+//   ()=>0.5-mouse.y/window.innerHeight).out()`,
+//   },
+//   {
+//     desc: "No, I mean the cat chasing the mouse!",
+//     code: `
+// src(s0).modulateScrollY(osc(0.1,30),0.1).layer(
+//   shape(999,0.2).add(shape(999,0.1).scroll(.1,.1)).add(shape(999,0.1).scroll(-.1,.1))
+//   .scroll(.2,-.2).thresh().luma().color(.5,.5,.5).modulateScrollY(osc(0.1,40),0.1)).scrollX(0,0.1).out()`,
+//   },
   {
-    desc: "Can the cat follow the mouse?",
-    code: `
-s0.initImage("https://i.ibb.co/qk4pXnz/pexels-dominika-roseclay-977935-jpg.jpg")
-src(s0).scroll(
-  ()=>0.5-mouse.x/window.innerWidth,
-  ()=>0.5-mouse.y/window.innerHeight).out()`,
+    desc: "upside down",
+    code: `src(s0).rotate(3.14).out()`,
   },
   {
-    desc: "No, I mean the cat chasing the mouse!",
+    desc: "rotate",
     code: `
-s0.initImage("https://i.ibb.co/qk4pXnz/pexels-dominika-roseclay-977935-jpg.jpg")
-src(s0).modulateScrollY(osc(0.1,30),0.1).layer(
-  shape(999,0.2).add(shape(999,0.1).scroll(.1,.1)).add(shape(999,0.1).scroll(-.1,.1))
-  .scroll(.2,-.2).thresh().luma().color(.5,.5,.5).modulateScrollY(osc(0.1,40),0.1)).scrollX(0,0.1).out()`,
-  },
-  {
-    desc: "How can I make the cat upside down?",
-    code: `s0.initImage("https://i.ibb.co/qk4pXnz/pexels-dominika-roseclay-977935-jpg.jpg")
-src(s0).rotate(3.14).out()`,
-  },
-  {
-    desc: "How can I make the cat rotate?",
-    code: `
-s0.initImage("https://i.ibb.co/qk4pXnz/pexels-dominika-roseclay-977935-jpg.jpg")
 src(s0).rotate(0,0.1).out()`,
   },
   {
-    desc: "How can I make 100 cats in a grid?",
+    desc: "grid",
     code: `
-s0.initImage("https://i.ibb.co/qk4pXnz/pexels-dominika-roseclay-977935-jpg.jpg")
 src(s0).scale(2).repeat(10,10).out()`,
   },
   {
-    desc: "How can I draw a chubby cat?",
+    desc: "chubby",
     code: `
 src(s0).modulateScale(shape(999,0,1)).out()`,
   },
   {
-    desc: "Can I make the chubby cat dance?",
+    desc: "chubby and dance",
     code: `
 src(s0).modulateScale(shape(999,0,1)).modulate(osc(2,1).rotate(Math.PI/2)).out()`,
   },
   {
-    desc: "How can I enlarge the cat's eyes?",
+    desc: "enlarge the eyes",
     code: `
-s0.initImage("https://i.ibb.co/qk4pXnz/pexels-dominika-roseclay-977935-jpg.jpg")
 src(s0).modulateScale(src(s0).pixelate(32,32).thresh(),-1,2).out()`,
   },
   {
-    desc: "How can I make the cat rainbow? (take 2)",
+    desc: "rainbow",
     code: `
-s0.initImage("https://i.ibb.co/qk4pXnz/pexels-dominika-roseclay-977935-jpg.jpg")
 osc(6,0,1.5).modulate(src(s0),1).out()`,
   },
   {
-    desc: "How can I make the cat tunnel vision?",
+    desc: "tunnel vision",
     code: `
-s0.initImage("https://i.ibb.co/qk4pXnz/pexels-dominika-roseclay-977935-jpg.jpg")
 src(o0).scale(1.1).layer(src(s0).mask(shape(4))).out()`,
   },
   {
     desc: "How can I make a cat swirl?",
     code: `
-s0.initImage("https://i.ibb.co/qk4pXnz/pexels-dominika-roseclay-977935-jpg.jpg")
 src(o0).rotate(0.02).scale(1.03).layer(src(s0).mask(shape(999))).out()`,
   },
   {
     desc: "How can I make a party cat?",
     code: `
-s0.initImage("https://i.ibb.co/qk4pXnz/pexels-dominika-roseclay-977935-jpg.jpg")
 src(s0).color(1,1,0).hue(()=>time/5).out()`,
   },
   {
     desc: "How can I make a dancing party cat?",
     code: `
-s0.initImage("https://i.ibb.co/qk4pXnz/pexels-dominika-roseclay-977935-jpg.jpg")
 src(s0).color(1,1,0).hue(()=>time/5).modulate(osc(3,1,1.5),0.3).out()`,
   },
   {
     desc: "Can I make a cat slot machine?",
     code: `
-s0.initImage("https://i.ibb.co/qk4pXnz/pexels-dominika-roseclay-977935-jpg.jpg")
 src(s0).repeat(3,3).modulateScrollY(osc(1,2).pixelate(3,1),1).out()`,
   },
   {
