@@ -10,7 +10,7 @@ import { javascript } from '@codemirror/lang-javascript'
 const defaultStyle = {
   // fontFamily: "'IBM Plex Mono', monospace",
   border: 'solid rgba(0,0,0,0)',
-  backgroundColor: 'rgba(255,255,255,0.5)',
+  //backgroundColor: 'rgba(255,255,255,0.5)',
 }
 
 export default class CodeMirror extends Component {
@@ -91,7 +91,7 @@ export default class CodeMirror extends Component {
     })
     
     const editorState = EditorState.create({
-      doc: 'Hello World',
+      doc: '',
       extensions: [
         keymaps,
         this.theme.of(theme),
@@ -132,14 +132,14 @@ export default class CodeMirror extends Component {
     if (this.editable) {
       this.errorMessage = html`<p class="red h1 plex-mono pa0 ma0" style="background-color:rgba(255,255,255,0.3)"></p>`
       return html`
-        <div class="w-100">
+        <div class="w-full">
           <div class="editor"></div>
           ${ this.errorMessage }
       </div>`
     }
     else {
       return html`
-      <div class="w-100">
+      <div class="">
         <div class="editor"></div>
       </div>`
     }

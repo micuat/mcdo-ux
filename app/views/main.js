@@ -18,20 +18,19 @@ export default function(state, emit) {
           </button>
         `) }
       </div>
-      <div class="absolute bottom-0 w-full z-10 overflow-scroll">
-      <pre>
-        <code>${ state.code }</code>
-      </pre>
+      <div class="absolute bottom-0 z-10 w-full">
+        ${ state.cache(Editor, 'editor').render() }
       </div>
-      ${ state.cache(Editor, 'editor').render() }
       ${ state.cache(HydraCanvas, 'hydra').render(state, emit) }
     </div>
   `;
   
   function funcClick(ev) {
     // console.log(this, ev)
-    eval(this.code);
-    state.code = this.code;
+    const code = this.code.replace(/^[\s]+/, "");
+    eval(code);
+    // state.code = this.code;
+    state.cache(Editor, 'editor').setCode(code);
     emit("render");
   }
 };
