@@ -31,7 +31,7 @@ export default {
   solid(1,1,0).layer(shape(999).luma().color(0,0,1)).scrollY([-0.3,0.3].smooth()).out()`,
     },
     {
-      desc: "traffic lights?",
+      desc: "traffic lights",
       code: `
   shape(999).color(1,0,0).scrollY(0.3)
     .add(shape(999).color(1,1,0))

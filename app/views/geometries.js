@@ -29,6 +29,7 @@ export default function(state, emit) {
     // console.log(this, ev)
     const code = this.code.replace(/^[\s]+/, "");
     eval(code);
+    state.cache(HydraCanvas, 'hydra').download(ev, this.desc)
     // state.code = this.code;
     state.cache(Editor, 'editor').setCode(code);
     emit("render");

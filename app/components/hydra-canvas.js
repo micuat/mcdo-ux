@@ -10,10 +10,10 @@ export default class Map extends Component {
   }
 
   load(element) {
-    console.log("loading hydra", element, this.canvas);
+    console.log("loading hydra", element);
 
     // create a new hydra-synth instance
-    const hydraCanvas = element.querySelector("canvas");
+    const hydraCanvas = this.hydraCanvas = element.querySelector("canvas");
     hydraCanvas.width = 800//window.innerWidth;
     hydraCanvas.height = 800//window.innerHeight;
 
@@ -31,6 +31,12 @@ export default class Map extends Component {
 
   update() {
     return false;
+  }
+  
+  download(e, desc) {
+    const dt = this.hydraCanvas.toDataURL('image/jpeg');
+    console.log(e)
+    e.target.href = dt;
   }
 
   createElement(center) {
