@@ -7,5 +7,9 @@ export default function(state, emitter) {
       s0.initCam();
       src(s0).out();
     }
+    if (state.route == "img") {
+      s0.initImage('https://i.ibb.co/LdnQNgY/Cat.png')
+      src(s0).out();
+    }
   });
 }

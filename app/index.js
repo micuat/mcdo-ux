@@ -24,9 +24,11 @@ function notFound() {
 // import a template
 import main from "./views/main";
 import geom from "./views/geometries";
+import img from "./views/img";
 
 app.route("/", main);
 app.route("/geom", geom);
+app.route("/img", img);
 
 // start app
 app.mount("#choomount");
