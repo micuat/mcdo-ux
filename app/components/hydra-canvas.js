@@ -16,6 +16,9 @@ export default class Map extends Component {
     const hydraCanvas = this.hydraCanvas = element.querySelector("canvas");
     hydraCanvas.width = 800//window.innerWidth;
     hydraCanvas.height = 800//window.innerHeight;
+    hydraCanvas.getContext("webgl", {
+      preserveDrawingBuffer: true
+    });
 
     if (this.state.hydra == undefined) {
       this.state.hydra = new Hydra({
@@ -34,9 +37,25 @@ export default class Map extends Component {
   }
   
   download(e, desc) {
-    const dt = this.hydraCanvas.toDataURL('image/jpeg');
-    console.log(e)
-    e.target.href = dt;
+
+    const a = document.createElement('a')
+    setTimeout(() => {
+      a.style.display = 'none'
+
+      let d = new Date()
+      // a.download = `hydra-${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}-${d.getHours()}.${d.getMinutes()}.${d.getSeconds()}.png`
+      a.download = `${ desc }.png`;
+      document.body.appendChild(a)
+      this.hydraCanvas.toBlob( (blob) => {
+        a.href = URL.createObjectURL(blob)
+        console.log(a.href)
+        a.click()
+      }, 'image/png')
+    }, 300);
+    setTimeout(() => {
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(a.href);
+    }, 600);
   }
 
   createElement(center) {
