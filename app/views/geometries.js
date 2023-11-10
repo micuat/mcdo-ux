@@ -17,9 +17,9 @@ export default function(state, emit) {
   return html`
     <div class="absolute left-0 top-0 w-screen h-screen">
       <div class="absolute left-0 top-0 w-full h-full z-10">
-        ${ code.alt.map((e => html`
+        ${ code.alt.map((e,i) => html`
           <button class="m-0.5 bg-white/90 border-black border-solid border-2" onclick=${ funcClick.bind(e) }>
-            ${ e.desc }
+            ${ i }
           </button>
         `) }
       </div>
@@ -34,7 +34,7 @@ export default function(state, emit) {
     // console.log(this, ev)
     const code = this.code.replace(/^[\s]+/, "");
     eval(code);
-    state.cache(HydraCanvas, 'hydra').download(ev, this.desc)
+    // state.cache(HydraCanvas, 'hydra').download(ev, this.desc)
     // state.code = this.code;
     state.cache(Editor, 'editor').setCode(code);
     emit("render");
