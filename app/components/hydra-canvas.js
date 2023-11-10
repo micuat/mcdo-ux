@@ -51,11 +51,11 @@ export default class Map extends Component {
         console.log(a.href)
         a.click()
       }, 'image/png')
-    }, 300);
-    setTimeout(() => {
-      document.body.removeChild(a);
-      window.URL.revokeObjectURL(a.href);
-    }, 600);
+      setTimeout(() => {
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(a.href);
+      }, 300);
+    }, 2000);
   }
 
   createElement(center) {
