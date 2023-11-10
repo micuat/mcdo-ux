@@ -8,18 +8,13 @@ import code from "../libs/meta-code.js";
 
 // export module
 export default function(state, emit) {
-        //   ${ code.patterns.map(e => html`
-        //   <button class="m-0.5 bg-white/90 border-black border-solid border-2" onclick=${ funcClick.bind(e) }>
-        //     ${ e.desc }
-        //   </button>
-        // `) }
 
   return html`
     <div class="absolute left-0 top-0 w-screen h-screen">
       <div class="absolute left-0 top-0 w-full h-full z-10">
-        ${ code.alt.map((e,i) => html`
+        ${ code.patterns.map(e => html`
           <button class="m-0.5 bg-white/90 border-black border-solid border-2" onclick=${ funcClick.bind(e) }>
-            ${ i }
+            ${ e.desc }
           </button>
         `) }
       </div>
@@ -31,11 +26,10 @@ export default function(state, emit) {
   `;
   
   function funcClick(ev) {
-    // console.log(this, ev)
+    render(o0)
     const code = this.code.replace(/^[\s]+/, "");
     eval(code);
-    // state.cache(HydraCanvas, 'hydra').download(ev, this.desc)
-    // state.code = this.code;
+    state.cache(HydraCanvas, 'hydra').download(ev, this.desc)
     state.cache(Editor, 'editor').setCode(code);
     emit("render");
   }

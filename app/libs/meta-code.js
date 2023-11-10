@@ -745,10 +745,6 @@ export default {
     "code": "osc(160,0,1.5).rotate(Math.PI/4)\n  .modulatePixelate(\n  noise(3,.01).pixelate(8,8).add(solid(1,1)).color(.5,.5)\n  .posterize(16,1),\n  120*16/15,8).out()\n",
     "desc": "pixelate"
   },
-  // {
-  //   "code": "s0.initImage(\"https://bild.glitches.me/images/2022/11/10/2022-11-05-IMG_4442.md.jpg\")\nsrc(o1).colorama(.002)\n  .modulate(\n  osc(Math.PI*2,0,Math.PI/2).modulate(solid(1),.123)\n  .pixelate(4).brightness(-.5)\n  .mask(osc(Math.PI*8,0,Math.PI/2).r().thresh(.3,0))\n  .modulate(noise(5,.1).pixelate(32,32).sub(gradient()),1)\n  ,.05)\n.layer(src(s0).scale(.35,1,1.35).rotate(Math.PI/4+.05).mask(shape(4,.25,0)))\n.out(o1)\n\nsolid().layer(\n  src(o1)).out()\n\n",
-  //   "desc": "tiles"
-  // },
   {
     "code": "osc(100, -0.1)\n\t.thresh(0.9, 0)\n\t.mult(noise(20, 1)\n\t\t.thresh())\n\t.mult(noise(5,1).thresh())\n  .add(src(o0)\n\t\t.scrollX(0.001), 0.8)\n\t.out()\n\nsrc(o0).color(1,0.8,0.3).saturate(0.8).out(o1)\n\nrender(o1)",
     "desc": "grains"
@@ -757,22 +753,6 @@ export default {
     "code": "\nosc(30,0).invert().thresh(.5,0).kaleid(4).rotate(Math.PI/4)\n  .repeat(8,8)\n//   .modulate(\n//   noise(8,0).pixelate(8,8))\n  .mult(noise(8,0).pixelate(8,8).thresh(-.2,0))\n  .modulateScale(noise(4,0).thresh(.1,.2).pixelate(64,64))\n  .modulatePixelate(noise(3,0).thresh(-0.5,.2).pixelate(64,64),1024,64)\n  .scale(1,9/16)\n  .out()",
     "desc": "Tapestry I"
   },
-  // {
-  //   "code": "\ns0.initImage(\"https://bild.glitches.me/images/2022/11/10/Screenshot-2022-11-09-at-19-51-53-2022-10-11-Solo-Part-2.png\")\ns1.initImage(\"https://bild.glitches.me/images/2022/11/10/vlcsnap-2022-11-09-19h45m12s966.png\")\ns2.initImage(\"https://bild.glitches.me/images/2022/11/10/Screenshot-2022-11-09-at-20-16-58-2022-10-11-Solo-Part-2.png\")\ns3.initImage(\"https://bild.glitches.me/images/2022/11/10/vlcsnap-2022-11-09-20h19m27s929.png\")\n\n// s3.initScreen()\n\n// src(s3).out(o1)\n\nsrc(o0).hue(.003).modulate(\n  osc(6,0,1.5).brightness(-.5).modulate(noise(30).sub(gradient()),1),.003)\n// .layer(src(s3).mask(src(s3).diff(o1)).thresh(.1))\n  .layer(\n  osc(8,0,1.5).modulate(solid(4)).modulate(\n    src(s1).sub(gradient()),1).mask(src(s3).sub(src(s1)).thresh(.01,0))\n  .scroll(.1,.1).scale(1.4,1.1,1))\n  .layer(\n  solid().mask(src(s0).diff(src(s2)).thresh(.05,0)).rotate(Math.PI/-2).scroll(-.21,-.11).scale(.9,1,2.5)\n)\n  .layer(\n  osc(8,0,1.5).modulate(solid(-1)).modulate(\n    src(s0).sub(gradient()),1)\n  .mask(src(s0).diff(src(s2)).thresh(.05,0)).rotate(Math.PI/-2).scroll(-.2,-.1).scale(.9,1,2.5)\n)\n  .out()",
-  //   "desc": "test"
-  // },
-  // {
-  //   "code": "N=16\nosc(Math.PI*20,0).thresh(.2).repeat(N,N)\n  .modulateRotate(\n  noise(4,0).add(noise(128,0),.5).pixelate(N,N).thresh(0,0),Math.PI/2)\n  .scale(1,9/16).out()",
-  //   "desc": "Untitled 4"
-  // },
-  // {
-  //   "code": "s0.initVideo(\"https://cdn.glitches.me/2022-04-20-seqgosau.mp4\")\n\nsrc(o0).modulate(gradient().pixelate(2,2).brightness(-.5).mult(osc(1,1).color(1,0).add(solid(0,1))),-0.03).layer(\nosc(6,0,.5).modulate(src(s0).sub(gradient()),1)\n  .mask(osc(30,.2).modulate(src(s0).sub(gradient()),1).thresh(.5,0))).out()\n",
-  //   "desc": "gosau"
-  // },
-  // {
-  //   "code": "R=()=>gradient().r().repeatX(2).invert().kaleid(4).rotate(Math.PI/4)\nN=()=>osc(6,0,1.5).brightness(-.5).modulate(noise(16,0.1).sub(gradient()),1)\nM=3\nosc(72.5,0).thresh(0.1,0.2).kaleid(4).rotate(Math.PI/4)\n  .repeat(M,M)\n  .modulate(\n  N().pixelate(M,M).mult(\n    R().repeat(M,M).modulate(\n      N().pixelate(M,M).mult(\n        R().repeat(M,M).modulate(\n      N().pixelate(M,M).mult(\n        R().repeat(M,M)))))),.1)\n  .scale(1,9/16)\n  .out()\n\n",
-  //   "desc": "untitled 1"
-  // },
   {
     "code": "src(o1)\n  .modulatePixelate(\n  osc(6,0).color(1,0,0).add(osc(6,0,3.14).g().color(0,1,0))\n  .modulate(noise(3,.02).sub(gradient()),1)\n  .modulatePixelate(\n    osc(6,0).thresh(.2,.1).color(1,0,0).add(osc(6,0,3.14).g().thresh(.2,.1).color(0,1,0))\n    .modulate(noise(3,.02).sub(gradient()),1).pixelate(),1024,8)\n  ,1024,8)\n  .layer(\n  osc(30,0.1,1.5).mask(shape(4,0.3,0).rotate(Math.PI/4))).out(o1)\n\nsolid().layer(o1).out()",
     "desc": "pixelelate"
@@ -785,10 +765,6 @@ export default {
     "code": "src(o1).mult(\nosc(Math.PI*2,0).scale(1/8).thresh(.1,0).modulate(\n    noise(2,.01).sub(gradient()),1)\n)\n  .modulate(\n  osc(Math.PI*2,0,Math.PI/2).scale(1/8).brightness(-.5).modulate(\n    noise(2,.01).sub(gradient())\n  ,1),.01)\n.modulatePixelate(\n  osc(Math.PI*2,0,Math.PI/2).r().thresh(.15,0).color(1,0,0).add(\n    osc(Math.PI*2,0,Math.PI).g().thresh(.15,0).color(0,1,0))\n  .scale(.25)\n  .modulate(noise(2,.01).sub(gradient()),1),10240,128)\n.layer(\n  src(o1).mask(\n    osc(24,0).thresh(.9,0).modulate(noise(2,.01).sub(gradient()),1)\n  .mult(src(o1).thresh(0.01,0)))\n  .colorama(.01))\n  .layer(\n  osc(15,0.1,1.5)\n  .mask(\n    shape(4,.3,0))\n)\n  .out(o1)\n\nsolid().layer(o1).out()\n\n",
     "desc": "noise route"
   },
-  // {
-  //   "code": "w=()=>shape(4,1,0).scale(.3,1.5).r()\n  .layer(shape(4,.99,.01).scale(.3,1.5).r())\n  .layer(shape(4,1,0).scale(.3,1.5).scale(.99,1,.1).scrollY(.133)\n         .r().color(0,0,1))\n  .layer(osc(60,0).modulate(noise(20,0),.3).thresh(0.7).r().mask(\n  shape(4,1,0).scale(.3,1.5).scale(.99,.5,.07).mult(shape(4,.7,0).repeat(64,1)))\n         .scroll(.1,.133))\n  .layer(shape(4,1,0).scale(.3,1).scale(.9,.1,.1).scroll(-.208,.133)\n         .r().color(.6,.6,.6)).layer(\n  shape(4,.8,.2).scale(.3,1,.1).scale(.9,.1,.1).rotate(Math.PI/4).scroll(-.208,.133)\n  .r().color(0,0,0)).layer(\n  shape(4,.8,.2).scale(.3,1,.1).scale(.9,.1,.1).rotate(-Math.PI/4).scroll(-.208,.133)\n  .r().color(0,0,0)).layer(solid(0,0,0).mask(shape(4,1,0))\n                              .scale(.3,1.5).scale(.99,1,.89).scrollY(-.016))\n  .layer(src(o0).scale(1/1.5).hue(.1).modulate(\n  osc(6,0,1.5).brightness(-.5).modulate(noise(3).sub(gradient()),1),.03)\n         .mask(shape(4,1,0).scale(.3,1.5).scale(.99,1,.89).scrollY(-.016)))\n\nsolid(.3,.3,1).add(noise(3,0).add(noise(6,0)).thresh()).layer(\n  solid(0,1,0).mult(osc(7,0).rotate(-.5),.7)\n  .mask(shape(1,0,0))).modulate(osc(3.5,0).brightness(-.5),.1)\n  .layer(\n  shape(4,.4,0).scrollY(.35).r().color(0,0,0).repeat(10,10).mask(\n    noise(19,0).thresh(0,0).pixelate(10,10)))\n  .layer(\n  osc(90,0).modulate(noise(20,0),.3).thresh(0.7,.3).r().mask(\n    shape(4,1,0).scale(1,.7,.07).repeat(10,10).mult(osc(1000,0).thresh(.3))\n    .mult(noise(19,0).thresh(0,0).pixelate(10,10))))\n  .layer(w().scale(1.5)).out(o1)\n\nsrc(o3)\n  .modulate(\n  osc(12,0,1.5).brightness(-.5).modulate(voronoi(3,.3,0).sub(gradient()),1),.03)\n  .hue(.04)\n  .layer(w().scale(1.5)).out(o3)\nsrc(o3).layer(src(o1).luma(.1,0)).out()\n\n",
-  //   "desc": "desktop2"
-  // },
   {
     "code": "\n\nsrc(o1).layer(\n  src(o1).mask(noise(1).thresh(0,0).diff(noise(1).thresh(-.05,0))).hue(.1)\n)\n//.color(.999,.99,.999)\n  .mult(osc(6,0,1.5).modulate(noise(1).sub(gradient()),1),.03)\n  .luma(.05,0)\n  .modulate(\n  osc(Math.PI*2,0,1.5).pixelate(Math.PI*2).brightness(-.5)\n  .modulate(noise(1).sub(gradient()),1),.002)\n  .layer(\n  shape(4,.2,0).r().repeat(80,80)\n    .modulateScale(\n    noise(1).modulate(solid(.1,0),1)\n      .add(solid(1,1)).color(.5,.5).posterize(4,1).contrast(2),-1.34,1)\n  .mult(osc(6,0,1.5))\n  ).out(o1)\n\nsolid().layer(\n  src(o1)).out()\n",
     "desc": "noise"
@@ -797,35 +773,22 @@ export default {
     "code": "osc(12,0,1.5).modulate(voronoi(6,0.1,.3).sub(gradient()),1)\n  .modulatePixelate(\n  osc(6,0,3.14).r().thresh(.3,.1).color(1,0,0).add(\n    osc(6,0,3.14).g().thresh(.3,.1).color(0,1,0))\n//   .posterize(8,1)\n  .modulate(\n    voronoi(6,0.1,0)//.pixelate(8,8)\n    .sub(gradient()),1)\n  ,1024,16)\n  .out()",
     "desc": "distorted voronoi"
   },
-  // {
-  //   "code": "s0.initCam()\n\nsrc(s0).repeat(2,1).scrollX(0,0.1).layer(src(s0).repeat(-2,1).mask(shape(1,0,0)).scrollX(0,-0.1)).scale(1,9/16*2).out()\n",
-  //   "desc": "split"
-  // },
-  // {
-  //   "code": "s1.initImage(\"https://bild.glitches.me/images/2022/04/24/B1F9EF2F-02CB-4F98-9B06-55DE6AD130C3.jpg\")\n\nsrc(o0).modulate(gradient().pixelate(2,2).brightness(-.5),-.01).colorama(1).layer(\nsrc(s1).mask(src(s1).mult(osc(1,1)).thresh(.1)).repeatX(3)).out()",
-  //   "desc": "more intencion"
-  // }
-  ],
-  alt:[
-{desc:"",code:`solid().layer(osc(Math.PI*0,0,-Math.PI/2-Math.PI*0).brightness(-.5).color(2).color(12.173780938090808)).add(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2).color(4.347897987255738)).add(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2).color(0.43844718719116904)).add(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2).color(0.244553789263864)).add(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2).rotate(Math.PI/2).color(4.347897987255742)).add(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2)).color(-1.56854557845442)).add(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2)).color(0.1854585538179323)).add(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2)).color(-0.10250439979092973)).add(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2).rotate(Math.PI/2).color(0.438447187191169)).add(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2)).color(0.1854585538179323)).add(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2)).color(-0.13183367048608075)).add(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2)).color(0.040515461221236004)).add(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2).rotate(Math.PI/2).color(0.24455378926386423)).add(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2)).color(-0.10250439979093018)).add(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2)).color(0.04051546122123573)).add(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2)).color(-0.01976562927159653)).color(1/8).r().modulate(solid(1,1),-.25).out()
+{desc:"blurred grid",code:`solid().layer(osc(Math.PI*0,0,-Math.PI/2-Math.PI*0).brightness(-.5).color(2).color(12.173780938090808)).add(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2).color(4.347897987255738)).add(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2).color(0.43844718719116904)).add(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2).color(0.244553789263864)).add(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2).rotate(Math.PI/2).color(4.347897987255742)).add(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2)).color(-1.56854557845442)).add(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2)).color(0.1854585538179323)).add(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2)).color(-0.10250439979092973)).add(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2).rotate(Math.PI/2).color(0.438447187191169)).add(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2)).color(0.1854585538179323)).add(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2)).color(-0.13183367048608075)).add(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2)).color(0.040515461221236004)).add(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2).rotate(Math.PI/2).color(0.24455378926386423)).add(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2)).color(-0.10250439979093018)).add(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2)).color(0.04051546122123573)).add(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2)).color(-0.01976562927159653)).color(1/8).r().modulate(solid(1,1),-.25).out()
 `},
 
-{desc:"",code:`      osc(300,0,1.5).modulateRotate(voronoi(5,0,0),6.28).out()  `},
+{desc:"crystal",code:`      osc(300,0,1.5).modulateRotate(voronoi(5,0,0),6.28).out()  `},
 
-{desc:"",code:`gradient().colorama(1)
+{desc:"blue flower",code:`gradient().colorama(1)
   .kaleid(8).out()`},
 
-{desc:"",code:`      
-osc(200*Math.PI,0,1.5).mask(shape(4,.75,0).modulate(osc(200*Math.PI,0,1.5).brightness(-.5))).out()  `},
+{desc:"rainbow stripes",code:`osc(90,0,1.3).out()`},
 
-{desc:"",code:`osc(90,0,1.3).out()`},
-
-{desc:"",code:`      src(o0).rotate(.01).colorama(-.003).layer(
+{desc:"pink warp",code:`      src(o0).rotate(.01).colorama(-.003).layer(
 osc(50, 0.01, 0.7)
   .modulateRotate(osc(30,.03).kaleid(99)).rotate(0,.3).luma(.6,0).color(1, 0, 1)
   ).out()  `},
 
-{desc:"",code:`osc(52,0).thresh().kaleid(999)
+{desc:"black and white waves",code:`osc(52,0).thresh().kaleid(999)
   .modulate(osc(6,0).color(1,1).contrast(.8),.8)
   .scale(-1)
   .modulate(solid(-.05,-.25),1)
@@ -834,16 +797,7 @@ osc(50, 0.01, 0.7)
   .scale(2,9/16)
   .out()`},
 
-{desc:"",code:`osc(Math.PI*16,0).thresh().diff(osc(Math.PI*16,0).thresh(0.5,0)).invert().modulate(osc(9,0),.1).out()`},
-
-{desc:"",code:`      
-shape(999,.8).diff(shape(999,.75)).layer(
-osc(50,0).rotate(1.34).mult(osc(60,0)).kaleid(8).mult(shape(8,.4)).scale(2).thresh(.3,.1).r())
-  .repeat(16,9).out()
-
-{desc:"",code:`},
-
-{desc:"",code:`shape(200, [0, 0.25].smooth(), 0.1)
+{desc:"sandstorm",code:`shape(200, [0, 0.25].smooth(), 0.1)
   .scale(1, 0.5)
   .repeat(20, 20, 0.5,0.5)
 .scrollY(0,-0.01)
@@ -872,17 +826,14 @@ src(o0)
 
 render(o1)`},
 
-{desc:"",code:`solid().layer(solid().add(osc(Math.PI*0,0,-Math.PI/2-Math.PI*0).brightness(-.5).color(2).color(12.173780938090808)).add(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2).color(4.347897987255738)).add(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2).color(0.43844718719116904)).add(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2).color(0.244553789263864)).add(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2).rotate(Math.PI/2).color(4.347897987255742)).add(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2)).color(-1.56854557845442)).add(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2)).color(0.1854585538179323)).add(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2)).color(-0.10250439979092973)).add(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2).rotate(Math.PI/2).color(0.438447187191169)).add(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2)).color(0.1854585538179323)).add(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2)).color(-0.13183367048608075)).add(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2)).color(0.040515461221236004)).add(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2).rotate(Math.PI/2).color(0.24455378926386423)).add(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2)).color(-0.10250439979093018)).add(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2)).color(0.04051546122123573)).add(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2)).color(-0.01976562927159653)).color(1/8).r().modulate(solid(1,1),-.25).luma(0,0)).out()
-`},
-
-{desc:"",code:`osc(Math.PI*4,0.1,1.5)
+{desc:"rainbow arch",code:`osc(Math.PI*4,0.1,1.5)
   .modulatePixelate(
   osc(Math.PI*2,0,-Math.PI/2).rotate(Math.PI/2).add(solid(1,1)).color(.5,.5).posterize(80,1).pixelate(1,8000).contrast(10),8,1).out()
 `},
 
-{desc:"",code:`osc(2,0,1.3).rotate().pixelate().out()`},
+{desc:"pixelated gradient",code:`osc(2,0,1.3).rotate().pixelate().out()`},
 
-{desc:"",code:`shape(200, [0, 0.25].smooth(), 0.1)
+{desc:"sandstorm 2",code:`shape(200, [0, 0.25].smooth(), 0.1)
   .scale(1, 0.5)
   .repeat(20, 20, 0.5,0.5)
 .scrollY(0,-0.01)
@@ -911,7 +862,7 @@ src(o0)
 
 render(o1)`},
 
-{desc:"",code:`
+{desc:"flying marker",code:`
 src(o0).modulate(osc(6,0,1.5).pixelate(8).brightness(-.5)
   .modulate(noise().sub(gradient()),1).pixelate(1,1),.02)
   .modulatePixelate(noise(30,0).thresh(-0.8,.2).pixelate(64,64),1920-64,64)
@@ -924,11 +875,11 @@ osc(30,0).invert().thresh(.5,0).kaleid(4).rotate(Math.PI/4)
   .out(o0)
 `},
 
-{desc:"",code:`      src(o0).modulate(osc(6,0,1.5).brightness(-.5).modulate(voronoi(20).luma().sub(gradient()),1),.002).layer(
+{desc:"blue-purple strip bleeding",code:`      src(o0).modulate(osc(6,0,1.5).brightness(-.5).modulate(voronoi(20).luma().sub(gradient()),1),.002).layer(
 gradient().add(solid(0,0,1)).scrollY(-.3).mask(shape(2,.1,0))
   ).out()  `},
 
-{desc:"",code:`osc(12,0,1.5).modulate(voronoi(6,0.1,.3).sub(gradient()),1)
+{desc:"subdividing voronoi",code:`osc(12,0,1.5).modulate(voronoi(6,0.1,.3).sub(gradient()),1)
   .modulatePixelate(
   osc(6,0,3.14).r().thresh(.3,.1).color(1,0,0).add(
     osc(6,0,3.14).g().thresh(.3,.1).color(0,1,0))
@@ -938,7 +889,7 @@ gradient().add(solid(0,0,1)).scrollY(-.3).mask(shape(2,.1,0))
   ,1024,16)
   .out()`},
 
-{desc:"",code:`  src(o1).mask(shape(4,.1,0).repeat(8,8).invert().scroll(.5/8,.5/8))
+{desc:"diagnoal shift",code:`  src(o1).mask(shape(4,.1,0).repeat(8,8).invert().scroll(.5/8,.5/8))
   .modulate(
   osc(Math.PI*2,0,Math.PI/2).pixelate(4).brightness(-.5)
   .mask(osc(Math.PI*8,0,Math.PI/2).r().thresh(.2,0))
@@ -953,7 +904,7 @@ solid().layer(
 
 `},
 
-{desc:"",code:`solid(1,1,1).layer(
+{desc:"warm color stripes scattered",code:`solid(1,1,1).layer(
   gradient().colorama(3).posterize(4).saturate(15)
   .luma(.36,0)
   .repeat(2,2)
@@ -964,45 +915,16 @@ solid().layer(
 
 `},
 
-{desc:"",code:`      src(o0)
+{desc:"circular warped stripes",code:`      src(o0)
   .modulateRotate(gradient().pixelate(2,2).brightness(-0.5)
   ,-0.1)
   .layer(
   osc(30,0.1,.6).mask(shape(1,-.5,0))
   ).out(o0)  `},
 
-{desc:"",code:`gradient().color(5,5,5).colorama(1).out()`},
+{desc:"diagonal repetition",code:`gradient().color(5,5,5).colorama(1).out()`},
 
-{desc:"",code:`  src(o1).mult(
-osc(Math.PI*2,0).scale(1/8).thresh(.1,0).modulate(
-    noise(2,.01).sub(gradient()),1)
-)
-  .modulate(
-  osc(Math.PI*2,0,Math.PI/2).scale(1/8).brightness(-.5).modulate(
-    noise(2,.01).sub(gradient())
-  ,1),.01)
-.modulatePixelate(
-  osc(Math.PI*2,0,Math.PI/2).r().thresh(.15,0).color(1,0,0).add(
-    osc(Math.PI*2,0,Math.PI).g().thresh(.15,0).color(0,1,0))
-  .scale(.25)
-  .modulate(noise(2,.01).sub(gradient()),1),10240,128)
-.layer(
-  src(o1).mask(
-    osc(24,0).thresh(.9,0).modulate(noise(2,.01).sub(gradient()),1)
-  .mult(src(o1).thresh(0.01,0)))
-  .colorama(.01))
-  .layer(
-  osc(15,0.1,1.5)
-  .mask(
-    shape(4,.3,0))
-)
-  .out(o1)
-
-solid().layer(o1).out()
-
-`},
-
-{desc:"",code:`
+{desc:"scratch",code:`
 shape(4,0.3,0)
  .add(shape(200,0.3,0).scale(1,0.5).scrollX(0.3))
   .modulate(o1)
@@ -1021,33 +943,9 @@ osc(30,0).thresh(0.5).rotate(Math.PI/2)
   .out(o1)
 `},
 
-{desc:"",code:`
-src(o1).modulate(
-  osc(110,.1,1.5).brightness(-.5)
-  .modulateScale(noise(3).add(solid(1)).color(.5).pixelate(8,8),-.9,1)
-  .modulateRotate(
-    noise().add(solid(1)).color(.5).posterize(8,1).pixelate(8,8),6.28),0.01).layer(
-  osc(50,.02,1.5).mask(shape(4,.3,0))).out(o1)
+{desc:"red and blue blobs",code:`osc(12,0,1.5).modulate(noise(3).color(3,3,3).colorama(1).saturate(0).sub(gradient()),1).out()`},
 
-solid().layer(o1).out()`},
-
-{desc:"",code:`osc(12,0,1.5).modulate(noise(3).color(3,3,3).colorama(1).saturate(0).sub(gradient()),1).out()`},
-
-{desc:"",code:`      
-src(o0).color(.9,.9,.9).layer(
-shape(3,.3,0.1).modulateRotate(osc(1,1).thresh(.5,.2),3.14)
-  .repeat(3,3).mask(shape(4,1,0))
-  .r()
-  .mult(osc(6,0.02,1.5))
-  .modulateScale(noise().thresh(.5,.2).pixelate(.1,.1),10,.5)
-  .modulate(noise().pixelate(1,1).color(0,1),1)
-  .modulate(noise(8).pixelate(1,1).color(1,0),1)
-  ).out()
-{desc:"",code:`},
-
-{desc:"",code:`solid().layer(osc(Math.PI*2*10,0,-Math.PI/2).b().luma(0,0.01)).out()`},
-
-{desc:"",code:`solid(0,.3,.25).layer(
+{desc:"yellow surround by red and green rectangles",code:`solid(0,.3,.25).layer(
 shape(4,.8,0).r().color(1,0.1,0).scrollY(-.05))
 .layer(
 shape(4,.6,0).r().color(1,0.5,0).scrollY(-.10))
@@ -1056,9 +954,7 @@ shape(4,.4,0).r().color(.8,.9,.1).scrollY(-.15))
   .mask(shape(4,1,0)).scale(1,9/16).out()
 `},
 
-{desc:"",code:`      osc(300,0,1.5).modulateRotate(voronoi(5,0,0),6.28).out()  `},
-
-{desc:"",code:`shape(200, [0, 0.25].smooth(), 0.1)
+{desc:"purple storm",code:`shape(200, [0, 0.25].smooth(), 0.1)
   .scale(1, 0.5)
   .repeat(20, 20, 0.5,0.5)
 .scrollY(0,-0.01)
@@ -1087,10 +983,10 @@ src(o0)
 
 render(o1)`},
 
-{desc:"",code:`
+{desc:"gradient pattern with blobs",code:`
 gradient().scale(0.5).repeat(4,4).layer(noise().luma(0.1,0)).out()`},
 
-{desc:"",code:`src(o0).modulate(osc(6,0,1.5).modulate(noise(3).sub(gradient()),1).brightness(-.5),.001).mult(shape(999,.5,0).invert().repeat(100,100,0,.5)).layer(
+{desc:"dot mesh with changing color",code:`src(o0).modulate(osc(6,0,1.5).modulate(noise(3).sub(gradient()),1).brightness(-.5),.001).mult(shape(999,.5,0).invert().repeat(100,100,0,.5)).layer(
   osc(6,0,1.5).modulate(osc(1,2).thresh(.5,.1),.5)
   .modulate(osc(1,1).thresh(.5,.1),.2).pixelate(1).mask(
 shape(4,0.3,0))
@@ -1100,54 +996,13 @@ shape(4,0.3,0))
   .modulate(osc(1,.4).thresh(.5,.2).brightness(-.5).color(1,0),.5)
   .modulate(osc(1,.2).thresh(.5,.2).brightness(-.5).color(0,1),.5).out()`},
 
-{desc:"",code:`src(o1)
-  .modulate(
-  osc(Math.PI*2,0,Math.PI/2).scale(1/128)
-  .brightness(-.5).modulate(
-  noise(1,0.02).mult(
-    noise(.3,.01).add(solid(1,1)).color(.5,.5).contrast(3).posterize(3,1).invert())
-    .sub(gradient()),1),.003)
-  .layer(
-  osc(10,0.1,1.5).layer(
-    osc(10,0.1).color(1,1,-1).invert().mask(
-      osc(Math.PI*2,0,Math.PI/2).scale(1/64)
-      .thresh(.5,0).modulate(
-        noise(1,0.02).mult(
-    noise(.3,.01).add(solid(1,1)).color(.5,.5).contrast(3).posterize(3,1).invert())
-        .sub(gradient()),1)
-      .mult(shape(4,.28,0).invert())))
-  .mask(shape(4,.3,0)))
-  .out(o1)
 
-solid().layer(src(o1)).out()`},
-
-{desc:"",code:`  src(o1).modulatePixelate(
-  osc(6,0,3.14).r().thresh(.4,0).color(1,0,0).add(
-    osc(6,0,3.14).g().thresh(.4,0).color(0,1,0))
-  .modulate(voronoi(2,.01).sub(gradient()),1),1024,64)
-  .modulate(
-  osc(Math.PI*2,0,1.5).pixelate(4).scale(.1/4).brightness(-.5).modulate(voronoi(2,.01).sub(gradient())
-  ,1),.003)
-  .layer(
-  osc(5,0.1,1.5)
-  .mask(
-    shape(4,.3,0))
-)
-  .out(o1)
-
-solid().layer(o1).out()
-
-
-`},
-
-{desc:"",code:`      src(o0).rotate(.01).colorama(-.003).layer(
+{desc:"purple swirl",code:`      src(o0).rotate(.01).colorama(-.003).layer(
 osc(50, 0.01, 0.7)
   .modulateRotate(osc(30,.03).kaleid(99)).rotate(0,.3).luma(.6,0).color(1, 0, 1)
   ).out()  `},
 
-{desc:"",code:`osc(12,0,1.5).modulate(noise(3).color(3,3,3).colorama(1).saturate(0).sub(gradient()),1).out()`},
-
-{desc:"",code:`
+{desc:"broken grayscale",code:`
 noise(14,0).thresh(-0.1,0)
   .modulatePixelate(
   noise(12,0).thresh(0,0.1).pixelate(64,64),64,8)
@@ -1159,7 +1014,7 @@ noise(14,0).thresh(-0.1,0)
   ).mask(shape(4,1,0)).scale(1,9/16).out()
 `},
 
-{desc:"",code:`osc(12, 0.05, 1.2)
+{desc:"purble bumps",code:`osc(12, 0.05, 1.2)
   .color(-1, 0.4)
   .modulate(osc(30, -0.05)
     .modulate(noise(2), 0.4), 0.14)
@@ -1167,7 +1022,7 @@ noise(14,0).thresh(-0.1,0)
     .modulateHue(o0, 5)
   .out()`},
 
-{desc:"",code:`src(o1)
+{desc:"unstructured rainbow",code:`src(o1)
   .modulate(
   osc(6,0,1.5).modulate(
     noise(3,0.03)
@@ -1195,20 +1050,7 @@ src(o1).colorama(.03)
 
 src(o1).out()`},
 
-{desc:"",code:`src(o1)
-  .modulatePixelate(
-  osc(6,0).color(1,0,0).add(osc(6,0,3.14).g().color(0,1,0))
-  .modulate(noise(3,.02).sub(gradient()),1)
-  .modulatePixelate(
-    osc(6,0).thresh(.2,.1).color(1,0,0).add(osc(6,0,3.14).g().thresh(.2,.1).color(0,1,0))
-    .modulate(noise(3,.02).sub(gradient()),1).pixelate(),1024,8)
-  ,1024,8)
-  .layer(
-  osc(30,0.1,1.5).mask(shape(4,0.3,0).rotate(Math.PI/4))).out(o1)
-
-solid().layer(o1).out()`},
-
-{desc:"",code:`osc(160,0).thresh(.9)
+{desc:"pattern grid",code:`osc(160,0).thresh(.9)
   .modulateScale(gradient().g().repeatY(3).posterize(4,1),1,.1)
   .modulate(
   osc(10,0).mult(gradient().g().repeatY(3).posterize(4,1)).color(0,1),.2)
@@ -1234,40 +1076,7 @@ noise(16,0.1).thresh(0).diff(noise(16,0.1).thresh(0.1))
   .scale(1,9/16).out()
 `},
 
-{desc:"",code:`shape(200, [0, 0.25].smooth(), 0.1)
-  .scale(1, 0.5)
-  .repeat(20, 20, 0.5,0.5)
-.scrollY(0,-0.01)
-  .modulateScale(osc(15, 0.5)
-    .thresh(0.1, 0.5)
-    .diff(osc(5)
-      .rotate(0.5)
-      .thresh(0.1, 0.5)), -0.5)
-  .color([0.2, 0].smooth(), [0.2, 0].smooth(), [0.2, 0].smooth())
-.modulate(voronoi(5,0.1,2))
-  .add(src(o0), 0.99)
-.modulate(o0,-0.003)
-.modulateRotate(noise(2,0.1),0.01)
-.scrollY(-0.001)
-  .out()
-
-src(o0)
-.modulate(shape(200,0.2,0.7),-0.05)
-  .blend(solid(1, 0.4, 0), 0.13)
-    .add(src(o0).scrollX(0.01).thresh(0.15,0.2).color(0.3,1,0).modulate(o1),0.1)
-  .blend(noise(300)
-  .thresh(), 0.05)
-.blend(o1,0.2)
-  .out(o1)
-
-
-render(o1)`},
-
-{desc:"",code:`
-osc(Math.PI*16,0).thresh(.5,0)
-  .modulate(solid(1),-Math.PI/16/2).out()  `},
-
-{desc:"",code:`src(o1)
+{desc:"blue and yellow soft waves",code:`src(o1)
   .color(.99,.99,.99).luma(.2,0)
   .layer(
   shape(2,.3,0).modulate(osc(Math.PI*2),.1).r().repeat(1,1)
@@ -1282,38 +1091,16 @@ solid().layer(o1).out()
 
 `},
 
-{desc:"",code:`osc(160,0,1.5).rotate(Math.PI/4)
+{desc:"rainbow with varying pixelation",code:`osc(160,0,1.5).rotate(Math.PI/4)
   .modulatePixelate(
   noise(3,.01).pixelate(8,8).add(solid(1,1)).color(.5,.5)
   .posterize(16,1),
   120*16/15,8).out()
 `},
 
-{desc:"",code:`osc(9,0,1.3).rotate().pixelate().out()`},
+{desc:"rainbow with pixelation",code:`osc(9,0,1.3).rotate().pixelate().out()`},
 
-{desc:"",code:`  
-
-src(o1).layer(
-  src(o1).mask(noise(1).thresh(0,0).diff(noise(1).thresh(-.05,0))).hue(.1)
-)
-  .mult(osc(6,0,1.5).modulate(noise(1).sub(gradient()),1),.03)
-  .luma(.05,0)
-  .modulate(
-  osc(Math.PI*2,0,1.5).pixelate(Math.PI*2).brightness(-.5)
-  .modulate(noise(1).sub(gradient()),1),.002)
-  .layer(
-  shape(4,.2,0).r().repeat(80,80)
-    .modulateScale(
-    noise(1).modulate(solid(.1,0),1)
-      .add(solid(1,1)).color(.5,.5).posterize(4,1).contrast(2),-1.34,1)
-  .mult(osc(6,0,1.5))
-  ).out(o1)
-
-solid().layer(
-  src(o1)).out()
-`},
-
-{desc:"",code:`src(o0).layer(
+{desc:"gradually changing fragmented rainbow",code:`src(o0).layer(
   osc(6,0.03,1.5).colorama(1).pixelate(1)
   .mask(
     noise(999)
@@ -1330,24 +1117,12 @@ solid().layer(
 ).out()
 `},
 
-{desc:"",code:`src(o0).modulate(
-  gradient().brightness(-.5).pixelate(1,2)
-  .layer(gradient().brightness(-.5).pixelate(2,1).mask(noise(4,.1).thresh(0,.1))
-  ),-.05)
-.layer(osc(30,.1,1.5).mask(shape(4,0.3,0))).out()`},
-
-{desc:"",code:`
+{desc:"stripes on gradient grid",code:`
 gradient().scale(0.5).repeat(4,4).layer(osc().luma(0.5,0)).out()`},
 
-{desc:"",code:`      src(o0).rotate(.01).colorama(-.003).layer(
-osc(50, 0.01, 0.7)
-  .modulateRotate(osc(30,.03).kaleid(99)).rotate(0,.3).luma(.6,0).color(1, 0, 1)
-  ).out()  `},
+{desc:"blurry smile",code:`solid().layer(solid().add(osc(Math.PI*0,0,-Math.PI/2-Math.PI*0).brightness(-.5).color(2).color(0.49999999999999983)).add(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2).color(-0.1352990250365492)).add(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2).color(-0.35355339059327356)).add(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2).color(-0.32664074121909414)).add(osc(Math.PI*2,0,-Math.PI/2-Math.PI*0.0625).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2)).color(0.7557912246191267)).add(osc(Math.PI*2,0,-Math.PI/2-Math.PI*0.0625).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2)).color(-0.5879378012096794)).add(osc(Math.PI*2,0,-Math.PI/2-Math.PI*0.0625).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2)).color(-0.7382740229434404)).add(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2)).color(-0.10355339059327369)).add(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2)).color(0.2705980500730987)).add(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2)).color(-0.2500000000000004)).add(osc(Math.PI*6,0,-Math.PI/2-Math.PI*0.1875).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2)).color(-0.5027791722939055)).add(osc(Math.PI*6,0,-Math.PI/2-Math.PI*0.1875).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2)).color(0.1379496896414717)).add(osc(Math.PI*6,0,-Math.PI/2-Math.PI*0.1875).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2)).color(0.9589185070785847)).add(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2).rotate(Math.PI/2).color(-0.7071067811865471)).add(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2)).color(0.1913417161825445)).add(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2)).color(0.4999999999999995)).add(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2)).color(0.4619397662556438)).add(osc(Math.PI*10,0,-Math.PI/2-Math.PI*0.3125).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2)).color(-0.566071027885034)).add(osc(Math.PI*10,0,-Math.PI/2-Math.PI*0.3125).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2)).color(0.6935199226610735)).add(osc(Math.PI*10,0,-Math.PI/2-Math.PI*0.3125).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2)).color(0.08515862891577411)).add(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2)).color(0.24999999999999964)).add(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2)).color(-0.653281482438188)).add(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2)).color(0.6035533905932741)).add(osc(Math.PI*14,0,-Math.PI/2-Math.PI*0.4375).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2)).color(-0.04475410028236648)).add(osc(Math.PI*14,0,-Math.PI/2-Math.PI*0.4375).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2)).color(0.39284747919355045)).add(osc(Math.PI*14,0,-Math.PI/2-Math.PI*0.4375).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2)).color(-0.6178415349776548)).color(1/8).r().modulate(solid(1,1),-.28).scale(2).luma(0,0)).out()`},
 
-{desc:"",code:`solid().layer(solid().add(osc(Math.PI*0,0,-Math.PI/2-Math.PI*0).brightness(-.5).color(2).color(0.49999999999999983)).add(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2).color(-0.1352990250365492)).add(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2).color(-0.35355339059327356)).add(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2).color(-0.32664074121909414)).add(osc(Math.PI*2,0,-Math.PI/2-Math.PI*0.0625).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2)).color(0.7557912246191267)).add(osc(Math.PI*2,0,-Math.PI/2-Math.PI*0.0625).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2)).color(-0.5879378012096794)).add(osc(Math.PI*2,0,-Math.PI/2-Math.PI*0.0625).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2)).color(-0.7382740229434404)).add(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2)).color(-0.10355339059327369)).add(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2)).color(0.2705980500730987)).add(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2)).color(-0.2500000000000004)).add(osc(Math.PI*6,0,-Math.PI/2-Math.PI*0.1875).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2)).color(-0.5027791722939055)).add(osc(Math.PI*6,0,-Math.PI/2-Math.PI*0.1875).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2)).color(0.1379496896414717)).add(osc(Math.PI*6,0,-Math.PI/2-Math.PI*0.1875).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2)).color(0.9589185070785847)).add(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2).rotate(Math.PI/2).color(-0.7071067811865471)).add(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2)).color(0.1913417161825445)).add(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2)).color(0.4999999999999995)).add(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2)).color(0.4619397662556438)).add(osc(Math.PI*10,0,-Math.PI/2-Math.PI*0.3125).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2)).color(-0.566071027885034)).add(osc(Math.PI*10,0,-Math.PI/2-Math.PI*0.3125).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2)).color(0.6935199226610735)).add(osc(Math.PI*10,0,-Math.PI/2-Math.PI*0.3125).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2)).color(0.08515862891577411)).add(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2)).color(0.24999999999999964)).add(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2)).color(-0.653281482438188)).add(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2)).color(0.6035533905932741)).add(osc(Math.PI*14,0,-Math.PI/2-Math.PI*0.4375).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2)).color(-0.04475410028236648)).add(osc(Math.PI*14,0,-Math.PI/2-Math.PI*0.4375).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2)).color(0.39284747919355045)).add(osc(Math.PI*14,0,-Math.PI/2-Math.PI*0.4375).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2)).color(-0.6178415349776548)).color(1/8).r().modulate(solid(1,1),-.28).scale(2).luma(0,0)).out()
-`},
-
-{desc:"",code:`voronoi(199,0.1,2).thresh(.5).add(noise(99,0).thresh(.7)).mult(osc(4,-.3).kaleid(999),.8)
+{desc:"ink-look butterfly",code:`voronoi(199,0.1,2).thresh(.5).add(noise(99,0).thresh(.7)).mult(osc(4,-.3).kaleid(999),.8)
   .mask(
   shape(999)
   .modulate(gradient().pixelate(1,2).brightness(-.5),-.2)
@@ -1356,7 +1131,7 @@ osc(50, 0.01, 0.7)
 
 render(o0)`},
 
-{desc:"",code:`solid(0,0,0,0)
+{desc:"manga eyes",code:`solid(0,0,0,0)
   .layer(
   shape(999,.55,0.03).sub(shape(999,.5,0)).mult(shape(1,0.2,0).invert())
   .r().color(0,0,0).scale(1,1.3,1))
@@ -1374,17 +1149,14 @@ render(o0)`},
   .repeat(2,1)
   .out(o1)
 
-
 gradient().add(solid(0,0,1)).layer(o1).out()`},
 
-{desc:"",code:`
+{desc:"curved color grid",code:`
 osc(3,0,1.5).pixelate(4).modulate(noise(3,.01).sub(gradient()),1).mask(
 shape(4,.5,.05).repeat(1,1).modulateScale(noise(3,.01).thresh(0,.5).color(1,0),.9,-.95)).out()
-
-
 `},
 
-{desc:"",code:`src(o1).mask(shape(4,.999,0))
+{desc:"windows window",code:`src(o1).mask(shape(4,.999,0))
   .modulate(osc(6,.1),.1)
   .hue(.04)
   .layer(
@@ -1415,15 +1187,15 @@ shape(4,.5,.05).repeat(1,1).modulateScale(noise(3,.01).thresh(0,.5).color(1,0),.
 
 solid(0,0,0).layer(o1).out()`},
 
-{desc:"",code:`osc(Math.PI*16,0)
+{desc:"deformed stripes",code:`osc(Math.PI*16,0)
   .modulate(solid(1),-Math.PI/16/2)
   .modulate(noise(3,0),0.03).out()`},
 
-{desc:"",code:`osc(Math.PI*16,0)
+{desc:"slightly deformed stripes",code:`osc(Math.PI*16,0)
   .modulate(solid(1),-Math.PI/16/2)
   .modulate(noise(3,0),0.01).out()`},
 
-{desc:"",code:`solid(0,1,0).layer(shape(4,1,0).scale(.3,1.5).r())
+{desc:"9 windows",code:`solid(0,1,0).layer(shape(4,1,0).scale(.3,1.5).r())
   .layer(shape(4,.99,.01).scale(.3,1.5).r())
   .layer(shape(4,1,0).scale(.3,1.5).scale(.99,1,.1).scrollY(.133)
          .r().color(0,0,1))
@@ -1458,7 +1230,7 @@ src(o1).mask(shape(4,.999,0))
 solid().layer(o1).out()
 `},
 
-{desc:"",code:`src(o1).scrollX(-.003).hue(.003).layer(
+{desc:"rainbow smudge",code:`src(o1).scrollX(-.003).hue(.003).layer(
   shape(1,-0.99,0).rotate(Math.PI/2).r().color(1,0,0)
 ).out(o1)
 
@@ -1468,80 +1240,19 @@ src(o1).scrollX(.4).scale(3).pixelate(4).mask(osc(4*Math.PI*2,0).thresh(.1))
   .sub(gradient()),1)
   .out()`},
 
-{desc:"",code:`osc(12, 0.05, 1.2)
-  .color(-1, 0.4)
-  .modulate(osc(30, -0.05)
-    .modulate(noise(2), 0.4), 0.14)
-    .blend(o0, 0.97)
-    .modulateHue(o0, 5)
-  .out()`},
-
-{desc:"",code:`osc(6,0,1.5).repeat(20,20)
-  .modulatePixelate(
-  noise(9,.02).pixelate(40,40).thresh(0,.2),40,80)
-  .modulateRotate(
-  noise(32,.02).modulatePixelate(
-    noise(2,.02).pixelate(40,40).add(solid(1,1)).color(.5,.5).posterize(4,2),40,4)
-  .thresh(0),Math.PI/2)
-  .out()
-`},
-
-{desc:"",code:`osc(12,0,1.5).modulate(noise(3).color(3,3,3).colorama(1).saturate(0).sub(gradient()),1).out()`},
-
-{desc:"",code:`osc(Math.PI*16,0)
-  .modulate(solid(1),-Math.PI/16/2).out()`},
-
-{desc:"",code:`
-osc(30,0).invert().thresh(.5,0).kaleid(4).rotate(Math.PI/4)
-  .repeat(8,8)
-  .mult(noise(8,0).pixelate(8,8).thresh(-.2,0))
-  .modulateScale(noise(4,0).thresh(.1,.2).pixelate(64,64))
-  .modulatePixelate(noise(3,0).thresh(-0.5,.2).pixelate(64,64),1024,64)
-  .scale(1,9/16)
-  .out()`},
-
-{desc:"",code:`  src(o1).layer(
-  src(o1).mask(
-    noise(2,.01).sub(noise(2,.01).modulate(solid(1,0),.003)).r().thresh(0.01,0))
-  .colorama(.01))
-  .modulate(
-  osc(Math.PI*2,0,Math.PI/2).scale(1/8).brightness(-.5).modulate(
-    noise(2,.01).sub(gradient())
-  ,1),.01)
-.modulatePixelate(
-  osc(Math.PI*2,0,Math.PI/2).r().thresh(.15,0).color(1,0,0).add(
-    osc(Math.PI*2,0,Math.PI).g().thresh(.15,0).color(0,1,0))
-  .scale(.25)
-  .modulate(noise(2,.01).sub(gradient()),1),10240,128)
-  .layer(
-  osc(15,0.1,1.5)
-  .mask(
-    shape(4,.3,0))
-)
-  .out(o1)
-
-solid().layer(o1).out()
-
-`},
-
-{desc:"",code:`      src(o0).rotate(.01).colorama(-.003).layer(
-osc(50, 0.01, 0.7)
-  .modulateRotate(osc(30,.03).kaleid(99)).rotate(0,.3).luma(.6,0).color(1, 0, 1)
-  ).out()  `},
-
-{desc:"",code:`      src(o0).modulate(
+{desc:"rainbow parallax",code:`      src(o0).modulate(
   gradient().brightness(-.5).pixelate(2,2)
   ,-0.1).layer(
 osc(50,0.03,1.5).mask(shape(4,0.5,0))
 .modulate(osc(1,1).thresh(.5,.3).color(1,0),.5)
 ).out()  `},
 
-{desc:"",code:`src(o0).modulate(
+{desc:"bleeding rainbow waves",code:`src(o0).modulate(
   osc(8,0,1.5).brightness(-.5).modulate(osc().sub(gradient()),1),.002).layer(
   osc(60,0.1,1.5)
   .mask(shape(2,0.1,0))).out()`},
 
-{desc:"",code:`src(o1).rotate(Math.PI).scroll(.25,.25)
+{desc:"symbol",code:`src(o1).rotate(Math.PI).scroll(.25,.25)
 .add(src(o1).invert().mask(shape(4,.5,0)).rotate(Math.PI/2).scroll(.25,-.25))
 .add(src(o1).invert().mask(shape(4,.5,0)).rotate(-Math.PI/2).scroll(-.25,.25))
 .add(src(o1).scroll(-.25,-.25))
@@ -1556,26 +1267,9 @@ osc(Math.PI*16,0).thresh()
 ).scroll(.17,.05).mask(shape(4,0.5,0))
 .scale(1,1,-1)
   .out(o1)
-
-
-
-
-
 `},
 
-{desc:"",code:`src(o1).modulate(
-  osc(6,0,1.5).brightness(-.5).modulate(osc(120,.01).sub(gradient()),1),.003
-).layer(
-osc(3,0.1,1.5).modulate(osc(2,0),-1)
-  .saturate(2).modulate(solid(1),-.4)
-  .mask(shape(4,.3,0))).out(o1)
-
-solid().layer(o1).out()`},
-
-{desc:"",code:`solid().add(osc(Math.PI*0,0,-Math.PI/2-Math.PI*0).brightness(-.5).color(2).color(12.173780938090808)).add(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2).color(4.347897987255738)).add(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2).color(0.43844718719116904)).add(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2).color(0.244553789263864)).add(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2).rotate(Math.PI/2).color(4.347897987255742)).add(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2)).color(-1.56854557845442)).add(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2)).color(0.1854585538179323)).add(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2)).color(-0.10250439979092973)).add(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2).rotate(Math.PI/2).color(0.438447187191169)).add(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2)).color(0.1854585538179323)).add(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2)).color(-0.13183367048608075)).add(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2)).color(0.040515461221236004)).add(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2).rotate(Math.PI/2).color(0.24455378926386423)).add(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*4,0,-Math.PI/2-Math.PI*0.125).brightness(-.5).color(2)).color(-0.10250439979093018)).add(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*8,0,-Math.PI/2-Math.PI*0.25).brightness(-.5).color(2)).color(0.04051546122123573)).add(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2).rotate(Math.PI/2).mult(osc(Math.PI*12,0,-Math.PI/2-Math.PI*0.375).brightness(-.5).color(2)).color(-0.01976562927159653)).color(1/8).r().modulate(solid(1,1),-.25).out()
-`},
-
-{desc:"",code:`shape(4,.8).repeat(1,1).mult(osc(1,0,1.5))
+{desc:"diagonal grid structure",code:`shape(4,.8).repeat(1,1).mult(osc(1,0,1.5))
   .modulateRotate(
   noise(4).pixelate(8,8)
   .add(solid(1,1)).color(.5,.5).posterize(4,1),3.14)
@@ -1586,35 +1280,11 @@ solid().layer(o1).out()`},
   .out()
 `},
 
-{desc:"",code:`
+{desc:"rotating triangle lines",code:`
 src(o0).modulate(gradient().pixelate(1,2).brightness(-.5),.1).layer(
 shape(3,0.4,0).add(shape(3,0.39,0),-1).r().modulateRotate(osc(8,.1).pixelate(16).kaleid(999).thresh(.5,.3),Math.PI)).out()`},
 
-{desc:"",code:`      src(o0).rotate(.01).colorama(-.003).layer(
-osc(50, 0.01, 0.7)
-  .modulateRotate(osc(30,.03).kaleid(99)).rotate(0,.3).luma(.6,0).color(1, 0, 1)
-  ).out()  `},
-
-{desc:"",code:`      src(o0).rotate(.01).colorama(-.003).layer(
-osc(50, 0.01, 0.7)
-  .modulateRotate(osc(30,.03).kaleid(99)).rotate(0,.3).luma(.6,0).color(1, 0, 1)
-  ).out()  `},
-
-{desc:"",code:`
- osc(100, -0.1)
-  .thresh(0.9, 0)
-  .mult(noise(20, 1)
-    .thresh())
-  .mult(noise(5,1).thresh())
-  .add(src(o0)
-    .scrollX(0.001), 0.8)
-  .out()
-
-src(o0).color(1,0.8,0.3).saturate(0.8).out(o1)
-
-render(o1)`},
-
-{desc:"",code:`
+{desc:"rainbow moving blobs",code:`
 osc(20,0.02,1.5).mult(osc(30,0)).add(osc(15,0),1.5).saturate(3)
   .modulate(solid(0,1),1)
   .modulateRotate(
@@ -1628,24 +1298,24 @@ osc(20,0.02,1.5).mult(osc(30,0)).add(osc(15,0),1.5).saturate(3)
   .scale(1,9/16).out()
 `},
 
-{desc:"",code:`osc(13,0,1.5).color(1,1,.2).pixelate(8).kaleid(4).rotate(Math.PI/4)
+{desc:"green surrounded by yellow and red rectangles",code:`osc(13,0,1.5).color(1,1,.2).pixelate(8).kaleid(4).rotate(Math.PI/4)
   .modulate(shape(4,0,1).posterize(4,1).color(0,1))
   .scale(1,1,-1)
   .mask(shape(4,1,0)).scale(1,9/16).out()
 `},
 
-{desc:"",code:`
+{desc:"broken rotating triangle lines",code:`
 solid(0,0,0).layer(
 src(o0).modulate(gradient().pixelate(1,2).brightness(-.5),.1))
   .layer(
 shape(3,0.4,0).add(shape(3,0.39,0),-1).r().modulateRotate(osc(8,.1).pixelate(16).kaleid(999).thresh(.5,.3),Math.PI)).out()`},
 
-{desc:"",code:`osc(60,0,1.5).colorama().out()`},
+{desc:"oversaturated rainbow",code:`osc(60,0,1.5).colorama().out()`},
 
-{desc:"",code:`osc(6, 0, 0.8)
+{desc:"faded rainbow",code:`osc(6, 0, 0.8)
   .out(o0)`},
 
-],
+  ],
   mods: [
   //   {
   //     desc: "How can I load a cat image? (also check out [how to upload](cat?id=how-to-upload-image))",
