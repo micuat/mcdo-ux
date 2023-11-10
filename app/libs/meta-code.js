@@ -761,18 +761,18 @@ export default {
   //   "code": "\ns0.initImage(\"https://bild.glitches.me/images/2022/11/10/Screenshot-2022-11-09-at-19-51-53-2022-10-11-Solo-Part-2.png\")\ns1.initImage(\"https://bild.glitches.me/images/2022/11/10/vlcsnap-2022-11-09-19h45m12s966.png\")\ns2.initImage(\"https://bild.glitches.me/images/2022/11/10/Screenshot-2022-11-09-at-20-16-58-2022-10-11-Solo-Part-2.png\")\ns3.initImage(\"https://bild.glitches.me/images/2022/11/10/vlcsnap-2022-11-09-20h19m27s929.png\")\n\n// s3.initScreen()\n\n// src(s3).out(o1)\n\nsrc(o0).hue(.003).modulate(\n  osc(6,0,1.5).brightness(-.5).modulate(noise(30).sub(gradient()),1),.003)\n// .layer(src(s3).mask(src(s3).diff(o1)).thresh(.1))\n  .layer(\n  osc(8,0,1.5).modulate(solid(4)).modulate(\n    src(s1).sub(gradient()),1).mask(src(s3).sub(src(s1)).thresh(.01,0))\n  .scroll(.1,.1).scale(1.4,1.1,1))\n  .layer(\n  solid().mask(src(s0).diff(src(s2)).thresh(.05,0)).rotate(Math.PI/-2).scroll(-.21,-.11).scale(.9,1,2.5)\n)\n  .layer(\n  osc(8,0,1.5).modulate(solid(-1)).modulate(\n    src(s0).sub(gradient()),1)\n  .mask(src(s0).diff(src(s2)).thresh(.05,0)).rotate(Math.PI/-2).scroll(-.2,-.1).scale(.9,1,2.5)\n)\n  .out()",
   //   "desc": "test"
   // },
-  {
-    "code": "N=16\nosc(Math.PI*20,0).thresh(.2).repeat(N,N)\n  .modulateRotate(\n  noise(4,0).add(noise(128,0),.5).pixelate(N,N).thresh(0,0),Math.PI/2)\n  .scale(1,9/16).out()",
-    "desc": "Untitled 4"
-  },
+  // {
+  //   "code": "N=16\nosc(Math.PI*20,0).thresh(.2).repeat(N,N)\n  .modulateRotate(\n  noise(4,0).add(noise(128,0),.5).pixelate(N,N).thresh(0,0),Math.PI/2)\n  .scale(1,9/16).out()",
+  //   "desc": "Untitled 4"
+  // },
   // {
   //   "code": "s0.initVideo(\"https://cdn.glitches.me/2022-04-20-seqgosau.mp4\")\n\nsrc(o0).modulate(gradient().pixelate(2,2).brightness(-.5).mult(osc(1,1).color(1,0).add(solid(0,1))),-0.03).layer(\nosc(6,0,.5).modulate(src(s0).sub(gradient()),1)\n  .mask(osc(30,.2).modulate(src(s0).sub(gradient()),1).thresh(.5,0))).out()\n",
   //   "desc": "gosau"
   // },
-  {
-    "code": "R=()=>gradient().r().repeatX(2).invert().kaleid(4).rotate(Math.PI/4)\nN=()=>osc(6,0,1.5).brightness(-.5).modulate(noise(16,0.1).sub(gradient()),1)\nM=3\nosc(72.5,0).thresh(0.1,0.2).kaleid(4).rotate(Math.PI/4)\n  .repeat(M,M)\n  .modulate(\n  N().pixelate(M,M).mult(\n    R().repeat(M,M).modulate(\n      N().pixelate(M,M).mult(\n        R().repeat(M,M).modulate(\n      N().pixelate(M,M).mult(\n        R().repeat(M,M)))))),.1)\n  .scale(1,9/16)\n  .out()\n\n",
-    "desc": "untitled 1"
-  },
+  // {
+  //   "code": "R=()=>gradient().r().repeatX(2).invert().kaleid(4).rotate(Math.PI/4)\nN=()=>osc(6,0,1.5).brightness(-.5).modulate(noise(16,0.1).sub(gradient()),1)\nM=3\nosc(72.5,0).thresh(0.1,0.2).kaleid(4).rotate(Math.PI/4)\n  .repeat(M,M)\n  .modulate(\n  N().pixelate(M,M).mult(\n    R().repeat(M,M).modulate(\n      N().pixelate(M,M).mult(\n        R().repeat(M,M).modulate(\n      N().pixelate(M,M).mult(\n        R().repeat(M,M)))))),.1)\n  .scale(1,9/16)\n  .out()\n\n",
+  //   "desc": "untitled 1"
+  // },
   {
     "code": "src(o1)\n  .modulatePixelate(\n  osc(6,0).color(1,0,0).add(osc(6,0,3.14).g().color(0,1,0))\n  .modulate(noise(3,.02).sub(gradient()),1)\n  .modulatePixelate(\n    osc(6,0).thresh(.2,.1).color(1,0,0).add(osc(6,0,3.14).g().thresh(.2,.1).color(0,1,0))\n    .modulate(noise(3,.02).sub(gradient()),1).pixelate(),1024,8)\n  ,1024,8)\n  .layer(\n  osc(30,0.1,1.5).mask(shape(4,0.3,0).rotate(Math.PI/4))).out(o1)\n\nsolid().layer(o1).out()",
     "desc": "pixelelate"
@@ -785,10 +785,10 @@ export default {
     "code": "src(o1).mult(\nosc(Math.PI*2,0).scale(1/8).thresh(.1,0).modulate(\n    noise(2,.01).sub(gradient()),1)\n)\n  .modulate(\n  osc(Math.PI*2,0,Math.PI/2).scale(1/8).brightness(-.5).modulate(\n    noise(2,.01).sub(gradient())\n  ,1),.01)\n.modulatePixelate(\n  osc(Math.PI*2,0,Math.PI/2).r().thresh(.15,0).color(1,0,0).add(\n    osc(Math.PI*2,0,Math.PI).g().thresh(.15,0).color(0,1,0))\n  .scale(.25)\n  .modulate(noise(2,.01).sub(gradient()),1),10240,128)\n.layer(\n  src(o1).mask(\n    osc(24,0).thresh(.9,0).modulate(noise(2,.01).sub(gradient()),1)\n  .mult(src(o1).thresh(0.01,0)))\n  .colorama(.01))\n  .layer(\n  osc(15,0.1,1.5)\n  .mask(\n    shape(4,.3,0))\n)\n  .out(o1)\n\nsolid().layer(o1).out()\n\n",
     "desc": "noise route"
   },
-  {
-    "code": "w=()=>shape(4,1,0).scale(.3,1.5).r()\n  .layer(shape(4,.99,.01).scale(.3,1.5).r())\n  .layer(shape(4,1,0).scale(.3,1.5).scale(.99,1,.1).scrollY(.133)\n         .r().color(0,0,1))\n  .layer(osc(60,0).modulate(noise(20,0),.3).thresh(0.7).r().mask(\n  shape(4,1,0).scale(.3,1.5).scale(.99,.5,.07).mult(shape(4,.7,0).repeat(64,1)))\n         .scroll(.1,.133))\n  .layer(shape(4,1,0).scale(.3,1).scale(.9,.1,.1).scroll(-.208,.133)\n         .r().color(.6,.6,.6)).layer(\n  shape(4,.8,.2).scale(.3,1,.1).scale(.9,.1,.1).rotate(Math.PI/4).scroll(-.208,.133)\n  .r().color(0,0,0)).layer(\n  shape(4,.8,.2).scale(.3,1,.1).scale(.9,.1,.1).rotate(-Math.PI/4).scroll(-.208,.133)\n  .r().color(0,0,0)).layer(solid(0,0,0).mask(shape(4,1,0))\n                              .scale(.3,1.5).scale(.99,1,.89).scrollY(-.016))\n  .layer(src(o0).scale(1/1.5).hue(.1).modulate(\n  osc(6,0,1.5).brightness(-.5).modulate(noise(3).sub(gradient()),1),.03)\n         .mask(shape(4,1,0).scale(.3,1.5).scale(.99,1,.89).scrollY(-.016)))\n\nsolid(.3,.3,1).add(noise(3,0).add(noise(6,0)).thresh()).layer(\n  solid(0,1,0).mult(osc(7,0).rotate(-.5),.7)\n  .mask(shape(1,0,0))).modulate(osc(3.5,0).brightness(-.5),.1)\n  .layer(\n  shape(4,.4,0).scrollY(.35).r().color(0,0,0).repeat(10,10).mask(\n    noise(19,0).thresh(0,0).pixelate(10,10)))\n  .layer(\n  osc(90,0).modulate(noise(20,0),.3).thresh(0.7,.3).r().mask(\n    shape(4,1,0).scale(1,.7,.07).repeat(10,10).mult(osc(1000,0).thresh(.3))\n    .mult(noise(19,0).thresh(0,0).pixelate(10,10))))\n  .layer(w().scale(1.5)).out(o1)\n\nsrc(o3)\n  .modulate(\n  osc(12,0,1.5).brightness(-.5).modulate(voronoi(3,.3,0).sub(gradient()),1),.03)\n  .hue(.04)\n  .layer(w().scale(1.5)).out(o3)\nsrc(o3).layer(src(o1).luma(.1,0)).out()\n\n",
-    "desc": "desktop2"
-  },
+  // {
+  //   "code": "w=()=>shape(4,1,0).scale(.3,1.5).r()\n  .layer(shape(4,.99,.01).scale(.3,1.5).r())\n  .layer(shape(4,1,0).scale(.3,1.5).scale(.99,1,.1).scrollY(.133)\n         .r().color(0,0,1))\n  .layer(osc(60,0).modulate(noise(20,0),.3).thresh(0.7).r().mask(\n  shape(4,1,0).scale(.3,1.5).scale(.99,.5,.07).mult(shape(4,.7,0).repeat(64,1)))\n         .scroll(.1,.133))\n  .layer(shape(4,1,0).scale(.3,1).scale(.9,.1,.1).scroll(-.208,.133)\n         .r().color(.6,.6,.6)).layer(\n  shape(4,.8,.2).scale(.3,1,.1).scale(.9,.1,.1).rotate(Math.PI/4).scroll(-.208,.133)\n  .r().color(0,0,0)).layer(\n  shape(4,.8,.2).scale(.3,1,.1).scale(.9,.1,.1).rotate(-Math.PI/4).scroll(-.208,.133)\n  .r().color(0,0,0)).layer(solid(0,0,0).mask(shape(4,1,0))\n                              .scale(.3,1.5).scale(.99,1,.89).scrollY(-.016))\n  .layer(src(o0).scale(1/1.5).hue(.1).modulate(\n  osc(6,0,1.5).brightness(-.5).modulate(noise(3).sub(gradient()),1),.03)\n         .mask(shape(4,1,0).scale(.3,1.5).scale(.99,1,.89).scrollY(-.016)))\n\nsolid(.3,.3,1).add(noise(3,0).add(noise(6,0)).thresh()).layer(\n  solid(0,1,0).mult(osc(7,0).rotate(-.5),.7)\n  .mask(shape(1,0,0))).modulate(osc(3.5,0).brightness(-.5),.1)\n  .layer(\n  shape(4,.4,0).scrollY(.35).r().color(0,0,0).repeat(10,10).mask(\n    noise(19,0).thresh(0,0).pixelate(10,10)))\n  .layer(\n  osc(90,0).modulate(noise(20,0),.3).thresh(0.7,.3).r().mask(\n    shape(4,1,0).scale(1,.7,.07).repeat(10,10).mult(osc(1000,0).thresh(.3))\n    .mult(noise(19,0).thresh(0,0).pixelate(10,10))))\n  .layer(w().scale(1.5)).out(o1)\n\nsrc(o3)\n  .modulate(\n  osc(12,0,1.5).brightness(-.5).modulate(voronoi(3,.3,0).sub(gradient()),1),.03)\n  .hue(.04)\n  .layer(w().scale(1.5)).out(o3)\nsrc(o3).layer(src(o1).luma(.1,0)).out()\n\n",
+  //   "desc": "desktop2"
+  // },
   {
     "code": "\n\nsrc(o1).layer(\n  src(o1).mask(noise(1).thresh(0,0).diff(noise(1).thresh(-.05,0))).hue(.1)\n)\n//.color(.999,.99,.999)\n  .mult(osc(6,0,1.5).modulate(noise(1).sub(gradient()),1),.03)\n  .luma(.05,0)\n  .modulate(\n  osc(Math.PI*2,0,1.5).pixelate(Math.PI*2).brightness(-.5)\n  .modulate(noise(1).sub(gradient()),1),.002)\n  .layer(\n  shape(4,.2,0).r().repeat(80,80)\n    .modulateScale(\n    noise(1).modulate(solid(.1,0),1)\n      .add(solid(1,1)).color(.5,.5).posterize(4,1).contrast(2),-1.34,1)\n  .mult(osc(6,0,1.5))\n  ).out(o1)\n\nsolid().layer(\n  src(o1)).out()\n",
     "desc": "noise"
@@ -797,10 +797,10 @@ export default {
     "code": "osc(12,0,1.5).modulate(voronoi(6,0.1,.3).sub(gradient()),1)\n  .modulatePixelate(\n  osc(6,0,3.14).r().thresh(.3,.1).color(1,0,0).add(\n    osc(6,0,3.14).g().thresh(.3,.1).color(0,1,0))\n//   .posterize(8,1)\n  .modulate(\n    voronoi(6,0.1,0)//.pixelate(8,8)\n    .sub(gradient()),1)\n  ,1024,16)\n  .out()",
     "desc": "distorted voronoi"
   },
-  {
-    "code": "s0.initCam()\n\nsrc(s0).repeat(2,1).scrollX(0,0.1).layer(src(s0).repeat(-2,1).mask(shape(1,0,0)).scrollX(0,-0.1)).scale(1,9/16*2).out()\n",
-    "desc": "split"
-  },
+  // {
+  //   "code": "s0.initCam()\n\nsrc(s0).repeat(2,1).scrollX(0,0.1).layer(src(s0).repeat(-2,1).mask(shape(1,0,0)).scrollX(0,-0.1)).scale(1,9/16*2).out()\n",
+  //   "desc": "split"
+  // },
   // {
   //   "code": "s1.initImage(\"https://bild.glitches.me/images/2022/04/24/B1F9EF2F-02CB-4F98-9B06-55DE6AD130C3.jpg\")\n\nsrc(o0).modulate(gradient().pixelate(2,2).brightness(-.5),-.01).colorama(1).layer(\nsrc(s1).mask(src(s1).mult(osc(1,1)).thresh(.1)).repeatX(3)).out()",
   //   "desc": "more intencion"

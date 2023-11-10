@@ -18,7 +18,7 @@ export default function(state, emit) {
           </button>
         `) }
       </div>
-      <div class="absolute bottom-0 z-10 w-full">
+      <div class="absolute bottom-0 z-5 w-full">
         ${ state.cache(Editor, 'editor').render() }
       </div>
       ${ state.cache(HydraCanvas, 'hydra').render(state, emit) }
