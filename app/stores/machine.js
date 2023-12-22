@@ -43,11 +43,24 @@ export default function(state, emitter) {
     const list = [];
     
     state.code.forEach(e => {
-      const { obj, o } = untree(eval(e.code));
+      let { obj, o } = untree(eval(e.code));
+      do {
+        let obj_clone = JSON.parse(JSON.stringify(obj))
+        obj_clone.to = undefined;
+        console.log(JSON.stringify(obj_clone));
+        const parent = list.find(e => e == obj_clone);
+        if (parent === undefined) {
+          list.push()
+        }
+        
+        obj = obj.to;
+      } while (obj !== undefined);
       
-      list.push((obj))
+      // list.push(obj);
+      // console.log(JSON.stringify(obj))
     });
     console.log(list);
+
     console.log(state.route)
     if (state.route == "/") {
       // s0.initCam();
