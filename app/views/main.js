@@ -1,4 +1,3 @@
-// import choo's template helper
 import html from "choo/html";
 
 import HydraCanvas from "../components/hydra-canvas.js";
@@ -27,7 +26,8 @@ export default function(state, emit) {
   
   function funcClick(ev) {
     // console.log(this, ev)
-    const code = this.code.replace(/^[\s]+/, "").replace("src(s0)", "src(s0).scale(1,-1)");
+    window.x = ()=>-state.videoElement.width/state.videoElement.height/(window.innerWidth/window.innerHeight);
+    const code = this.code.replace(/^[\s]+/, "").replace("src(s0)", `src(s0).scale(1,x)`);
     eval(code);
     // state.code = this.code;
     state.cache(Editor, 'editor').setCode(code);
