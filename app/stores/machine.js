@@ -1,8 +1,16 @@
 import html from "choo/html";
+import code from "../libs/meta-code.js";
 
 export default function(state, emitter) {
   state.prompt = "hola"
   
+  state.code = code.mods.map(e => ({ code: e.code.replace(/^[\s]+/, "") }));
+  const list = [];
+  state.code.forEach(e => {
+    list.push(e)
+  });
+  console.log(list);
+
   emitter.on("DOMContentLoaded", () => {
     console.log(state.route)
     if (state.route == "/") {
