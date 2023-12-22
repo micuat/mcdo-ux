@@ -1,17 +1,66 @@
 import html from "choo/html";
 import code from "../libs/meta-code.js";
 
+function untree(synth, label) {
+  let obj = {};
+  let o = obj;
+  for(let i = 0; i < synth.transforms?.length; i++) {
+    const s = synth.transforms[i];
+    o.f = s.name;
+    for(let j = 0; j < s.transform.inputs.length; j++) {
+      if (s.name == "src" && s.transform.inputs[j].name == "tex") {
+        o.tex = s.userArgs[0].label
+        continue;
+      }
+      if(s?.userArgs?.length > 0 && s.userArgs[0]?.transforms !== undefined) o.source = untree(s.userArgs[0]).obj;
+      else {
+        const input = s.transform.inputs[j];
+        o[input.name] = input.default;
+        if(s.userArgs.length > j) {
+          o[input.name] = s.userArgs[j];
+        }
+      }
+    }
+    if (i < synth.transforms.length - 1) {
+      o.to = {};
+      o = o.to;
+    }
+    else {
+      if (label) {
+        o.to = { f: "out", label }
+      }
+    }
+  }
+  return {obj, o};
+}
+
 export default function(state, emitter) {
   state.prompt = "hola"
   
-  state.code = code.mods.map(e => ({ code: e.code.replace(/^[\s]+/, "") }));
-  const list = [];
-  state.code.forEach(e => {
-    list.push(e)
-  });
-  console.log(list);
+  state.code = code.mods.map(e => ({ code: e.code.replace(/^[\s]+/, "").replace(".out()", "") }));
 
   emitter.on("DOMContentLoaded", () => {
+    const list = [];
+    function untangle(obj, parent) {
+      let cur = count;
+      if (parent !== undefined) {
+        links.push({from: parent, to: cur })
+      }
+      arr.push({id: cur, label: obj.f})
+      count++;
+      if (obj.source !== undefined) {
+        untangle(obj.source, cur);
+      }
+      if (obj.to !== undefined) {
+        untangle(obj.to, cur);
+      }
+    }
+    state.code.forEach(e => {
+      const { obj, o } = untree(eval(e.code));
+      
+      list.push(e)
+    });
+    console.log(list);
     console.log(state.route)
     if (state.route == "/") {
       // s0.initCam();
