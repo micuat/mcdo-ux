@@ -14,7 +14,7 @@ export default function(state, emit) {
       <div class="absolute left-0 top-0 w-full h-full z-10">
         ${ code.mods.map(e => html`
           <button class="m-0.5 bg-white/90 border-black border-solid border-2" onclick=${ funcClick.bind(e) }>
-            ${ e.desc }
+            ${ /*e.desc*/ e.code }
           </button>
         `) }
       </div>
@@ -27,7 +27,7 @@ export default function(state, emit) {
   
   function funcClick(ev) {
     // console.log(this, ev)
-    const code = this.code.replace(/^[\s]+/, "");
+    const code = this.code.replace(/^[\s]+/, "").replace("src(s0)", "src(s0).scale(1,-1)");
     eval(code);
     // state.code = this.code;
     state.cache(Editor, 'editor').setCode(code);
