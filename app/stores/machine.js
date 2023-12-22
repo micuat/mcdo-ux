@@ -41,24 +41,11 @@ export default function(state, emitter) {
 
   emitter.on("DOMContentLoaded", () => {
     const list = [];
-    function untangle(obj, parent) {
-      let cur = count;
-      if (parent !== undefined) {
-        links.push({from: parent, to: cur })
-      }
-      arr.push({id: cur, label: obj.f})
-      count++;
-      if (obj.source !== undefined) {
-        untangle(obj.source, cur);
-      }
-      if (obj.to !== undefined) {
-        untangle(obj.to, cur);
-      }
-    }
+    
     state.code.forEach(e => {
       const { obj, o } = untree(eval(e.code));
       
-      list.push(e)
+      list.push((obj))
     });
     console.log(list);
     console.log(state.route)
