@@ -40,7 +40,7 @@ export default function(state, emitter) {
   state.code = code.mods.map(e => ({ code: e.code.replace(/^[\s]+/, "").replace(".out()", "") }));
 
   emitter.on("DOMContentLoaded", () => {
-    const list = [];
+    const list = {};
     
     state.code.forEach(e => {
       let { obj, o } = untree(eval(e.code));
@@ -49,6 +49,14 @@ export default function(state, emitter) {
         obj_clone.to = undefined;
         obj_clone.children = undefined;
         // console.log(JSON.stringify(obj_clone));
+        const key = JSON.stringify(obj_clone);
+        const parent = list[key];
+        if (parent !== undefined) {
+          
+        }
+        else {}
+        
+        
         const parent = list.find(e => {
           const e2 = JSON.parse(JSON.stringify(e));
           e2.to = undefined;
