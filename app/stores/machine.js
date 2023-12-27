@@ -74,7 +74,8 @@ export default function(state, emitter) {
       src(s0).scale(1,x).out();
       // osc().out()
 
-      let video = html`<video id="webcam" autoplay muted playsinline width="640" height="480"></video>`;
+      let video = html`<video id="webcam" autoplay muted playsinline width="640" height="480" class="z-100 absolute" style="width:100px"></video>`;
+      document.body.appendChild(video)
       state.videoElement = video;
       let streaming = false;
 
