@@ -16,20 +16,23 @@ export default function(state, emit) {
         const func = obj.f;
         const args = Object.keys(obj)
         .filter(e => e != "f")
-        .map(e => obj[e]).join(",")
+        .map(e => e === "source" ? JSON.stringify(obj[e]) : obj[e]).join(",")
         return html`
-        <div>
+        <div class="bg-white border-black border-solid border-2">
           <div>
             ${ func }(${ args })
           </div>
-          <div>
-            ${ unwrap(root) }
+          <div class="mx-4">
+            ${ unwrap(root[e]) }
           </div>
         </div>`;
       });
     }
     
-    dom = unwrap(state.tree);
+    const domList = unwrap(state.tree);
+    
+    dom = html`
+    <div>${}`
   }
   
   return html`
