@@ -43,33 +43,19 @@ export default function(state, emitter) {
     const list = {};
     
     state.code.forEach(e => {
+      let parent = list;
       let { obj, o } = untree(eval(e.code));
       do {
         let obj_clone = JSON.parse(JSON.stringify(obj));
         obj_clone.to = undefined;
-        obj_clone.children = undefined;
         // console.log(JSON.stringify(obj_clone));
         const key = JSON.stringify(obj_clone);
-        const parent = list[key];
-        if (parent !== undefined) {
-          
-        }
-        else {}
-        
-        
-        const parent = list.find(e => {
-          const e2 = JSON.parse(JSON.stringify(e));
-          e2.to = undefined;
-          e2.children = undefined;
-          return JSON.stringify(e2) == JSON.stringify(obj_clone);
-        });
-        console.log(parent)
+        let grandParent = parent;
+        parent = grandParent[key];
         if (parent === undefined) {
-          obj_clone.children = [];
-          list.push(obj_clone);
+          parent = grandParent[key] = {};
         }
         else {
-          // parent.children.push()
         }
         
         obj = obj.to;
