@@ -18,7 +18,7 @@ export default function(state, emit) {
   if (state.tree !== undefined) {
     
     const domSelect = html`
-    <div>
+    <div class="h-screen">
       <div>
         ${ state.stem }
       </div>
@@ -76,8 +76,23 @@ export default function(state, emit) {
   
   function selectInput(ev) {
     console.log(ev.target.value);
-    state.stem += "objToCode(JSON.parse(ev.target.value));
+    if (state.stem.length > 0) {
+      state.stem += ".";
+    }
+    state.stem += objToCode(JSON.parse(ev.target.value));
     state.curBranch = state.curBranch[ev.target.value];
+    
+    try {
+      const code = state.stem.replace(/^[\s]+/, "").replace("src(s0)", `src(s0).scale(1,x)`) + ".out()";
+      eval(code);
+    } catch (e) {
+      
+    }
+    
+    if (Object.keys(state.curBranch).length == 0) {      
+      state.stem = "";
+      state.curBranch = state.tree;
+    }
     emit("render");
   }
   
