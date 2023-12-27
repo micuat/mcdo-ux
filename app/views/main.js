@@ -18,7 +18,7 @@ export default function(state, emit) {
   if (state.tree !== undefined) {
     
     const domSelect = html`
-    <div class="h-screen">
+    <div class="">
       <div>
         ${ state.stem }
       </div>
@@ -53,19 +53,20 @@ export default function(state, emit) {
     dom = html`
     <div>
       ${ domSelect }
-      ${ domList }
     </div>`
   }
+  
+        //   ${ state.code.map(e => html`
+        //   <button class="m-0.5 bg-white/90 border-black border-solid border-2" onclick=${ funcClick.bind(e) }>
+        //     ${ /*e.desc*/ e.code }
+        //   </button>
+        // `) }
+
   
   return html`
     <div class="absolute left-0 top-0 w-screen h-screen">
       <div class="absolute left-0 top-0 w-full h-full z-10">
         ${ dom }
-        ${ state.code.map(e => html`
-          <button class="m-0.5 bg-white/90 border-black border-solid border-2" onclick=${ funcClick.bind(e) }>
-            ${ /*e.desc*/ e.code }
-          </button>
-        `) }
       </div>
       <div class="absolute bottom-0 z-10 w-full">
         ${ state.cache(Editor, 'editor').render() }
@@ -85,6 +86,7 @@ export default function(state, emit) {
     try {
       const code = state.stem.replace(/^[\s]+/, "").replace("src(s0)", `src(s0).scale(1,x)`) + ".out()";
       eval(code);
+      state.cache(Editor, 'editor').setCode(code);
     } catch (e) {
       
     }

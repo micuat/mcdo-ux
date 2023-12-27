@@ -138,7 +138,7 @@ export default class CodeMirror extends Component {
       this.errorMessage = html`<p class="red h1 plex-mono pa0 ma0" style="background-color:rgba(255,255,255,0.3)"></p>`
       return html`
         <div class="w-full">
-          <div class="editor"></div>
+          <div class="editor bg-white/90"></div>
           ${ this.errorMessage }
       </div>`
     }
