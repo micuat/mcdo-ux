@@ -61,6 +61,7 @@ export default function(state, emitter) {
       } while (obj !== undefined);
     });
     console.log(state.tree);
+    emitter.emit("render");
 
     console.log(state.route)
     if (state.route == "/") {
