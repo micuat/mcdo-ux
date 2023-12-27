@@ -89,7 +89,14 @@ export default function(state, emit) {
     state.curBranch = state.curBranch[ev.target.value];
     
     try {
-      const code = state.stem.replace(/^[\s]+/, "").replace("src(s0)", `src(s0).scale(1,x)`) + ".out()";
+      let code = state.stem.replace(/^[\s]+/, "");
+      if (state.isMobile) {
+      }
+      else {
+        code = code.replace("src(s0)", `src(s0).scale(1,x)`);
+      }
+      code = code + ".out()";
+
       eval(code);
       state.cache(Editor, 'editor').setCode(code);
     } catch (e) {
