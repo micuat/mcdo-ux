@@ -24,7 +24,6 @@ export default function(state, emit) {
   
   function funcClick(ev) {
     // console.log(this, ev)
-    window.x = ()=>-state.videoElement.width/state.videoElement.height/(window.innerWidth/window.innerHeight);
     const code = this.code.replace(/^[\s]+/, "").replace("src(s0)", `src(s0).scale(1,x)`) + ".out()";
     eval(code);
     // state.code = this.code;

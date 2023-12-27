@@ -40,15 +40,14 @@ export default function(state, emitter) {
   state.code = code.mods.map(e => ({ code: e.code.replace(/^[\s]+/, "").replace(".out()", "") }));
 
   emitter.on("DOMContentLoaded", () => {
-    const list = {};
+    state.tree = {};
     
     state.code.forEach(e => {
-      let parent = list;
+      let parent = state.tree;
       let { obj, o } = untree(eval(e.code));
       do {
         let obj_clone = JSON.parse(JSON.stringify(obj));
         obj_clone.to = undefined;
-        // console.log(JSON.stringify(obj_clone));
         const key = JSON.stringify(obj_clone);
         let grandParent = parent;
         parent = grandParent[key];
@@ -60,16 +59,15 @@ export default function(state, emitter) {
         
         obj = obj.to;
       } while (obj !== undefined);
-      
-      // list.push(obj);
-      // console.log(JSON.stringify(obj))
     });
-    console.log(list);
+    console.log(state.tree);
 
     console.log(state.route)
     if (state.route == "/") {
       // s0.initCam();
-      src(s0).out();
+      window.x = ()=>-state.videoElement.width/state.videoElement.height/(window.innerWidth/window.innerHeight);
+
+      src(s0).scale(1,x).out();
 
       let video = html`<video id="webcam" autoplay muted playsinline width="640" height="480"></video>`;
       state.videoElement = video;
