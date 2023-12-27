@@ -8,19 +8,33 @@ export default function(state, emit) {
   let dom = "loading";
   
   if (state.tree !== undefined) {
+    function objToCode(obj) {
+      const func = obj.f;
+      const args = Object.keys(obj)
+      .filter(e => e != "f")
+      .map(e => e === "source" ? JSON.stringify(obj[e]) : obj[e]).join(",");
+      return `${ func }(${ args })`;
+    }
+    
+    
+    const domSelect = html`
+    <select onchange=${ selectInput }>
+      <option>--</option>
+      ${ Object.keys(state.tree).map(e => html`
+      <option>
+        ${ objToCode(JSON.parse(e)) }
+      </option>`) }
+    </select>`
+    
+    
     function unwrap(root) {
       if (root == undefined) return;
       let keys = Object.keys(root);
       return keys.map(e => {
-        const obj = JSON.parse(e);
-        const func = obj.f;
-        const args = Object.keys(obj)
-        .filter(e => e != "f")
-        .map(e => e === "source" ? JSON.stringify(obj[e]) : obj[e]).join(",")
         return html`
         <div class="bg-white border-black border-solid border-2">
           <div>
-            ${ func }(${ args })
+            ${ objToCode(JSON.parse(e)) }
           </div>
           <div class="mx-4">
             ${ unwrap(root[e]) }
@@ -32,7 +46,10 @@ export default function(state, emit) {
     const domList = unwrap(state.tree);
     
     dom = html`
-    <div>${}`
+    <div>
+      ${ domSelect }
+      ${ domList }
+    </div>`
   }
   
   return html`
@@ -51,6 +68,10 @@ export default function(state, emit) {
       ${ state.cache(HydraCanvas, 'hydra').render(state, emit) }
     </div>
   `;
+  
+  function selectInput(ev) {
+    console.log(ev.target.value)
+  }
   
   function funcClick(ev) {
     // console.log(this, ev)
