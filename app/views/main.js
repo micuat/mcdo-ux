@@ -37,7 +37,7 @@ export default function(state, emit) {
       </div>
       <select onchange=${ selectInput }>
         <option>--</option>
-        ${ Object.keys(state.curBranch).map(e => html`
+        ${ Object.keys(state.curBranch).sort().map(e => html`
         <option value="${ e }">
           ${ objToCode(JSON.parse(e)) }
         </option>`) }
