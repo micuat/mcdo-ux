@@ -1242,5 +1242,12 @@ shape(3,0.4,0).add(shape(3,0.39,0),-1).r().modulateRotate(osc(8,.1).pixelate(16)
   // src(o0).scroll([-0.01,0,0.01],-0.01).layer(
   // osc(6,0.1,1.5).mask(src(s1).invert())).out()`,
   //   },
+    {desc:"",code:"osc(6,0,1.5).modulate(src(s0),1).modulate(osc().rotate(1.57)).out()"},
+{desc:"",code:"osc(6,0,1.5).modulate(src(s0),1).modulate(osc().rotate(1.57).thresh()).out()"},
+{desc:"",code:"osc(6,0,1.5).modulate(src(s0),1).modulate(osc().rotate(1.57).color(1,0)).out()"},
+{desc:"",code:"osc(6,0,1.5).modulate(src(s0),1).modulate(osc().rotate(1.57).thresh(0.1,0.1).color(1,0)).out()"},
+{desc:"",code:"osc(6,0,1.5).modulate(src(s0),1).hue().out()"},
+{desc:"",code:"osc(6,0,1.5).modulate(src(s0),1).hue(0.2).out()"},
+
   ],
 };
