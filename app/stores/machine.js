@@ -41,6 +41,8 @@ export default function(state, emitter) {
 
   emitter.on("DOMContentLoaded", () => {
     state.tree = {};
+    state.stem = "";
+    state.curBranch = state.tree;
     
     state.code.forEach(e => {
       let parent = state.tree;

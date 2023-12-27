@@ -3,29 +3,34 @@ import html from "choo/html";
 import HydraCanvas from "../components/hydra-canvas.js";
 import Editor from "../components/editor.js";
 
+function objToCode(obj) {
+  const func = obj.f;
+  const args = Object.keys(obj)
+  .filter(e => e != "f")
+  .map(e => e === "source" ? JSON.stringify(obj[e]) : obj[e]).join(",");
+  return `${ func }(${ args })`;
+}
+
 // export module
 export default function(state, emit) {
   let dom = "loading";
   
   if (state.tree !== undefined) {
-    function objToCode(obj) {
-      const func = obj.f;
-      const args = Object.keys(obj)
-      .filter(e => e != "f")
-      .map(e => e === "source" ? JSON.stringify(obj[e]) : obj[e]).join(",");
-      return `${ func }(${ args })`;
-    }
-    
     
     const domSelect = html`
-    <select onchange=${ selectInput }>
-      <option>--</option>
-      ${ Object.keys(state.tree).map(e => html`
-      <option>
-        ${ objToCode(JSON.parse(e)) }
-      </option>`) }
-    </select>`
-    
+    <div>
+      <div>
+        ${ state.stem }
+      </div>
+      <select onchange=${ selectInput }>
+        <option>--</option>
+        ${ Object.keys(state.curBranch).map(e => html`
+        <option value="${ e }">
+          ${ objToCode(JSON.parse(e)) }
+        </option>`) }
+      </select>
+    </div>
+    `;
     
     function unwrap(root) {
       if (root == undefined) return;
@@ -70,7 +75,10 @@ export default function(state, emit) {
   `;
   
   function selectInput(ev) {
-    console.log(ev.target.value)
+    console.log(ev.target.value);
+    state.stem += "objToCode(JSON.parse(ev.target.value));
+    state.curBranch = state.curBranch[ev.target.value];
+    emit("render");
   }
   
   function funcClick(ev) {
