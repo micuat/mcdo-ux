@@ -67,11 +67,12 @@ export default function(state, emitter) {
     emitter.emit("render");
 
     console.log(state.route)
-    if (state.route == "/") {
+    if (state.route == "/" || state.route == "simple") {
       // s0.initCam();
       window.x = ()=>-state.videoElement.width/state.videoElement.height/(window.innerWidth/window.innerHeight);
 
       src(s0).scale(1,x).out();
+      // osc().out()
 
       let video = html`<video id="webcam" autoplay muted playsinline width="640" height="480"></video>`;
       state.videoElement = video;
