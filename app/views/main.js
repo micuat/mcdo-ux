@@ -5,10 +5,23 @@ import Editor from "../components/editor.js";
 
 function objToCode(obj) {
   const func = obj.f;
+
+  let source = "";
+  if (obj.source !== undefined) {
+    source = objToCode(obj.source);
+  }
+
   const args = Object.keys(obj)
-  .filter(e => e != "f")
-  .map(e => e === "source" ? JSON.stringify(obj[e]) : obj[e]).join(",");
-  return `${ func }(${ args })`;
+  .filter(e => e != "f" && e != "to")
+  .map(e => e === "source" ? source : obj[e]).join(",");
+  
+  // hacky way to deal with source-as-argument
+  let child = "";
+  if (obj.to !== undefined) {
+    child = "." + objToCode(obj.to);
+  }
+  
+  return `${ func }(${ args })${ child }`;
 }
 
 // export module

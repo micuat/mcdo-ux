@@ -37,8 +37,8 @@ function untree(synth, label) {
 export default function(state, emitter) {
   state.prompt = "hola"
   
-  state.code = code.mods.filter(e=>e.code.includes("modulate")==false&&e.code.includes("layer")==false).map(e => ({ code: e.code.replace(/^[\s]+/, "").replace(".out()", "") }));
-  // state.code = code.mods.map(e => ({ code: e.code.replace(/^[\s]+/, "").replace(".out()", "") }));
+  // state.code = code.mods.filter(e=>e.code.includes("modulate")==false&&e.code.includes("layer")==false).map(e => ({ code: e.code.replace(/^[\s]+/, "").replace(".out()", "") }));
+  state.code = code.mods.map(e => ({ code: e.code.replace(/^[\s]+/, "").replace(".out()", "") }));
 
   emitter.on("DOMContentLoaded", () => {
     state.tree = {};
