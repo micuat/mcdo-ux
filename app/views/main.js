@@ -9,14 +9,14 @@ export default function(state, emit) {
   
   if (state.options !== undefined) {
     
-    const domSelect = html`
+    dom = html`
     <div class="">
       <div class="inline bg-white/50">
         ${ state.stem }
       </div>
       <select class="inline" onchange=${ selectInput }>
         <option>--</option>
-        ${ Object.keys(state.curBranch).sort().map(e => html`
+        ${ state.options[state.optionsIndex].map(e => html`
         <option value="${ e }">
           ${ e }
         </option>`) }
@@ -41,8 +41,7 @@ export default function(state, emit) {
     if (state.stem.length > 0) {
       state.stem += ".";
     }
-    state.stem += objToCode(JSON.parse(ev.target.value));
-    state.curBranch = state.curBranch[ev.target.value];
+    state.stem += ev.target.value;
     
     try {
       let code = state.stem.replace(/^[\s]+/, "");
@@ -59,10 +58,7 @@ export default function(state, emit) {
       
     }
     
-    if (Object.keys(state.curBranch).length == 0) {      
-      state.stem = "";
-      state.curBranch = state.tree;
-    }
+    state.optionsIndex++;
     emit("render");
   }
 };

@@ -88,14 +88,20 @@ export default function(state, emitter) {
     console.log(state.route)
     if (state.route == "/") {
       
-      state.options = [];
+      state.options = [
+        ["gradient()", "osc(40)", "osc(6,0.1,1.5)", "shape(4)", "noise(5)", "voronoi(5)"],
+        ["colorama()", "color(1,1,-1)", "color(1,-1,1)", "thresh()", "posterize(4)"],
+        ["scrollX(0,0.1)", "rotate(0,0.1)", "pixelate(20,20)"],
+        [],
+      ];
+      state.optionsIndex = 0;
     }
     
     if (state.route == "/" || state.route == "tree" || state.route == "simple") {
       // s0.initCam();
       // osc().out()
 
-      let video = html`<video id="webcam" autoplay muted playsinline width="640" height="480"></video>`;
+      let video = html`<video id="webcam" autoplay muted playsinline width="640" height="480" class="hidden"></video>`;
       document.body.appendChild(video)
       state.videoElement = video;
       let streaming = false;
@@ -123,7 +129,7 @@ export default function(state, emitter) {
           video.addEventListener("loadeddata", () => {
             s0.init({ src: video });
             window.x = ()=>-state.videoElement.width/state.videoElement.height/(window.innerWidth/window.innerHeight);
-            src(s0).scale(1,x).out();
+            // src(s0).scale(1,x).out();
           });
           // streaming = true;
           // state.started = true;
