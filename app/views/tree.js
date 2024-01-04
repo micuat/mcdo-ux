@@ -3,11 +3,32 @@ import html from "choo/html";
 import HydraCanvas from "../components/hydra-canvas.js";
 import Editor from "../components/editor.js";
 
+function objToCode(obj) {
+  const func = obj.f;
+
+  let source = "";
+  if (obj.source !== undefined) {
+    source = objToCode(obj.source);
+  }
+
+  const args = Object.keys(obj)
+  .filter(e => e != "f" && e != "to")
+  .map(e => e === "source" ? source : obj[e]).join(",");
+  
+  // hacky way to deal with source-as-argument
+  let child = "";
+  if (obj.to !== undefined) {
+    child = "." + objToCode(obj.to);
+  }
+  
+  return `${ func }(${ args })${ child }`;
+}
+
 // export module
 export default function(state, emit) {
   let dom = "loading";
   
-  if (state.options !== undefined) {
+  if (state.tree !== undefined) {
     
     const domSelect = html`
     <div class="">
@@ -18,11 +39,34 @@ export default function(state, emit) {
         <option>--</option>
         ${ Object.keys(state.curBranch).sort().map(e => html`
         <option value="${ e }">
-          ${ e }
+          ${ objToCode(JSON.parse(e)) }
         </option>`) }
       </select>
     </div>
     `;
+    
+    function unwrap(root) {
+      if (root == undefined) return;
+      let keys = Object.keys(root);
+      return keys.map(e => {
+        return html`
+        <div class="bg-white border-black border-solid border-2">
+          <div>
+            ${ objToCode(JSON.parse(e)) }
+          </div>
+          <div class="mx-4">
+            ${ unwrap(root[e]) }
+          </div>
+        </div>`;
+      });
+    }
+    
+    const domList = unwrap(state.tree);
+    
+    dom = html`
+    <div>
+      ${ domSelect }
+    </div>`
   }
   return html`
     <div class="absolute left-0 top-0 w-screen h-screen">

@@ -86,7 +86,12 @@ export default function(state, emitter) {
     emitter.emit("render");
 
     console.log(state.route)
-    if (state.route == "/" || state.route == "simple") {
+    if (state.route == "/") {
+      
+      state.options = [];
+    }
+    
+    if (state.route == "/" || state.route == "tree" || state.route == "simple") {
       // s0.initCam();
       // osc().out()
 
