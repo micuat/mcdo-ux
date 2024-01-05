@@ -89,9 +89,9 @@ export default function(state, emitter) {
     if (state.route == "/") {
       
       state.options = [
-        ["gradient()", "osc(40)", "osc(6,0.1,1.5)", "shape(4)", "noise(5)", "voronoi(5)"],
+        ["gradient()", "osc(40)", "osc(6,0.1,1.5)", "shape(4)", "noise(5)", "voronoi(5)", "src(s0)"],
+        ["scrollX(0,0.1)", "rotate(0,0.1)", "pixelate(20,20)", "modulate(noise(3))"],
         ["colorama()", "color(1,1,-1)", "color(1,-1,1)", "thresh()", "posterize(4)"],
-        ["scrollX(0,0.1)", "rotate(0,0.1)", "pixelate(20,20)"],
         [],
       ];
       state.optionsIndex = 0;
