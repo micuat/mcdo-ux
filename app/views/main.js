@@ -14,7 +14,9 @@ export default function(state, emit) {
         ${ state.stem }
       </div>
         ${ state.options[state.optionsIndex].map(e => html`
-          <div id=${ e } onclick=${ selectInput }>
+          <div id=${ e }
+            onclick=${ selectInput }
+            onmouseover=${ hoverInput }>
             ${ e }
           </div>
         `) }
@@ -34,16 +36,22 @@ export default function(state, emit) {
     </div>
   `;
   
+  function hoverInput(ev) {
+    console.log(ev.target.innerText);
+  }
   function selectInput(ev) {
     console.log(ev.target.innerText);
+    
+    let newCode = state.stem;
 
-    if (state.stem.length > 0) {
-      state.stem += ".";
+    if (newCode.length > 0) {
+      newCode += ".";
     }
-    state.stem += ev.target.innerText;
+    newCode += ev.target.innerText;
+    state.stem = newCode;
     
     try {
-      let code = state.stem.replace(/^[\s]+/, "");
+      let code = newCode.replace(/^[\s]+/, "");
       if (state.isMobile) {
       }
       else {
