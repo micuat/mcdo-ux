@@ -38,17 +38,17 @@ export default class extends Component {
   }
 
   textTween(target) {
-    if (this.tweening == true || target == "") {
+    if (this.tweening == true) {
+      return;
+    }
+    if (target == "") {
+      this.span.innerText = "";
       return;
     }
     
     if (this.span.innerText == target) {
       console.log("same, skipping", target)
       return;
-    }
-    
-    if (target.startsWith(this.span.innerText) == false) {
-      this.span.innerText = "";
     }
     
     // this.span.innerText = "";
