@@ -8,18 +8,40 @@ export default function(state, emit) {
   let dom = "loading";
   
   if (state.options !== undefined) {
-    dom = html`
-    <div class="">
-      <div class="inline bg-white/50">
-        ${ state.stem }
-      </div>
-        ${ state.options[state.optionsIndex].map(e => html`
-          <div id=${ e }
+    let options = ""
+    if (state.options[state.optionsIndex].length > 0) {
+      options = state.options[state.optionsIndex].map(e => html`
+        <div class="block">
+          <div
+            id=${ e }
+            class="inline bg-white/50 hover:bg-white font-mono"
             onclick=${ selectInput }
             onmouseover=${ hoverInput }>
             ${ e }
           </div>
-        `) }
+        </div>
+      `)
+    }
+    else {
+      options = html`
+      <div class="block">
+        <div
+          class="inline bg-white/50 hover:bg-white"
+          onclick=${ startOver }>
+          Start over
+        </div>
+      </div>
+      `
+    }
+    dom = html`
+    <div class="">
+      <div class="bg-white/50">
+        Code: 
+        <div class="inline bg-white/50 font-mono">
+          ${ state.stem }
+        </div>
+      </div>
+        ${ options }
       </select>
     </div>
     `;
@@ -38,6 +60,27 @@ export default function(state, emit) {
   
   function hoverInput(ev) {
     console.log(ev.target.innerText);
+    let newCode = state.stem;
+
+    if (newCode.length > 0) {
+      newCode += ".";
+    }
+    newCode += ev.target.innerText;
+    
+    try {
+      let code = newCode.replace(/^[\s]+/, "");
+      if (state.isMobile) {
+      }
+      else {
+        code = code.replace("src(s0)", `src(s0).scale(1,x)`);
+      }
+      code = code + ".out()";
+
+      eval(code);
+      state.cache(Editor, 'editor').setCode(code);
+    } catch (e) {
+      
+    }
   }
   function selectInput(ev) {
     console.log(ev.target.innerText);
@@ -66,6 +109,12 @@ export default function(state, emit) {
     }
     
     state.optionsIndex++;
+    emit("render");
+  }
+
+  function startOver() {
+    state.stem = "";
+    state.optionsIndex = 0;
     emit("render");
   }
 };
