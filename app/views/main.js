@@ -12,13 +12,15 @@ export default function(state, emit) {
     let options = ""
     if (state.options[state.optionsIndex].length > 0) {
       options = state.options[state.optionsIndex].map(e => html`
-        <div class="block">
+        <div class="block" id=${ e }>
           <div
-            id=${ e }
             class="inline bg-white/50 hover:bg-white font-mono"
             onclick=${ selectInput }
             onmouseover=${ hoverInput }>
             ${ e }
+          </div>
+          <div>
+            ↩️
           </div>
         </div>
       `)
