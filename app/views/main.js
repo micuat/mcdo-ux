@@ -8,18 +8,16 @@ export default function(state, emit) {
   let dom = "loading";
   
   if (state.options !== undefined) {
-    
     dom = html`
     <div class="">
       <div class="inline bg-white/50">
         ${ state.stem }
       </div>
-      <select class="inline" onchange=${ selectInput }>
-        <option>--</option>
         ${ state.options[state.optionsIndex].map(e => html`
-        <option value="${ e }">
-          ${ e }
-        </option>`) }
+          <div id=${ e } onclick=${ selectInput }>
+            ${ e }
+          </div>
+        `) }
       </select>
     </div>
     `;
@@ -37,11 +35,12 @@ export default function(state, emit) {
   `;
   
   function selectInput(ev) {
-    console.log(ev.target.value);
+    console.log(ev.target.innerText);
+
     if (state.stem.length > 0) {
       state.stem += ".";
     }
-    state.stem += ev.target.value;
+    state.stem += ev.target.innerText;
     
     try {
       let code = state.stem.replace(/^[\s]+/, "");
