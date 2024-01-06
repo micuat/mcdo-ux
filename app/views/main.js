@@ -15,11 +15,14 @@ export default function(state, emit) {
         <div class="block" id=${ e }>
           <div
             class="inline bg-white/50 hover:bg-white font-mono"
-            onclick=${ selectInput }
+            onclick=${ hoverInput }
             onmouseover=${ hoverInput }>
             ${ e }
           </div>
-          <div>
+          <div
+            class="${ state.selected === e ? "inline" : "hidden" }"
+            onclick=${ selectInput }
+          >
             ↩️
           </div>
         </div>
@@ -62,13 +65,14 @@ export default function(state, emit) {
   `;
   
   function hoverInput(ev) {
-    console.log(ev.target.innerText);
     let newCode = state.stem;
 
     if (newCode.length > 0) {
       newCode += ".";
     }
-    newCode += ev.target.innerText;
+    newCode += ev.target.parentNode.childNodes[0].innerText;
+    state.selected = ev.target.parentNode.childNodes[0].innerText;
+    emit("render");
     
     try {
       let code = newCode.replace(/^[\s]+/, "");
@@ -86,14 +90,12 @@ export default function(state, emit) {
     }
   }
   function selectInput(ev) {
-    console.log(ev.target.innerText);
-    
     let newCode = state.stem;
 
     if (newCode.length > 0) {
       newCode += ".";
     }
-    newCode += ev.target.innerText;
+    newCode += ev.target.parentNode.childNodes[0].innerText;
     state.stem = newCode;
     
     try {
