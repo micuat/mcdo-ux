@@ -20,10 +20,10 @@ export default function(state, emit) {
             ${ e }
           </div>
           <div
-            class="${ state.selected === e ? "inline" : "hidden" }"
+            class="bg-white cursor-pointer ${ state.selected === e ? "inline" : "hidden" }"
             onclick=${ selectInput }
           >
-            ↩️
+            [ENTER]
           </div>
         </div>
       `)
