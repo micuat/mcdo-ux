@@ -2,6 +2,7 @@ import html from "choo/html";
 
 import HydraCanvas from "../components/hydra-canvas.js";
 import Editor from "../components/editor.js";
+import TextTweenElement from "../components/tween-text.js";
 
 // export module
 export default function(state, emit) {
@@ -38,7 +39,7 @@ export default function(state, emit) {
       <div class="bg-white/50">
         Code: 
         <div class="inline bg-white/50 font-mono">
-          ${ state.stem }
+          ${ state.cache(TextTweenElement, 'my-text').render(state, emit, state.stem) }
         </div>
       </div>
         ${ options }
