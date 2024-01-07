@@ -121,7 +121,7 @@ export default function(state, emitter) {
       ];
       state.funcIndex = 0;
 
-      let video = html`<video id="webcam" autoplay muted playsinline width="640" height="480" class="hidden"></video>`;
+      let video = html`<video id="webcam" autoplay muted playsinline width="640" height="480" class=""></video>`;
       document.body.appendChild(video)
       state.videoElement = video;
       let streaming = false;
