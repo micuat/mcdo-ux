@@ -8,10 +8,10 @@ import TextTweenElement from "../components/tween-text.js";
 export default function(state, emit) {
   let dom = "loading";
   
-  if (state.options !== undefined) {
-    let options = ""
-    if (state.options[state.optionsIndex].length > 0) {
-      options = state.options[state.optionsIndex].map(e => html`
+  if (state.funcs !== undefined) {
+    let funcs = ""
+    if (state.funcs[state.funcIndex].options.length > 0) {
+      funcs = state.funcs[state.funcIndex].options.map(e => html`
         <div class="block" id=${ e }>
           <div
             class="inline bg-white/50 hover:bg-white font-mono"
@@ -29,7 +29,7 @@ export default function(state, emit) {
       `)
     }
     else {
-      options = html`
+      funcs = html`
       <div class="block">
         <div
           class="inline bg-white/50 cursor-pointer hover:bg-white"
@@ -47,7 +47,7 @@ export default function(state, emit) {
           ${ state.cache(TextTweenElement, 'my-text').render(state, emit, state.stem) }
         </div>
       </div>
-        ${ options }
+        ${ funcs }
       </select>
     </div>
     `;
@@ -65,61 +65,12 @@ export default function(state, emit) {
   `;
   
   function hoverInput(ev) {
-    let newCode = state.stem;
-
-    if (newCode.length > 0) {
-      newCode += ".";
-    }
-    newCode += ev.target.parentNode.childNodes[0].innerText;
-    state.selected = ev.target.parentNode.childNodes[0].innerText;
-    emit("render");
-    
-    try {
-      let code = newCode.replace(/^[\s]+/, "");
-      if (state.isMobile) {
-      }
-      else {
-        code = code.replace("src(s0)", `src(s0).scale(1,x)`);
-      }
-      code = code + ".out()";
-
-      eval(code);
-      state.cache(Editor, 'editor').setCode(code);
-    } catch (e) {
-      
-    }
+    emit("hover input", ev);
   }
   function selectInput(ev) {
-    let newCode = state.stem;
-
-    if (newCode.length > 0) {
-      newCode += ".";
-    }
-    newCode += ev.target.parentNode.childNodes[0].innerText;
-    state.stem = newCode;
-    
-    try {
-      let code = newCode.replace(/^[\s]+/, "");
-      if (state.isMobile) {
-      }
-      else {
-        code = code.replace("src(s0)", `src(s0).scale(1,x)`);
-      }
-      code = code + ".out()";
-
-      eval(code);
-      state.cache(Editor, 'editor').setCode(code);
-    } catch (e) {
-      
-    }
-    
-    state.optionsIndex++;
-    emit("render");
+    emit("select input", ev);
   }
-
   function startOver() {
-    state.stem = "";
-    state.optionsIndex = 0;
-    emit("render");
+    emit("start over");
   }
 };

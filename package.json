@@ -20,7 +20,8 @@
     "postcss": "^8.4.31",
     "autoprefixer": "^10.4.15",
     "vite": "^4.5.0",
-    "@codemirror/language": "^6.9.2"
+    "@codemirror/language": "^6.9.2",
+    "is-mobile": "^4.0.0"
   },
   "devDependencies": {},
   "browserslist": [
