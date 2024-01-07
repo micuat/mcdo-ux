@@ -6,6 +6,33 @@ import Editor from "../components/editor.js";
 export default function(state, emitter) {
   state.isMobile = isMobile();
 
+  emitter.on("next option", () => {
+    state.funcIndex++;
+    emitter.emit("render");
+  });
+  
+  emitter.on("next hover", () => {
+    let newCode = state.stem;
+
+    state.selected = "";
+    emitter.emit("render");
+    
+    try {
+      let code = newCode.replace(/^[\s]+/, "");
+      if (state.isMobile) {
+      }
+      else {
+        code = code.replace("src(s0)", `src(s0).scale(1,x)`);
+      }
+      code = code + ".out()";
+
+      eval(code);
+      state.cache(Editor, 'editor').setCode(code);
+    } catch (e) {
+    }
+  });
+  
+  
   emitter.on("start over", () => {
     state.stem = "";
     state.funcIndex = 0;
@@ -35,8 +62,11 @@ export default function(state, emitter) {
     } catch (e) {
       
     }
+    // console.log(state.funcs[state.funcIndex].type)
+    if (state.funcs[state.funcIndex].type === "source")  {
+      state.funcIndex++;
+    }
     
-    state.funcIndex++;
     state.selected = "";
     emitter.emit("render");
   });
@@ -114,6 +144,7 @@ export default function(state, emitter) {
             "invert()",
             "thresh()",
             "posterize(4)",
+            "saturate(2)",
           ],
         },
         {

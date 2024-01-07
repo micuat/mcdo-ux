@@ -27,6 +27,17 @@ export default function(state, emit) {
           </div>
         </div>
       `)
+      if (state.funcs[state.funcIndex].type !== "source") {
+        funcs.push(html`
+        <div class="block">
+          <div
+            class="inline bg-white/50 cursor-pointer hover:bg-white"
+            onclick=${ nextOption }>
+            Next
+          </div>
+        </div>
+        `)
+      }
     }
     else {
       funcs = html`
@@ -72,5 +83,11 @@ export default function(state, emit) {
   }
   function startOver() {
     emit("start over");
+  }
+  function nextHover() {
+    emit("next hover");
+  }
+  function nextOption() {
+    emit("next option");
   }
 };
