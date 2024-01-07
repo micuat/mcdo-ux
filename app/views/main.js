@@ -32,7 +32,8 @@ export default function(state, emit) {
         <div class="block">
           <div
             class="inline bg-white/50 cursor-pointer hover:bg-white"
-            onclick=${ nextOption }>
+            onclick=${ nextOption }
+            onmouseover=${ nextHover }>
             Next
           </div>
         </div>
@@ -52,14 +53,7 @@ export default function(state, emit) {
     }
     dom = html`
     <div class="">
-      <div class="bg-white/50">
-        Code: 
-        <div class="inline bg-white/50 font-mono">
-          ${ state.cache(TextTweenElement, 'my-text').render(state, emit, state.stem) }${ state.selected != false ? html`<span class="text-black/50">${ state.stem.length === 0 ? state.selected : `.${ state.selected }` }</span>` : "" }.out()
-        </div>
-      </div>
-        ${ funcs }
-      </select>
+      ${ funcs }
     </div>
     `;
   }
@@ -67,6 +61,14 @@ export default function(state, emit) {
     <div class="absolute left-0 top-0 w-screen h-screen">
       <div class="absolute left-0 top-0 w-full h-full z-10">
         ${ dom }
+      </div>
+      <div class="absolute bottom-0 z-10 w-full">
+        <div class="bg-white/50 w-full">
+          Code: 
+          <div class="inline bg-white/50 font-mono">
+            ${ state.cache(TextTweenElement, 'my-text').render(state, emit, state.stem) }${ state.selected != false ? html`<span class="text-black/50">${ state.stem.length === 0 ? state.selected : `.${ state.selected }` }</span>` : "" }.out()
+          </div>
+        </div>
       </div>
       <div class="absolute bottom-0 z-10 w-full hidden">
         ${ state.cache(Editor, 'editor').render() }

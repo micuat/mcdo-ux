@@ -5,6 +5,7 @@ import Editor from "../components/editor.js";
 
 export default function(state, emitter) {
   state.isMobile = isMobile();
+  state.stem = "";
 
   emitter.on("next option", () => {
     state.funcIndex++;

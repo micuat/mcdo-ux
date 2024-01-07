@@ -33,7 +33,7 @@ export default class extends Component {
     this.prompt = prompt;
     
     return html`
-    <span></span>
+    <span class="" style="line-break: anywhere;"></span>
     `
   }
 
