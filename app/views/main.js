@@ -32,7 +32,7 @@ export default function(state, emit) {
       options = html`
       <div class="block">
         <div
-          class="inline bg-white/50 hover:bg-white"
+          class="inline bg-white/50 cursor-pointer hover:bg-white"
           onclick=${ startOver }>
           Start over
         </div>

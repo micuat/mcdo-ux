@@ -1,5 +1,4 @@
 import html from "choo/html";
-import code from "../libs/meta-code.js";
 
 // https://stackoverflow.com/questions/11381673/detecting-a-mobile-browser
 const mobileCheck = function() {
@@ -63,10 +62,50 @@ export default function(state, emitter) {
     if (state.route == "/") {
       
       state.options = [
-        ["gradient()", "osc(40)", "osc(6,0.1,1.5)", "shape(4)", "noise(5)", "voronoi(5)", "src(s0)"],
-        ["scrollX(0,0.1)", "rotate(0,0.1)", "pixelate(20,20)", "modulate(noise(3))"],
-        ["colorama()", "color(1,1,-1)", "color(1,-1,1)", "thresh()", "posterize(4)"],
-        [],
+        {
+          type: "source",
+          options: [
+            "src(s0)",
+            "gradient()",
+            "osc(40)",
+            "osc(6,0.1,1.5)",
+            // "solid([1,0,0],[0,1,0],[0,0,1])",
+            "shape(4)",
+            "noise(5)",
+            "voronoi(5)",
+          ],
+        },
+        {
+          type: "geometry",
+          options: [
+            "scrollX(0,0.1)",
+            "rotate(0,0.1)",
+            "pixelate(20,20)",
+            "modulate(noise(3))",
+            "scale(2)",
+            "scale(1,2)",
+            "repeat(3,3)",
+            "repeat(80,80)",
+            "kaleid(4)",
+            "kaleid(99)",
+          ],
+        },
+        {
+          type: "color",
+          options: [
+            "colorama(0.1)",
+            "color(1,1,-1)",
+            "color(1,-1,1)",
+            "color(-1,1,1)",
+            "invert()",
+            "thresh()",
+            "posterize(4)",
+          ],
+        },
+        {
+          type: "end",
+          options: [],
+        },
       ];
       state.optionsIndex = 0;
 
@@ -97,12 +136,7 @@ export default function(state, emitter) {
           //;
           video.addEventListener("loadeddata", () => {
             s0.init({ src: video });
-            window.x = ()=>-state.videoElement.width/state.videoElement.height/(window.innerWidth/window.innerHeight);
-            // src(s0).scale(1,x).out();
           });
-          // streaming = true;
-          // state.started = true;
-          // emitter.emit("render");
         });
       };
       if (state.isMobile) {
