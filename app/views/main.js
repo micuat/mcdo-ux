@@ -57,7 +57,7 @@ export default function(state, emit) {
       <div class="absolute left-0 top-0 w-full h-full z-10">
         ${ dom }
       </div>
-      <div class="absolute bottom-0 z-10 w-full">
+      <div class="absolute bottom-0 z-10 w-full hidden">
         ${ state.cache(Editor, 'editor').render() }
       </div>
       ${ state.cache(HydraCanvas, 'hydra').render(state, emit) }
