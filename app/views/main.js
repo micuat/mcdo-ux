@@ -44,7 +44,7 @@ export default function(state, emit) {
       <div class="bg-white/50">
         Code: 
         <div class="inline bg-white/50 font-mono">
-          ${ state.cache(TextTweenElement, 'my-text').render(state, emit, state.stem) }
+          ${ state.cache(TextTweenElement, 'my-text').render(state, emit, state.stem) }${ state.selected != false ? html`<span class="text-black/50">${ state.stem.length === 0 ? state.selected : `.${ state.selected }` }</span>` : "" }.out()
         </div>
       </div>
         ${ funcs }

@@ -37,17 +37,19 @@ export default function(state, emitter) {
     }
     
     state.funcIndex++;
+    state.selected = "";
     emitter.emit("render");
   });
   
   emitter.on("hover input", ev => {
+    const selectedCode = ev.target.parentNode.childNodes[0].innerText;
     let newCode = state.stem;
 
     if (newCode.length > 0) {
       newCode += ".";
     }
-    newCode += ev.target.parentNode.childNodes[0].innerText;
-    state.selected = ev.target.parentNode.childNodes[0].innerText;
+    newCode += selectedCode;
+    state.selected = selectedCode;
     emitter.emit("render");
     
     try {
