@@ -54,35 +54,9 @@ function untree(synth, label) {
 export default function(state, emitter) {
   state.isMobile = mobileCheck();
 
-  state.prompt = "hola"
-  
-  // state.code = code.mods.filter(e=>e.code.includes("modulate")==false&&e.code.includes("layer")==false).map(e => ({ code: e.code.replace(/^[\s]+/, "").replace(".out()", "") }));
-  state.code = [...code.mods, ...code.patterns.filter(e=>e.code.length<300&&e.code.includes("render") == false&&e.code.includes("\n") == false)].map(e => ({ code: e.code.replace(/^[\s]+/, "").replace(".out()", "") }));
-
   emitter.on("DOMContentLoaded", () => {
-    state.tree = {};
     state.stem = "";
-    state.curBranch = state.tree;
-    
-    state.code.forEach(e => {
-      let parent = state.tree;
-      let { obj, o } = untree(eval(e.code));
-      do {
-        let obj_clone = JSON.parse(JSON.stringify(obj));
-        obj_clone.to = undefined;
-        const key = JSON.stringify(obj_clone);
-        let grandParent = parent;
-        parent = grandParent[key];
-        if (parent === undefined) {
-          parent = grandParent[key] = {};
-        }
-        else {
-        }
-        
-        obj = obj.to;
-      } while (obj !== undefined);
-    });
-    console.log(state.tree);
+
     emitter.emit("render");
 
     console.log(state.route)
@@ -95,11 +69,6 @@ export default function(state, emitter) {
         [],
       ];
       state.optionsIndex = 0;
-    }
-    
-    if (state.route == "/" || state.route == "tree" || state.route == "simple") {
-      // s0.initCam();
-      // osc().out()
 
       let video = html`<video id="webcam" autoplay muted playsinline width="640" height="480" class="hidden"></video>`;
       document.body.appendChild(video)
@@ -144,10 +113,6 @@ export default function(state, emitter) {
         startCapture();
       }
     
-    }
-    if (state.route == "img") {
-      s0.initImage('https://i.ibb.co/LdnQNgY/Cat.png')
-      src(s0).out();
     }
   });
 }

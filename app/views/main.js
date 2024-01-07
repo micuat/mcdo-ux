@@ -23,7 +23,7 @@ export default function(state, emit) {
             class="bg-white cursor-pointer ${ state.selected === e ? "inline" : "hidden" }"
             onclick=${ selectInput }
           >
-            [ENTER]
+            [SELECT]
           </div>
         </div>
       `)
