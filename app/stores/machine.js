@@ -121,7 +121,7 @@ export default function(state, emitter) {
       ];
       state.funcIndex = 0;
 
-      let video = html`<video id="webcam" autoplay muted playsinline width="640" height="480" class=""></video>`;
+      let video = html`<video id="webcam" autoplay muted playsinline width="640" height="480" class="hidden"></video>`;
       document.body.appendChild(video)
       state.videoElement = video;
       let streaming = false;
@@ -148,6 +148,7 @@ export default function(state, emitter) {
           //;
           video.addEventListener("loadeddata", () => {
             s0.init({ src: video });
+            window.x = ()=>-state.videoElement.width/state.videoElement.height/(window.innerWidth/window.innerHeight);
           });
         });
       };
