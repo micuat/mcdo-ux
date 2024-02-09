@@ -25,6 +25,11 @@ export default function(state, emit) {
           >
             [SELECT]
           </div>
+          ${ state.selected === e ? html`
+            <div class="inline bg-red-500">
+              *AI's recommendation
+            </div>
+          ` : ""}
         </div>
       `)
       if (state.funcs[state.funcIndex].type !== "source") {
