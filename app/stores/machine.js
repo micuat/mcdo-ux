@@ -9,6 +9,7 @@ export default function(state, emitter) {
 
   emitter.on("next option", () => {
     state.funcIndex++;
+    state.notNextedYet = false;
     emitter.emit("render");
   });
   
@@ -66,6 +67,7 @@ export default function(state, emitter) {
     // console.log(state.funcs[state.funcIndex].type)
     if (state.funcs[state.funcIndex].type === "source")  {
       state.funcIndex++;
+      state.notNextedYet = true;
     }
     
     state.selected = "";
@@ -110,42 +112,42 @@ export default function(state, emitter) {
         {
           type: "source",
           options: [
-            "src(s0)",
-            "gradient()",
-            "osc(40)",
-            "osc(6,0.1,1.5)",
+            { code: "src(s0)", ai: true},
+            { code: "gradient()", ai: false},
+            { code: "osc(40)", ai: false},
+            { code: "osc(6,0.1,1.5)", ai: false},
             // "solid([1,0,0],[0,1,0],[0,0,1])",
-            "shape(4)",
-            "noise(5)",
-            "voronoi(5)",
+            { code: "shape(4)", ai: false},
+            { code: "noise(5)", ai: false},
+            { code: "voronoi(5)", ai: false},
           ],
         },
         {
           type: "geometry",
           options: [
-            "scrollX(0,0.1)",
-            "rotate(0,0.1)",
-            "pixelate(20,20)",
-            "modulate(noise(3))",
-            "scale(2)",
-            "scale(1,2)",
-            "repeat(3,3)",
-            "repeat(80,80)",
-            "kaleid(4)",
-            "kaleid(99)",
+            { code: "scrollX(0,0.1)", ai: false},
+            { code: "rotate(0,0.1)", ai: false},
+            { code: "pixelate(20,20)", ai: false},
+            { code: "modulate(noise(3))", ai: true},
+            { code: "scale(2)", ai: false},
+            { code: "scale(1,2)", ai: false},
+            { code: "repeat(3,3)", ai: true},
+            { code: "repeat(80,80)", ai: false},
+            { code: "kaleid(4)", ai: false},
+            { code: "kaleid(99)", ai: false},
           ],
         },
         {
           type: "color",
           options: [
-            "colorama(0.1)",
-            "color(1,1,-1)",
-            "color(1,-1,1)",
-            "color(-1,1,1)",
-            "invert()",
-            "thresh()",
-            "posterize(4)",
-            "saturate(2)",
+            { code: "colorama(0.1)", ai: true},
+            { code: "color(1,1,-1)", ai: true},
+            { code: "color(1,-1,1)", ai: false},
+            { code: "color(-1,1,1)", ai: false},
+            { code: "invert()", ai: false},
+            { code: "thresh()", ai: false},
+            { code: "posterize(4)", ai: false},
+            { code: "saturate(2)", ai: true},
           ],
         },
         {

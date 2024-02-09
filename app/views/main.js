@@ -12,20 +12,20 @@ export default function(state, emit) {
     let funcs = ""
     if (state.funcs[state.funcIndex].options.length > 0) {
       funcs = state.funcs[state.funcIndex].options.map(e => html`
-        <div class="block" id=${ e }>
+        <div class="block" id=${ e.code }>
           <div
             class="inline bg-white/50 hover:bg-white font-mono"
             onclick=${ hoverInput }
             onmouseover=${ hoverInput }>
-            ${ e }
+            ${ e.code }
           </div>
           <div
-            class="bg-white cursor-pointer ${ state.selected === e ? "inline" : "hidden" }"
+            class="bg-white cursor-pointer ${ state.selected === e.code ? "inline" : "hidden" }"
             onclick=${ selectInput }
           >
             [SELECT]
           </div>
-          ${ state.selected === e ? html`
+          ${ e.ai ? html`
             <div class="inline bg-red-500">
               *AI's recommendation
             </div>
@@ -41,6 +41,11 @@ export default function(state, emit) {
             onmouseover=${ nextHover }>
             Next
           </div>
+          ${ true ? html`
+            <div class="inline bg-red-500">
+              *AI's recommendation
+            </div>
+          ` : ""}
         </div>
         `)
       }
