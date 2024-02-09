@@ -67,9 +67,10 @@ export default function(state, emitter) {
     // console.log(state.funcs[state.funcIndex].type)
     if (state.funcs[state.funcIndex].type === "source")  {
       state.funcIndex++;
+    }
+    else {
       state.notNextedYet = true;
     }
-    
     state.selected = "";
     emitter.emit("render");
   });
@@ -141,7 +142,7 @@ export default function(state, emitter) {
           type: "color",
           options: [
             { code: "colorama(0.1)", ai: true},
-            { code: "color(1,1,-1)", ai: true},
+            { code: "color(1,1,-1)", ai: false},
             { code: "color(1,-1,1)", ai: false},
             { code: "color(-1,1,1)", ai: false},
             { code: "invert()", ai: false},

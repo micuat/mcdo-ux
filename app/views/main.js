@@ -19,17 +19,17 @@ export default function(state, emit) {
             onmouseover=${ hoverInput }>
             ${ e.code }
           </div>
+          ${ e.ai ? html`
+            <div class="mx-1 inline bg-yellow-400">
+              *
+            </div>
+          ` : ""}
           <div
             class="bg-white cursor-pointer ${ state.selected === e.code ? "inline" : "hidden" }"
             onclick=${ selectInput }
           >
             [SELECT]
           </div>
-          ${ e.ai ? html`
-            <div class="inline bg-red-500">
-              *AI's recommendation
-            </div>
-          ` : ""}
         </div>
       `)
       if (state.funcs[state.funcIndex].type !== "source") {
@@ -41,9 +41,9 @@ export default function(state, emit) {
             onmouseover=${ nextHover }>
             Next
           </div>
-          ${ true ? html`
-            <div class="inline bg-red-500">
-              *AI's recommendation
+          ${ state.notNextedYet ? html`
+            <div class="mx-1 inline bg-yellow-400">
+              *
             </div>
           ` : ""}
         </div>
@@ -70,6 +70,16 @@ export default function(state, emit) {
   return html`
     <div class="absolute left-0 top-0 w-screen h-screen">
       <div class="absolute left-0 top-0 w-full h-full z-10">
+        <div class="">
+          <div class="inline bg-white">
+            Select code
+          </div>
+          <div class="mx-1 inline bg-yellow-400">
+            *AI's recommendation
+          </div>
+        </div>
+        <div class="">
+        </div>
         ${ dom }
       </div>
       <div class="absolute bottom-0 z-10 w-full">
