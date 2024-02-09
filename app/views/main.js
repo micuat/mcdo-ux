@@ -27,7 +27,7 @@ export default function(state, emit) {
             </div>
           ` : ""}
           <div
-            class="bg-white ${ state.selected === e.code ? "inline" : "hidden" }"
+            class="bg-white cursor-pointer animate-pulse ${ state.selected === e.code ? "inline" : "hidden" }"
             onclick=${ selectInput }
           >
             [SELECT]
@@ -41,7 +41,7 @@ export default function(state, emit) {
             class="inline bg-white/50 cursor-pointer hover:bg-white"
             onclick=${ nextOption }
             onmouseover=${ nextHover }>
-            Next
+            Skip
             ${ state.notNextedYet ? html`
               <div class="px-1 inline bg-yellow-400">
                 🧩
@@ -88,7 +88,7 @@ export default function(state, emit) {
         </div>
         ${ dom }
       </div>
-      <div class="absolute bottom-0 z-10 w-full">
+      <div class="static bottom-10 z-10 w-full">
         <div class="bg-white/50 w-full">
           Code: 
           <div class="inline bg-white/50 font-mono">
