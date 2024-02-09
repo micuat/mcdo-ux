@@ -71,12 +71,16 @@ export default function(state, emit) {
   }
   return html`
     <div class="absolute left-0 top-0 w-screen h-screen">
-      <div class="absolute left-0 top-0 w-full h-full z-10">
+      <div class="absolute bottom-0 z-10 w-full hidden">
+        ${ state.cache(Editor, 'editor').render() }
+      </div>
+      ${ state.cache(HydraCanvas, 'hydra').render(state, emit) }
+      <div class="absolute left-0 top-0 w-full h-full">
         <div class="flex justify-between">
           <div class="inline bg-white">
             SFDCANBAC++
           </div>
-          <div class="cursor-pointer inline ">
+          <div class="cursor-pointer inline" onclick=${ infoClicked }>
             ℹ️
           </div>
         </div>
@@ -92,10 +96,19 @@ export default function(state, emit) {
           </div>
         </div>
       </div>
-      <div class="absolute bottom-0 z-10 w-full hidden">
-        ${ state.cache(Editor, 'editor').render() }
+      <div class="absolute ${ state.dialogOpen ? "" : "hidden" } w-full h-full m-0 bg-black/60">
+        <div class="w-full h-full flex justify-center items-center">
+          <div class="bg-white max-w-sm p-4 relative">
+            <h1 class="text-xl">SFDCANBAC++-UX</h1>
+            <p class="my-1">Project by <a class="font-bold" href="https://jorgeguevara.myportfolio.com/" target="_blank">Jorge Guevara</a> and <a class="font-bold" href="https://naotohieda.com/" target="_blank">Naoto Hieda</a></p>
+            <p class="my-1">Front end by Naoto Hieda</p>
+            <p class="my-1">Developed in the frame of <a class="font-bold" href="https://modina.eu/" target="_blank">MODINA</a> (Movement, Digital Intelligence and Interactive Audience)</p>
+            <form method="dialog" class="absolute top-2 right-2">
+              <button autofocus class="text-lg" onclick=${ infoClicked }>❌</button>
+            </form>
+          </div>
+        </div>
       </div>
-      ${ state.cache(HydraCanvas, 'hydra').render(state, emit) }
     </div>
   `;
   
@@ -113,5 +126,9 @@ export default function(state, emit) {
   }
   function nextOption() {
     emit("next option");
+  }
+  function infoClicked() {
+    state.dialogOpen = !state.dialogOpen;
+    emit("render");
   }
 };

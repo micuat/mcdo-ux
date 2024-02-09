@@ -120,7 +120,7 @@ export default function(state, emitter) {
             { code: "osc(40)", ai: false},
             { code: "osc(6,0.1,1.5)", ai: false},
             // "solid([1,0,0],[0,1,0],[0,0,1])",
-            { code: "shape(4)", ai: false},
+            // { code: "shape(4)", ai: false},
             { code: "noise(5)", ai: false},
             { code: "voronoi(5)", ai: false},
           ],
@@ -187,6 +187,7 @@ export default function(state, emitter) {
           //;
           video.addEventListener("loadeddata", () => {
             s0.init({ src: video });
+            src(s0).out()
             window.x = ()=>-state.videoElement.width/state.videoElement.height/(window.innerWidth/window.innerHeight);
           });
         });
