@@ -75,24 +75,28 @@ export default function(state, emit) {
         ${ state.cache(Editor, 'editor').render() }
       </div>
       ${ state.cache(HydraCanvas, 'hydra').render(state, emit) }
-      <div class="absolute left-0 top-0 w-full h-full">
-        <div class="flex justify-between">
-          <div class="inline bg-white">
-            SFDCANBAC++
+      <div class="absolute left-0 top-0 w-full h-full flex justify-center">
+        <div class="max-w-screen-md w-full">
+          <div class="">
+            <div class="flex justify-between">
+              <div class="inline bg-white">
+                SFDCANBAC++
+              </div>
+              <div class="cursor-pointer inline" onclick=${ infoClicked }>
+                ℹ️
+              </div>
+            </div>
+            <div class="">
+            </div>
+            ${ dom }
           </div>
-          <div class="cursor-pointer inline" onclick=${ infoClicked }>
-            ℹ️
-          </div>
-        </div>
-        <div class="">
-        </div>
-        ${ dom }
-      </div>
-      <div class="fixed bottom-0 z-10 w-full">
-        <div class="bg-white/50 w-full">
-          Code: 
-          <div class="inline bg-white/50 font-mono">
-            ${ state.cache(TextTweenElement, 'my-text').render(state, emit, state.stem) }${ state.selected != false ? html`<span class="text-black/50">${ state.stem.length === 0 ? state.selected : `.${ state.selected }` }</span>` : "" }.out()
+          <div class="fixed bottom-0 z-10 max-w-screen-md">
+            <div class="bg-white/50">
+              Code: 
+              <div class="inline bg-white/50 font-mono">
+                ${ state.cache(TextTweenElement, 'my-text').render(state, emit, state.stem) }${ state.selected != false ? html`<span class="text-black/50">${ state.stem.length === 0 ? state.selected : `.${ state.selected }` }</span>` : "" }.out()
+              </div>
+            </div>
           </div>
         </div>
       </div>
