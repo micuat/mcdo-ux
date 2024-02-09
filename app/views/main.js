@@ -88,7 +88,7 @@ export default function(state, emit) {
         </div>
         ${ dom }
       </div>
-      <div class="static bottom-10 z-10 w-full">
+      <div class="fixed bottom-0 z-10 w-full">
         <div class="bg-white/50 w-full">
           Code: 
           <div class="inline bg-white/50 font-mono">
