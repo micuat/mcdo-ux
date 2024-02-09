@@ -6,6 +6,7 @@ import Editor from "../components/editor.js";
 export default function(state, emitter) {
   state.isMobile = isMobile();
   state.stem = "";
+  state.notNextedYet = false;
 
   emitter.on("next option", () => {
     state.funcIndex++;

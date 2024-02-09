@@ -26,15 +26,16 @@ export default function(state, emit) {
               🧩
             </div>
           ` : ""}
-          <span class="relative flex h-3 w-3">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
-          </span>
           <div
-            class="bg-white cursor-pointer animate-ping ${ state.selected === e.code ? "inline" : "hidden" }"
+            class="bg-neutral-400 ${ state.selected === e.code ? "inline" : "hidden" }"
             onclick=${ selectInput }
           >
-            [SELECT]
+            <div
+              class="bg-white cursor-pointer animate-pulse inline" 
+              onclick=${ selectInput }
+            >
+              [SELECT]
+            </div>
           </div>
         </div>
       `)
