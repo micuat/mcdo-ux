@@ -27,15 +27,10 @@ export default function(state, emit) {
             </div>
           ` : ""}
           <div
-            class="bg-neutral-400 ${ state.selected === e.code ? "inline" : "hidden" }"
+            class="bg-white ${ state.selected === e.code ? "inline" : "hidden" }"
             onclick=${ selectInput }
           >
-            <div
-              class="bg-white cursor-pointer animate-pulse inline" 
-              onclick=${ selectInput }
-            >
-              [SELECT]
-            </div>
+            [SELECT]
           </div>
         </div>
       `)
@@ -77,12 +72,12 @@ export default function(state, emit) {
   return html`
     <div class="absolute left-0 top-0 w-screen h-screen">
       <div class="absolute left-0 top-0 w-full h-full z-10">
-        <div class="hidden">
+        <div class="flex justify-between">
           <div class="inline bg-white">
-            Select code
+            SFDCANBAC++
           </div>
-          <div class="px-1 inline bg-yellow-400">
-            🧩AI's recommendation
+          <div class="cursor-pointer inline ">
+            ℹ️
           </div>
         </div>
         <div class="">

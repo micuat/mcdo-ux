@@ -115,6 +115,7 @@ export default function(state, emitter) {
           type: "source",
           options: [
             { code: "src(s0)", ai: true},
+            { code: "osc(6,0.1,1.5).layer(src(s0).luma())", ai: true},
             { code: "gradient()", ai: false},
             { code: "osc(40)", ai: false},
             { code: "osc(6,0.1,1.5)", ai: false},
