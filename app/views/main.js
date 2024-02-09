@@ -20,12 +20,18 @@ export default function(state, emit) {
             ${ e.code }
           </div>
           ${ e.ai ? html`
-            <div class="mx-1 inline bg-yellow-400">
-              *
+            <div class="px-1 inline bg-yellow-400"
+              onclick=${ hoverInput }
+              onmouseover=${ hoverInput }>
+              🧩
             </div>
           ` : ""}
+          <span class="relative flex h-3 w-3">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
+          </span>
           <div
-            class="bg-white cursor-pointer ${ state.selected === e.code ? "inline" : "hidden" }"
+            class="bg-white cursor-pointer animate-ping ${ state.selected === e.code ? "inline" : "hidden" }"
             onclick=${ selectInput }
           >
             [SELECT]
@@ -40,12 +46,12 @@ export default function(state, emit) {
             onclick=${ nextOption }
             onmouseover=${ nextHover }>
             Next
+            ${ state.notNextedYet ? html`
+              <div class="px-1 inline bg-yellow-400">
+                🧩
+              </div>
+            ` : ""}
           </div>
-          ${ state.notNextedYet ? html`
-            <div class="mx-1 inline bg-yellow-400">
-              *
-            </div>
-          ` : ""}
         </div>
         `)
       }
@@ -70,12 +76,12 @@ export default function(state, emit) {
   return html`
     <div class="absolute left-0 top-0 w-screen h-screen">
       <div class="absolute left-0 top-0 w-full h-full z-10">
-        <div class="">
+        <div class="hidden">
           <div class="inline bg-white">
             Select code
           </div>
-          <div class="mx-1 inline bg-yellow-400">
-            *AI's recommendation
+          <div class="px-1 inline bg-yellow-400">
+            🧩AI's recommendation
           </div>
         </div>
         <div class="">
