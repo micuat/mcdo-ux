@@ -107,6 +107,7 @@ export default function(state, emit) {
             <p class="my-1">Project by <a class="font-bold" href="https://jorgeguevara.myportfolio.com/" target="_blank">Jorge Guevara</a> and <a class="font-bold" href="https://naotohieda.com/" target="_blank">Naoto Hieda</a></p>
             <p class="my-1">Front end by Naoto Hieda</p>
             <p class="my-1">Developed in the frame of <a class="font-bold" href="https://modina.eu/" target="_blank">MODINA</a> (Movement, Digital Intelligence and Interactive Audience)</p>
+            <p class="my-1"><a class="font-bold" href="https://www.youtube.com/watch?v=FEvxZ0tKxa8" target="_blank">Tutorial on Youtube</a></p>
             <form method="dialog" class="absolute top-2 right-2">
               <button autofocus class="text-lg" onclick=${ infoClicked }>❌</button>
             </form>
