@@ -32,6 +32,12 @@ export default function(state, emit) {
               </div>
             </div>
             <div class="">
+              <button class="bg-white border-2 border-black rounded">
+                Eat in
+              </button>
+              <button class="bg-white border-2 border-black rounded">
+                Take away
+              </button>
             </div>
             ${ dom }
           </div>
