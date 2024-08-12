@@ -20,14 +20,7 @@ export default function(state, emit) {
   }
   
   let funcs = glslFunctions.filter(e => e.type === "src");
-      [
-    {
-      name: "osc",
-    },
-    {
-      name: "noise",
-    },
-  ]
+
   
   let uiDom = "a";
   switch (state.params.uipage) {
