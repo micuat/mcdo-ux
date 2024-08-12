@@ -25,6 +25,7 @@ function notFound() {
 import main from "./views/main";
 
 app.route("/", main);
+app.route("/ui/where", main);
 
 // start app
 app.mount("#choomount");

@@ -14,12 +14,28 @@ export default function(state, emit) {
     </div>
     `;
   }
+  
+  let uiDom = "a";
+  if (state.route.startsWith("ui/")) {
+    uiDom = html`
+    <div class="">
+      <button class="bg-white border-2 border-black rounded">
+        Eat in
+      </button>
+      <button class="bg-white border-2 border-black rounded">
+        Take away
+      </button>
+    </div>`;
+  }
+  
   return html`
     <div class="absolute left-0 top-0 w-screen h-screen">
       <div class="absolute bottom-0 z-10 w-full hidden">
         ${ state.cache(Editor, 'editor').render() }
       </div>
+      <div class="absolute right-0 w-60">
       ${ state.cache(HydraCanvas, 'hydra').render(state, emit) }
+      </div>
       <div class="absolute left-0 top-0 w-full h-full flex justify-center">
         <div class="max-w-screen-md w-full">
           <div class="">
@@ -31,14 +47,7 @@ export default function(state, emit) {
                 ℹ️
               </div>
             </div>
-            <div class="">
-              <button class="bg-white border-2 border-black rounded">
-                Eat in
-              </button>
-              <button class="bg-white border-2 border-black rounded">
-                Take away
-              </button>
-            </div>
+            ${ uiDom }
             ${ dom }
           </div>
         </div>

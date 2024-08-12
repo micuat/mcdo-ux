@@ -10,7 +10,7 @@ export default function(state, emitter) {
     // emitter.emit("render");
 
     console.log(state.route)
-    if (state.route == "/") {
+    if (state.route == "/" || state.route.startsWith("ui/")) {
 
       let video = html`<video id="webcam" autoplay muted playsinline width="640" height="480" class="hidden"></video>`;
       document.body.appendChild(video)
