@@ -4,6 +4,10 @@ import HydraCanvas from "../components/hydra-canvas.js";
 import Editor from "../components/editor.js";
 import TextTweenElement from "../components/tween-text.js";
 
+import GlslFunctions from "../libs/glsl-functions.js";
+
+const glslFunctions = GlslFunctions();
+
 // export module
 export default function(state, emit) {
   let dom = "loading";
@@ -14,6 +18,16 @@ export default function(state, emit) {
     </div>
     `;
   }
+  
+  let funcs = glslFunctions.filter(e => e.type === "src");
+      [
+    {
+      name: "osc",
+    },
+    {
+      name: "noise",
+    },
+  ]
   
   let uiDom = "a";
   switch (state.params.uipage) {
@@ -33,19 +47,22 @@ export default function(state, emit) {
     case "menutop":
       uiDom = html`
       <div class="">
-        <button class="bg-white border-2 border-black rounded"
-          onclick=${ () => emit("pushState", "#ui/topping") }>
-          osc
-        </button>
-        <button class="bg-white border-2 border-black rounded"
-          onclick=${ () => emit("pushState", "#ui/topping") }>
-          noise
-        </button>
+        ${
+          funcs.map(e => html`
+          <button class="bg-white border-2 border-black rounded"
+            onclick=${ () => {
+              state.curFunc = e;
+              emit("pushState", "#ui/topping")
+            } }>
+            ${ e.name }
+          </button>`)
+        }
       </div>`;
       break;
     case "topping":
       uiDom = html`
       <div class="">
+        ${ state.curFunc.name }
         <button class="bg-white border-2 border-black rounded"
           onclick=${ () => emit("pushState", "#ui/topping") }>
           topping?
