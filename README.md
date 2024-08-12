@@ -1,4 +1,4 @@
-SFDCANBAC-UX
+McDonalds-UX
 ========
 
 by naoto
