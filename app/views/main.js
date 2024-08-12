@@ -19,12 +19,20 @@ export default function(state, emit) {
   if (state.params.uipage === "where") {
     uiDom = html`
     <div class="">
-      <button class="bg-white border-2 border-black rounded">
+      <button class="bg-white border-2 border-black rounded"
+        onclick=${ () => emit("pushState", "#ui/menutop") }>
         Eat in
       </button>
-      <button class="bg-white border-2 border-black rounded">
+      <button class="bg-white border-2 border-black rounded"
+        onclick=${ () => emit("pushState", "#ui/menutop") }>
         Take away
       </button>
+    </div>`;
+  }
+  if (state.params.uipage === "menutop") {
+    uiDom = html`
+    <div class="">
+      menu top
     </div>`;
   }
   
