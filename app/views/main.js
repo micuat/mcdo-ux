@@ -16,7 +16,7 @@ export default function(state, emit) {
   }
   
   let uiDom = "a";
-  if (state.route.startsWith("ui/")) {
+  if (state.params.uipage === "where") {
     uiDom = html`
     <div class="">
       <button class="bg-white border-2 border-black rounded">
