@@ -119,7 +119,7 @@ const items = [
 
 // export module
 export default function(state, emit) {
-  let dom = "loading";
+  let dom = "";
   
   if (state.funcs !== undefined) {
     dom = html`
@@ -152,18 +152,19 @@ export default function(state, emit) {
     },
   ]
   
+  const uipage = state.params.uipage !== undefined ? state.params.uipage : "where";
   const subpage = state.params.subpage !== undefined ? state.params.subpage : "burger";
   
   let uiDom = "a";
-  switch (state.params.uipage) {
+  switch (uipage) {
     case "where":
       uiDom = html`
       <div class="">
-        <button class="bg-white border-2 border-black rounded"
+        <button class="bg-white border-2 border-black rounded w-1/3 aspect-square"
           onclick=${ () => emit("pushState", "#ui/menutop") }>
           Eat in
         </button>
-        <button class="bg-white border-2 border-black rounded"
+        <button class="bg-white border-2 border-black rounded w-1/3 aspect-square"
           onclick=${ () => emit("pushState", "#ui/menutop") }>
           Take away
         </button>
@@ -207,8 +208,23 @@ export default function(state, emit) {
     case "topping":
       uiDom = html`
       <div class="">
+        Would you like a side and a drink?
         ${ state.curFunc?.name }
-        <button class="bg-white border-2 border-black rounded"
+        <button class="bg-white border-2 border-black rounded w-1/3"
+          onclick=${ () => emit("pushState", "#ui/recommend") }>
+          Yes, make it a meal
+        </button>
+        <button class="bg-white border-2 border-black rounded w-1/3"
+          onclick=${ () => emit("pushState", "#ui/recommend") }>
+          No, item only
+        </button>
+      </div>`;
+      break;
+    case "recommend":
+      uiDom = html`
+      <div class="">
+        ${ state.curFunc?.name }
+        <button class="bg-white border-2 border-black rounded w-1/3"
           onclick=${ () => emit("pushState", "#ui/topping") }>
           topping?
         </button>
