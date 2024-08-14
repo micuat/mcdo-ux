@@ -128,8 +128,8 @@ export default function(state, emit) {
           ${
             tabs.map(e => html`
               <div
-                onclick=${ () => emit("pushState", `#ui/menutop/${}`) }>
-                <img src="${ e.url }">
+                onclick=${ () => emit("pushState", `#ui/menutop/${ e.type }`) }>
+                <img class="w-14" src="${ e.url }">
                 ${ e.name }
               </div>
             `)
