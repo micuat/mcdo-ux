@@ -191,10 +191,11 @@ export default function(state, emit) {
               state.curFunc = e;
               emit("pushState", "#ui/topping")
               if (e.code !== undefined) {
-                
+                eval(`${e.code}.out()`);
               }
               else {
-                s3.initImage()
+                s3.initImage(e.url);
+                osc().layer(src(s3)).out();
               }
             } }>
             <img src="${ e.url }">
@@ -206,7 +207,7 @@ export default function(state, emit) {
     case "topping":
       uiDom = html`
       <div class="">
-        ${ state.curFunc.name }
+        ${ state.curFunc?.name }
         <button class="bg-white border-2 border-black rounded"
           onclick=${ () => emit("pushState", "#ui/topping") }>
           topping?
