@@ -106,6 +106,8 @@ export default function(state, emit) {
     },
   ]
   
+  const subpage = state.params.subpage !== undefined ? state.params.subpage : "burger";
+  
   let uiDom = "a";
   switch (state.params.uipage) {
     case "where":
@@ -122,56 +124,31 @@ export default function(state, emit) {
       </div>`;
       break;
     case "menutop":
-      if (state.params.subpage !== undefined) {
-        uiDom = html`
-        <div class="">
-          ${
-            tabs.map(e => html`
-              <div
-                onclick=${ () => emit("pushState", `#ui/menutop/${ e.type }`) }>
-                <img class="w-14" src="${ e.url }">
-                ${ e.name }
-              </div>
-            `)
-          }
-          ${
-            items
-              .filter(e => e.type == state.params.subpage)
-              .map(e => html`
-            <button class="bg-white border-2 border-black rounded w-1/3"
-              onclick=${ () => {
-                state.curFunc = e;
-                emit("pushState", "#ui/topping")
-              } }>
-              <img src="${ e.url }">
+      uiDom = html`
+      <div class="">
+        ${
+          tabs.map(e => html`
+            <div
+              onclick=${ () => emit("pushState", `#ui/menutop/${ e.type }`) }>
+              <img class="w-14" src="${ e.url }">
               ${ e.name }
-            </button>`)
-          }
-        </div>`;
-      }
-      else {
-        uiDom = html`
-        <div class="">
-          ${
-            tabs.map(e => html`
-              <div>
-                <img src="${ e.url }">
-                ${ e.name }
-              </div>
-            `)
-          }
-          ${
-            funcs.map(e => html`
-            <button class="bg-white border-2 border-black rounded"
-              onclick=${ () => {
-                state.curFunc = e;
-                emit("pushState", "#ui/topping")
-              } }>
-              ${ e.name }
-            </button>`)
-          }
-        </div>`;
-      }
+            </div>
+          `)
+        }
+        ${
+          items
+            .filter(e => e.type == subpage)
+            .map(e => html`
+          <button class="bg-white border-2 border-black rounded w-1/3"
+            onclick=${ () => {
+              state.curFunc = e;
+              emit("pushState", "#ui/topping")
+            } }>
+            <img src="${ e.url }">
+            ${ e.name }
+          </button>`)
+        }
+      </div>`;
       break;
     case "topping":
       uiDom = html`
