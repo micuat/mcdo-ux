@@ -10,70 +10,111 @@ const glslFunctions = GlslFunctions();
 
 const items = [
   {
+    id: "bigmac",
     name: "Big Mac",
     type: "burger",
     url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/bigmac.png?v=1723614406350"
   },
   {
+    id: "quarterpounder",
     name: "Quarter Pounder",
     type: "burger",
     url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/quaterpounder.png?v=1723614412005"
   },
   {
+    id: "cheeseburger",
     name: "Cheeseburger",
     type: "burger",
     url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/cheeseburger.png?v=1723614407227"
   },
   {
+    id: "filetofish",
     name: "Filet-O-Fish",
     type: "burger",
     url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/filetofish.png?v=1723614408590"
   },
   {
+    id: "mcdouble",
     name: "McDouble",
     type: "burger",
     url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/mcdouble.png?v=1723614411230"
   },
   {
+    id: "mcchicken",
     name: "McChiken",
     type: "burger",
     url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/mcchicken.png?v=1723614409836"
   },
   {
+    id: "mccrispy",
     name: "McCrispy",
     type: "burger",
     url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/mccrispy.png?v=1723614410713"
   },
   {
+    id: "worldfamousfries",
     name: "World Famous Fries",
     type: "side",
     url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/worldfamousfries.png?v=1723614413673"
   },
   {
+    id: "ketchup",
     name: "Ketchup",
     type: "side",
     url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/ketchuppacket.png?v=1723614409214"
   },
   {
+    id: "spicybuffalosauce",
     name: "Spicy Buffalo Sauce",
     type: "side",
     url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/spicybuffalosauce.png?v=1723614412567"
   },
   {
+    id: "barbequesauce",
     name: "Barbeque Sauce",
     type: "side",
     url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/tangybarbequesauce.png?v=1723614413086"
   },
   {
+    id: "chickenmcnuggets",
     name: "Chicken McNuggets",
     type: "mcnugget",
     url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/chickenmcnuggets.png?v=1723614407823"
   },
   {
+    id: "tenpiecechickenmcnuggets",
     name: "10 Piece Chicken McNuggets",
     type: "mcnugget",
     url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/10piecechickenmcnuggets.png?v=1723614404301"
-  }
+  },
+  {
+    id: "osc",
+    name: "OSC",
+    type: "source",
+    code: "osc()",
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/osc.png?v=1723643856940"
+  },
+  {
+    id: "noise",
+    name: "Noise",
+    type: "source",
+    code: "noise()",
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/noise.png?v=1723643856940"
+  },
+  {
+    id: "voronoi",
+    name: "Voronoi",
+    type: "source",
+    code: "voronoi()",
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/voronoi.png?v=1723643856940"
+  },
+  {
+    id: "camera",
+    name: "Camera",
+    type: "source",
+    code: "src(s0)",
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/cam.png?v=1723643856940"
+  },
 ];
 
 // export module
@@ -104,6 +145,11 @@ export default function(state, emit) {
       name: "McNuggets",
       url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/mcnuggetsandmeals.jpg?v=1723615402144",
     },
+    {
+      type: "source",
+      name: "Sources",
+      url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/source.png?v=1723643700775",
+    },
   ]
   
   const subpage = state.params.subpage !== undefined ? state.params.subpage : "burger";
@@ -129,6 +175,7 @@ export default function(state, emit) {
         ${
           tabs.map(e => html`
             <div
+              class="cursor-pointer"
               onclick=${ () => emit("pushState", `#ui/menutop/${ e.type }`) }>
               <img class="w-14" src="${ e.url }">
               ${ e.name }
@@ -143,6 +190,12 @@ export default function(state, emit) {
             onclick=${ () => {
               state.curFunc = e;
               emit("pushState", "#ui/topping")
+              if (e.code !== undefined) {
+                
+              }
+              else {
+                s3.initImage()
+              }
             } }>
             <img src="${ e.url }">
             ${ e.name }
