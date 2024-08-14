@@ -3,6 +3,12 @@
 @tailwind utilities;
 
 @font-face {
+  font-family: Speedee;
+  src: url("https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/Speedee%20Bold.ttf?v=1723628314724")
+    format("truetype");
+}
+
+@font-face {
   font-family: HK Grotesk;
   src: url("https://cdn.glitch.com/605e2a51-d45f-4d87-a285-9410ad350515%2FHKGrotesk-Regular.otf?v=1603136326027")
     format("opentype");
@@ -16,7 +22,7 @@
 
 html,
 body {
-  font-family: "HK Grotesk", arial, sans-serif;
+  font-family: Speedee, arial, sans-serif;
   margin: 0em;
 }
 
