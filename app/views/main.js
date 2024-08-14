@@ -20,7 +20,23 @@ export default function(state, emit) {
   }
   
   let funcs = glslFunctions.filter(e => e.type === "src");
-
+  let tabs = [
+    {
+      type: "burger",
+      name: "Burgers",
+      url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/burger.jpg?v=1723615402488",
+    },
+    {
+      type: "side",
+      name: "Sides",
+      url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/sides.jpg?v=1723615401807",
+    },
+    {
+      type: "mcnugget",
+      name: "McNuggets",
+      url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/mcnuggetsandmeals.jpg?v=1723615402144",
+    },
+  ]
   
   let uiDom = "a";
   switch (state.params.uipage) {
@@ -40,7 +56,14 @@ export default function(state, emit) {
     case "menutop":
       uiDom = html`
       <div class="">
-        <img src="https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/burger.jpg?v=1723615402488">
+        ${
+          tabs.map(e => html`
+            <div>
+              <img src="${ e.url }">
+              ${ e.name }
+            </div>
+          `)
+        }
         ${
           funcs.map(e => html`
           <button class="bg-white border-2 border-black rounded"
@@ -78,7 +101,7 @@ export default function(state, emit) {
           <div class="">
             <div class="flex justify-between">
               <div class="inline bg-white">
-                SFDCANBAC++
+                SFDCANBACDonalds++
               </div>
               <div class="cursor-pointer inline" onclick=${ infoClicked }>
                 ℹ️
