@@ -26,6 +26,7 @@ import main from "./views/main";
 
 app.route("/", main);
 app.route("/ui/:uipage", main);
+app.route("/ui/:uipage/:subpage", main);
 
 // start app
 app.mount("#choomount");

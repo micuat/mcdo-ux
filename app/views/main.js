@@ -8,22 +8,73 @@ import GlslFunctions from "../libs/glsl-functions.js";
 
 const glslFunctions = GlslFunctions();
 
-// "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/bigmac.png?v=1723614406350"
-// "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/quaterpounder.png?v=1723614412005"
-// "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/cheeseburger.png?v=1723614407227"
-// "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/filetofish.png?v=1723614408590"
-// "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/mcdouble.png?v=1723614411230"
-// "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/mcchicken.png?v=1723614409836"
-// "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/mccrispy.png?v=1723614410713"
-
-// "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/worldfamousfries.png?v=1723614413673"
-// "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/ketchuppacket.png?v=1723614409214"
-// "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/spicybuffalosauce.png?v=1723614412567"
-// "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/tangybarbequesauce.png?v=1723614413086"
-
-// "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/chickenmcnuggets.png?v=1723614407823"
-// "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/10piecechickenmcnuggets.png?v=1723614404301"
-
+const items = [
+  {
+    name: "Big Mac",
+    type: "burger",
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/bigmac.png?v=1723614406350"
+  },
+  {
+    name: "Quarter Pounder",
+    type: "burger",
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/quaterpounder.png?v=1723614412005"
+  },
+  {
+    name: "Cheeseburger",
+    type: "burger",
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/cheeseburger.png?v=1723614407227"
+  },
+  {
+    name: "Filet-O-Fish",
+    type: "burger",
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/filetofish.png?v=1723614408590"
+  },
+  {
+    name: "McDouble",
+    type: "burger",
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/mcdouble.png?v=1723614411230"
+  },
+  {
+    name: "McChiken",
+    type: "burger",
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/mcchicken.png?v=1723614409836"
+  },
+  {
+    name: "McCrispy",
+    type: "burger",
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/mccrispy.png?v=1723614410713"
+  },
+  {
+    name: "World Famous Fries",
+    type: "side",
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/worldfamousfries.png?v=1723614413673"
+  },
+  {
+    name: "Ketchup",
+    type: "side",
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/ketchuppacket.png?v=1723614409214"
+  },
+  {
+    name: "Spicy Buffalo Sauce",
+    type: "side",
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/spicybuffalosauce.png?v=1723614412567"
+  },
+  {
+    name: "Barbeque Sauce",
+    type: "side",
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/tangybarbequesauce.png?v=1723614413086"
+  },
+  {
+    name: "Chicken McNuggets",
+    type: "mcnugget",
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/chickenmcnuggets.png?v=1723614407823"
+  },
+  {
+    name: "10 Piece Chicken McNuggets",
+    type: "mcnugget",
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/10piecechickenmcnuggets.png?v=1723614404301"
+  }
+];
 
 // export module
 export default function(state, emit) {
@@ -71,27 +122,56 @@ export default function(state, emit) {
       </div>`;
       break;
     case "menutop":
-      uiDom = html`
-      <div class="">
-        ${
-          tabs.map(e => html`
-            <div>
+      if (state.params.subpage !== undefined) {
+        uiDom = html`
+        <div class="">
+          ${
+            tabs.map(e => html`
+              <div
+                onclick=${ () => emit("pushState", `#ui/menutop/${}`) }>
+                <img src="${ e.url }">
+                ${ e.name }
+              </div>
+            `)
+          }
+          ${
+            items
+              .filter(e => e.type == state.params.subpage)
+              .map(e => html`
+            <button class="bg-white border-2 border-black rounded w-1/3"
+              onclick=${ () => {
+                state.curFunc = e;
+                emit("pushState", "#ui/topping")
+              } }>
               <img src="${ e.url }">
               ${ e.name }
-            </div>
-          `)
-        }
-        ${
-          funcs.map(e => html`
-          <button class="bg-white border-2 border-black rounded"
-            onclick=${ () => {
-              state.curFunc = e;
-              emit("pushState", "#ui/topping")
-            } }>
-            ${ e.name }
-          </button>`)
-        }
-      </div>`;
+            </button>`)
+          }
+        </div>`;
+      }
+      else {
+        uiDom = html`
+        <div class="">
+          ${
+            tabs.map(e => html`
+              <div>
+                <img src="${ e.url }">
+                ${ e.name }
+              </div>
+            `)
+          }
+          ${
+            funcs.map(e => html`
+            <button class="bg-white border-2 border-black rounded"
+              onclick=${ () => {
+                state.curFunc = e;
+                emit("pushState", "#ui/topping")
+              } }>
+              ${ e.name }
+            </button>`)
+          }
+        </div>`;
+      }
       break;
     case "topping":
       uiDom = html`
