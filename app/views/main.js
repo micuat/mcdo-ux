@@ -40,6 +40,7 @@ export default function(state, emit) {
     case "menutop":
       uiDom = html`
       <div class="">
+        <img src="https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/burger.jpg?v=1723615402488">
         ${
           funcs.map(e => html`
           <button class="bg-white border-2 border-black rounded"
