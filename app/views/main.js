@@ -162,11 +162,11 @@ export default function(state, emit) {
       <div class="">
         <button class="bg-white border-2 border-black rounded w-1/3 aspect-square"
           onclick=${ () => emit("pushState", "#ui/menutop") }>
-          Eat in
+          Eat In
         </button>
         <button class="bg-white border-2 border-black rounded w-1/3 aspect-square"
           onclick=${ () => emit("pushState", "#ui/menutop") }>
-          Take away
+          Take Away
         </button>
       </div>`;
       break;
