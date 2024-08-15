@@ -212,10 +212,12 @@ export default function(state, emit) {
               emit("pushState", "#ui/topping")
               if (e.code !== undefined) {
                 eval(`${e.code}.out()`);
+                state.curCode = e.code;
               }
               else {
                 s3.initImage(e.url);
                 osc().layer(src(s3)).out();
+                state.curCode = "osc().layer(src(s3))";
               }
             } }>
             <img src="${ e.url }">
@@ -272,16 +274,29 @@ export default function(state, emit) {
           Select a modulation
           ${ state.curFunc?.name }
         </div>
-        <div class="grid gap-4 grid-cols-2 w-full">
+        <div class="grid gap-4 grid-cols-3 w-full">
           <div
             class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
             onclick=${ () => {
-              if (state.curFunc.code !== undefined) {
-                eval(`${state.curFunc.code}.modulate(noise(3)).out()`);
+              if (state.curCode !== undefined) {
+                state.curCode = `${state.curCode}.modulate(src(s0))`;
+                eval(`${state.curCode}.out()`);
               }
-              else {
-                // s3.initImage(state.curFunc.url);
-                osc().layer(src(s3)).modulate(noise(3)).out();
+
+              emit("pushState", "#ui/recommend");
+            } }>
+            <div
+              class="w-2/4 h-2/4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/mod-noise.png?v=1723729953814')] bg-contain"
+            >
+            </div>
+            Camera
+          </div>
+          <div
+            class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
+            onclick=${ () => {
+              if (state.curCode !== undefined) {
+                state.curCode = `${state.curCode}.modulate(noise(3))`;
+                eval(`${state.curCode}.out()`);
               }
 
               emit("pushState", "#ui/recommend");
@@ -295,12 +310,9 @@ export default function(state, emit) {
           <div
             class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
             onclick=${ () => {
-              if (state.curFunc.code !== undefined) {
-                eval(`osc(6,0,1.5).modulate(${state.curFunc.code}.sub(gradient()),1).out()`);
-              }
-              else {
-                // s3.initImage(state.curFunc.url);
-                osc(6,0,1.5).modulate(src(s3).sub(gradient()),1).out()
+              if (state.curCode !== undefined) {
+                state.curCode = `osc(6,0,1.5).modulate(${state.curCode}.sub(gradient()),1)`;
+                eval(`${state.curCode}.out()`);
               }
 
               emit("pushState", "#ui/recommend");
@@ -318,11 +330,40 @@ export default function(state, emit) {
       uiDom = html`
       <div class="">
       Can we recommend?
-        ${ state.curFunc?.name }
-        <button class="bg-white border-2 border-black rounded w-1/3"
-          onclick=${ () => emit("pushState", "#ui/topping") }>
-          topping?
-        </button>
+        <div class="grid gap-4 grid-cols-3 w-full">
+          <div
+            class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
+            onclick=${ () => {
+              if (state.curCode !== undefined) {
+                state.curCode = `${state.curCode}.kaleid()`;
+                eval(`${state.curCode}.out()`);
+              }
+
+              emit("pushState", "#ui/recommend");
+            } }>
+            <div
+              class="w-2/4 h-2/4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/mod-noise.png?v=1723729953814')] bg-contain"
+            >
+            </div>
+            Kaleid
+          </div>
+          <div
+            class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
+            onclick=${ () => {
+              if (state.curCode !== undefined) {
+                state.curCode = `${state.curCode}.colorama()`;
+                eval(`${state.curCode}.out()`);
+              }
+
+              emit("pushState", "#ui/recommend");
+            } }>
+            <div
+              class="w-2/4 h-2/4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/mod-color-osc.png?v=1723729953814')] bg-contain"
+            >
+            </div>
+            Colorama
+          </div>
+        </div>
       </div>`;
       break;
   }
