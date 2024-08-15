@@ -5,6 +5,7 @@ import Editor from "../components/editor.js";
 
 export default function(state, emitter) {
   state.isMobile = isMobile();
+  state.codeStack = [];
 
   emitter.on("DOMContentLoaded", () => {
     // emitter.emit("render");

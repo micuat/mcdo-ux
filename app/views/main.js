@@ -212,11 +212,13 @@ export default function(state, emit) {
               emit("pushState", "#ui/topping")
               if (e.code !== undefined) {
                 eval(`${e.code}.out()`);
-                state.curCode = e.code;
+                state.codeStack.push(e.code);
               }
               else {
                 s3.initImage(e.url);
                 osc().layer(src(s3)).out();
+                state.codeStack.push(e.code);
+                
                 state.curCode = "osc().layer(src(s3))";
               }
             } }>
@@ -286,7 +288,7 @@ export default function(state, emit) {
               emit("pushState", "#ui/recommend");
             } }>
             <div
-              class="w-2/4 h-2/4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/mod-noise.png?v=1723729953814')] bg-contain"
+              class="w-2/4 h-2/4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/mod-cam.png?v=1723732025219')] bg-contain"
             >
             </div>
             Camera
@@ -351,7 +353,7 @@ export default function(state, emit) {
             class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
             onclick=${ () => {
               if (state.curCode !== undefined) {
-                state.curCode = `${state.curCode}.colorama()`;
+                state.curCode = `${state.curCode}.colorama(0.1)`;
                 eval(`${state.curCode}.out()`);
               }
 
