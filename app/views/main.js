@@ -224,16 +224,34 @@ export default function(state, emit) {
     case "topping":
       uiDom = html`
       <div class="">
-        Would you like a side and a drink?
+        Would you like a side and a modulation?
         ${ state.curFunc?.name }
-        <button class="bg-white border-2 border-black rounded w-1/3"
-          onclick=${ () => emit("pushState", "#ui/recommend") }>
-          Yes, make it a meal
-        </button>
-        <button class="bg-white border-2 border-black rounded w-1/3"
-          onclick=${ () => emit("pushState", "#ui/recommend") }>
-          No, item only
-        </button>
+        <div class="">
+          <button class="bg-white border-2 border-black rounded w-1/3 aspect-square"
+            onclick=${ () => emit("pushState", "#ui/side") }>
+            Yes, make it a meal
+          </button>
+          <button class="bg-white border-2 border-black rounded w-1/3 aspect-square"
+            onclick=${ () => emit("pushState", "#ui/recommend") }>
+            No, item only
+          </button>
+        </div>
+      </div>`;
+      break;
+    case "side":
+      uiDom = html`
+      <div class="">
+        ${ state.curFunc?.name }
+        <div class="">
+          <button class="bg-white border-2 border-black rounded w-1/3 aspect-square"
+            onclick=${ () => emit("pushState", "#ui/recommend") }>
+            Yes, make it a meal
+          </button>
+          <button class="bg-white border-2 border-black rounded w-1/3 aspect-square"
+            onclick=${ () => emit("pushState", "#ui/recommend") }>
+            No, item only
+          </button>
+        </div>
       </div>`;
       break;
     case "recommend":
