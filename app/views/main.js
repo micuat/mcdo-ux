@@ -217,9 +217,7 @@ export default function(state, emit) {
               else {
                 s3.initImage(e.url);
                 osc().layer(src(s3)).out();
-                state.codeStack.push(e.code);
-                
-                state.curCode = "osc().layer(src(s3))";
+                state.codeStack.push("osc().layer(src(s3))");
               }
             } }>
             <img src="${ e.url }">
@@ -280,9 +278,9 @@ export default function(state, emit) {
           <div
             class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
             onclick=${ () => {
-              if (state.curCode !== undefined) {
-                state.curCode = `${state.curCode}.modulate(src(s0))`;
-                eval(`${state.curCode}.out()`);
+              if (state.codeStack.length > 0) {
+                state.codeStack.push(`${state.codeStack[state.codeStack.length - 1]}.modulate(src(s0))`);
+                eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
               }
 
               emit("pushState", "#ui/recommend");
@@ -296,9 +294,9 @@ export default function(state, emit) {
           <div
             class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
             onclick=${ () => {
-              if (state.curCode !== undefined) {
-                state.curCode = `${state.curCode}.modulate(noise(3))`;
-                eval(`${state.curCode}.out()`);
+              if (state.codeStack.length > 0) {
+                state.codeStack.push(`${state.codeStack[state.codeStack.length - 1]}.modulate(noise(3))`);
+                eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
               }
 
               emit("pushState", "#ui/recommend");
@@ -312,9 +310,9 @@ export default function(state, emit) {
           <div
             class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
             onclick=${ () => {
-              if (state.curCode !== undefined) {
-                state.curCode = `osc(6,0,1.5).modulate(${state.curCode}.sub(gradient()),1)`;
-                eval(`${state.curCode}.out()`);
+              if (state.codeStack.length > 0) {
+                state.codeStack.push(`osc(6,0,1.5).modulate(${state.codeStack[state.codeStack.length - 1]}.sub(gradient()),1)`);
+                eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
               }
 
               emit("pushState", "#ui/recommend");
@@ -336,9 +334,9 @@ export default function(state, emit) {
           <div
             class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
             onclick=${ () => {
-              if (state.curCode !== undefined) {
-                state.curCode = `${state.curCode}.kaleid()`;
-                eval(`${state.curCode}.out()`);
+              if (state.codeStack.length > 0) {
+                state.codeStack.push(`${state.codeStack[state.codeStack.length - 1]}.kaleid()`);
+                eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
               }
 
               emit("pushState", "#ui/recommend");
@@ -352,9 +350,9 @@ export default function(state, emit) {
           <div
             class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
             onclick=${ () => {
-              if (state.curCode !== undefined) {
-                state.curCode = `${state.curCode}.colorama(0.1)`;
-                eval(`${state.curCode}.out()`);
+              if (state.codeStack.length > 0) {
+                state.codeStack.push(`${state.codeStack[state.codeStack.length - 1]}.colorama(0.1)`);
+                eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
               }
 
               emit("pushState", "#ui/recommend");
