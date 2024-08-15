@@ -229,13 +229,12 @@ export default function(state, emit) {
       <div class="grid grid-rows-[150px_1fr_20px] gap-4">
         <div class="text-3xl">
           Would you like a side and a modulation?
-        ${ state.curFunc?.name }
+          ${ state.curFunc?.name }
         </div>
         <div class="grid gap-4 grid-cols-2 w-full">
           <div
             class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
             onclick=${ () => {
-              state.eatIn = true;
               emit("pushState", "#ui/side");
             } }>
             <div
@@ -268,21 +267,33 @@ export default function(state, emit) {
       break;
     case "side":
       uiDom = html`
-      <div class="">
-        Would you like a side and a modulation?
-        ${ state.curFunc?.name }
-        <div class="flex flex-row justify-center w-full">
+      <div class="grid grid-rows-[150px_1fr_20px] gap-4">
+        <div class="text-3xl">
+          Select a modulation
+          ${ state.curFunc?.name }
+        </div>
+        <div class="grid gap-4 grid-cols-2 w-full">
           <div
-            class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-1/3 aspect-square"
+            class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
             onclick=${ () => {
-              state.eatIn = true;
-              emit("pushState", "#ui/side");
+              emit("pushState", "#ui/recommend");
             } }>
             <div
-              class="w-2/4 h-2/4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/fast-food-svgrepo-com.svg?v=1723712001110')] bg-contain"
+              class="w-2/4 h-2/4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/mod-noise.png?v=1723729953814')] bg-contain"
             >
             </div>
-            Yes, make it a modulation
+            Noise
+          </div>
+          <div
+            class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
+            onclick=${ () => {
+              emit("pushState", "#ui/recommend");
+            } }>
+            <div
+              class="w-2/4 h-2/4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/mod-color-osc.png?v=1723729953814')] bg-contain"
+            >
+            </div>
+            Color Osc
           </div>
         </div>
       </div>`;
@@ -290,6 +301,7 @@ export default function(state, emit) {
     case "recommend":
       uiDom = html`
       <div class="">
+      Can we recommend?
         ${ state.curFunc?.name }
         <button class="bg-white border-2 border-black rounded w-1/3"
           onclick=${ () => emit("pushState", "#ui/topping") }>
