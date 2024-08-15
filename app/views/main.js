@@ -226,31 +226,59 @@ export default function(state, emit) {
       <div class="">
         Would you like a side and a modulation?
         ${ state.curFunc?.name }
-        <div class="">
-          <button class="bg-white border-2 border-black rounded w-1/3 aspect-square"
-            onclick=${ () => emit("pushState", "#ui/side") }>
-            Yes, make it a meal
-          </button>
-          <button class="bg-white border-2 border-black rounded w-1/3 aspect-square"
-            onclick=${ () => emit("pushState", "#ui/recommend") }>
+        <div class="flex flex-row justify-center w-full">
+          <div
+            class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-1/3 aspect-square"
+            onclick=${ () => {
+              state.eatIn = true;
+              emit("pushState", "#ui/side");
+            } }>
+            <div
+              class="w-2/4 h-2/4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/fast-food-svgrepo-com.svg?v=1723712001110')] bg-contain"
+            >
+            </div>
+            Yes, make it a modulation
+          </div>
+          <div
+            class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-1/3 aspect-square"
+            onclick=${ () => {
+              emit("pushState", "#ui/recommend");
+            } }>
+            <div
+              class="w-2/4 h-2/4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/hamburger-svgrepo-com.svg?v=1723728329453')] bg-contain"
+            >
+            </div>
             No, item only
-          </button>
+          </div>
+        </div>
+        <div
+          class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-1/3 aspect-square"
+          onclick=${ () => {
+            state.eatIn = true;
+            emit("pushState", "#ui/side");
+          } }>
+          Cancel
         </div>
       </div>`;
       break;
     case "side":
       uiDom = html`
       <div class="">
+        Would you like a side and a modulation?
         ${ state.curFunc?.name }
-        <div class="">
-          <button class="bg-white border-2 border-black rounded w-1/3 aspect-square"
-            onclick=${ () => emit("pushState", "#ui/recommend") }>
-            Yes, make it a meal
-          </button>
-          <button class="bg-white border-2 border-black rounded w-1/3 aspect-square"
-            onclick=${ () => emit("pushState", "#ui/recommend") }>
-            No, item only
-          </button>
+        <div class="flex flex-row justify-center w-full">
+          <div
+            class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-1/3 aspect-square"
+            onclick=${ () => {
+              state.eatIn = true;
+              emit("pushState", "#ui/side");
+            } }>
+            <div
+              class="w-2/4 h-2/4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/fast-food-svgrepo-com.svg?v=1723712001110')] bg-contain"
+            >
+            </div>
+            Yes, make it a modulation
+          </div>
         </div>
       </div>`;
       break;
