@@ -160,15 +160,22 @@ export default function(state, emit) {
     case "where":
       uiDom = html`
       <div class="flex flex-row justify-center">
-        <div class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-1/3 aspect-square"
-          style="background-image: url(https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/fast-food-svgrepo-com.svg?v=1723712001110);"
+        <div
+          class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-1/3 aspect-square"
           onclick=${ () => emit("pushState", "#ui/menutop") }>
-          <object class="cursor-pointer w-32 h-32" data="https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/fast-food-svgrepo-com.svg?v=1723712001110" width="300" height="300"> </object>
+          <div
+            class="w-2/4 h-2/4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/fast-food-svgrepo-com.svg?v=1723712001110')] bg-contain"
+          >
+          </div>
           Eat In
         </div>
-        <div class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-1/3 aspect-square"
+        <div
+          class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-1/3 aspect-square"
           onclick=${ () => emit("pushState", "#ui/menutop") }>
-          <object class="cursor-pointer w-32 h-32" data="https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/take-away-svgrepo-com.svg?v=1723712005688" width="300" height="300"> </object>
+          <div
+            class="w-2/4 h-2/4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/take-away-svgrepo-com.svg?v=1723712005688')] bg-contain"
+          >
+          </div>
           Take Away
         </div>
       </div>`;
