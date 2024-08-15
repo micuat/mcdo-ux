@@ -159,30 +159,33 @@ export default function(state, emit) {
   switch (uipage) {
     case "where":
       uiDom = html`
-      <div class="flex flex-row justify-center">
-        <div
-          class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-1/3 aspect-square"
-          onclick=${ () => {
-            state.eatIn = true;
-            emit("pushState", "#ui/menutop");
-          } }>
+      <div class="grid grid-rows-[150px_1fr_20px] gap-4">
+        <div class="text-3xl">Where will you be eating today?</div>
+        <div class="grid gap-4 grid-cols-2 w-full">
           <div
-            class="w-2/4 h-2/4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/fast-food-svgrepo-com.svg?v=1723712001110')] bg-contain"
-          >
+            class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
+            onclick=${ () => {
+              state.eatIn = true;
+              emit("pushState", "#ui/menutop");
+            } }>
+            <div
+              class="w-2/4 h-2/4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/fast-food-svgrepo-com.svg?v=1723712001110')] bg-contain"
+            >
+            </div>
+            Eat In
           </div>
-          Eat In
-        </div>
-        <div
-          class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-1/3 aspect-square"
-          onclick=${ () => {
-            state.eatIn = false;
-            emit("pushState", "#ui/menutop");
-          } }>
           <div
-            class="w-2/4 h-2/4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/take-away-svgrepo-com.svg?v=1723712005688')] bg-contain"
-          >
+            class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
+            onclick=${ () => {
+              state.eatIn = false;
+              emit("pushState", "#ui/menutop");
+            } }>
+            <div
+              class="w-2/4 h-2/4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/take-away-svgrepo-com.svg?v=1723712005688')] bg-contain"
+            >
+            </div>
+            Take Away
           </div>
-          Take Away
         </div>
       </div>`;
       break;
@@ -223,12 +226,14 @@ export default function(state, emit) {
       break;
     case "topping":
       uiDom = html`
-      <div class="">
-        Would you like a side and a modulation?
+      <div class="grid grid-rows-[150px_1fr_20px] gap-4">
+        <div class="text-3xl">
+          Would you like a side and a modulation?
         ${ state.curFunc?.name }
-        <div class="flex flex-row justify-center w-full">
+        </div>
+        <div class="grid gap-4 grid-cols-2 w-full">
           <div
-            class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-1/3 aspect-square"
+            class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
             onclick=${ () => {
               state.eatIn = true;
               emit("pushState", "#ui/side");
@@ -240,7 +245,7 @@ export default function(state, emit) {
             Yes, make it a modulation
           </div>
           <div
-            class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-1/3 aspect-square"
+            class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
             onclick=${ () => {
               emit("pushState", "#ui/recommend");
             } }>
@@ -252,10 +257,10 @@ export default function(state, emit) {
           </div>
         </div>
         <div
-          class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-1/3 aspect-square"
+          class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2"
           onclick=${ () => {
-            state.eatIn = true;
-            emit("pushState", "#ui/side");
+            state.curFunc = undefined; // should be "clear" event
+            emit("pushState", "#ui/menutop");
           } }>
           Cancel
         </div>
