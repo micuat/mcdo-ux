@@ -276,6 +276,14 @@ export default function(state, emit) {
           <div
             class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
             onclick=${ () => {
+              if (state.curFunc.code !== undefined) {
+                eval(`${state.curFunc.code}.modulate(noise(3)).out()`);
+              }
+              else {
+                // s3.initImage(state.curFunc.url);
+                osc().layer(src(s3)).modulate(noise(3)).out();
+              }
+
               emit("pushState", "#ui/recommend");
             } }>
             <div
@@ -287,6 +295,14 @@ export default function(state, emit) {
           <div
             class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
             onclick=${ () => {
+              if (state.curFunc.code !== undefined) {
+                eval(`osc(6,0,1.5).modulate(${state.curFunc.code}.sub(gradient()),1).out()`);
+              }
+              else {
+                // s3.initImage(state.curFunc.url);
+                osc(6,0,1.5).modulate(src(s3).sub(gradient()),1).out()
+              }
+
               emit("pushState", "#ui/recommend");
             } }>
             <div
