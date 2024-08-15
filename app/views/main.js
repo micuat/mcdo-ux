@@ -162,7 +162,10 @@ export default function(state, emit) {
       <div class="flex flex-row justify-center">
         <div
           class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-1/3 aspect-square"
-          onclick=${ () => emit("pushState", "#ui/menutop") }>
+          onclick=${ () => {
+            state.eatIn = true;
+            emit("pushState", "#ui/menutop");
+          } }>
           <div
             class="w-2/4 h-2/4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/fast-food-svgrepo-com.svg?v=1723712001110')] bg-contain"
           >
@@ -171,7 +174,10 @@ export default function(state, emit) {
         </div>
         <div
           class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-1/3 aspect-square"
-          onclick=${ () => emit("pushState", "#ui/menutop") }>
+          onclick=${ () => {
+            state.eatIn = false;
+            emit("pushState", "#ui/menutop");
+          } }>
           <div
             class="w-2/4 h-2/4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/take-away-svgrepo-com.svg?v=1723712005688')] bg-contain"
           >
