@@ -389,8 +389,8 @@ export default function(state, emit) {
             <div>
               ${ uiDom }
             </div>
-            <div>
-              Price
+            <div class="text-right">
+              Total ${ state.price }€
             </div>
           </div>
         </div>

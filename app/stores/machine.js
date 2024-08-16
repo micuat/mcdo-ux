@@ -5,13 +5,17 @@ import Editor from "../components/editor.js";
 
 export default function(state, emitter) {
   state.isMobile = isMobile();
-  state.codeStack = [];
 
+  state.codeStack = [];
+  state.eatIn = undefined;
+  state.price = 0;
+  
   emitter.on("clear order", () => {
     state.codeStack = [];
     state.eatIn = undefined;
     state.price = 0;
   });
+
   emitter.on("DOMContentLoaded", () => {
     // emitter.emit("render");
 
