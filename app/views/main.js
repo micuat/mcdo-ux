@@ -164,7 +164,7 @@ export default function(state, emit) {
     case "where":
       uiDom = html`
       <div class="grid grid-rows-[150px_1fr_20px] gap-4">
-        <div class="text-3xl">Where will you be eating today?</div>
+        <div class="text-3xl font-bold">Where will you be eating today?</div>
         <div class="grid gap-4 grid-cols-2 w-full">
           <div
             class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
@@ -236,7 +236,7 @@ export default function(state, emit) {
     case "topping":
       uiDom = html`
       <div class="grid grid-rows-[150px_1fr_20px] gap-4">
-        <div class="text-3xl">
+        <div class="text-3xl font-bold">
           Would you like a side and a modulation?
         </div>
         <div class="grid gap-4 grid-cols-2 w-full">
@@ -276,7 +276,7 @@ export default function(state, emit) {
     case "side":
       uiDom = html`
       <div class="grid grid-rows-[150px_1fr_20px] gap-4">
-        <div class="text-3xl">
+        <div class="text-3xl font-bold">
           Select a modulation
         </div>
         <div class="grid gap-4 grid-cols-3 w-full">

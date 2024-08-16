@@ -2,11 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
+/* @font-face {
   font-family: Speedee;
   src: url("https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/Speedee%20Bold.ttf?v=1723628314724")
     format("truetype");
-}
+} */
 
 @font-face {
   font-family: HK Grotesk;
@@ -22,7 +22,7 @@
 
 html,
 body {
-  font-family: Speedee, arial, sans-serif;
+  font-family: "Mulish", arial, sans-serif;
   margin: 0em;
 }
 
