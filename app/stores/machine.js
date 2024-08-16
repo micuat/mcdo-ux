@@ -8,7 +8,8 @@ export default function(state, emitter) {
   state.codeStack = [];
 
   emitter.on("clear order", () => {
-    state.curFunc = undefined;
+    state.codeStack = [];
+    state.eatIn = undefined;
   });
   emitter.on("DOMContentLoaded", () => {
     // emitter.emit("render");

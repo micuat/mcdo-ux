@@ -4,10 +4,6 @@ import HydraCanvas from "../components/hydra-canvas.js";
 import Editor from "../components/editor.js";
 import TextTweenElement from "../components/tween-text.js";
 
-import GlslFunctions from "../libs/glsl-functions.js";
-
-const glslFunctions = GlslFunctions();
-
 const items = [
   {
     id: "bigmac",
@@ -141,7 +137,21 @@ const tabs = [
 ]
 
 const recommends = [
-  
+  {
+    id: "kaleid",
+    name: "Kaleid",
+    type: "recommend",
+    code: "kaleid()",
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/mod-noise.png?v=1723729953814"
+  },
+  {
+    id: "colorama",
+    name: "Colorama",
+    type: "recommend",
+    code: "colorama(0.1)",
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/mod-color-osc.png?v=1723729953814"
+  },
+
 ]
 
 // export module
@@ -205,7 +215,6 @@ export default function(state, emit) {
               .map(e => html`
             <button class="bg-white border-2 border-black rounded w-1/3"
               onclick=${ () => {
-                state.curFunc = e;
                 emit("pushState", "#ui/topping")
                 if (e.code !== undefined) {
                   eval(`${e.code}.out()`);
@@ -329,38 +338,25 @@ export default function(state, emit) {
           Can we recommend?
         </div>
         <div class="grid gap-4 grid-cols-3 w-full">
-          <div
-            class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
-            onclick=${ () => {
-              if (state.codeStack.length > 0) {
-                state.codeStack.push(`${state.codeStack[state.codeStack.length - 1]}.kaleid()`);
-                eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
-              }
-
-              emit("pushState", "#ui/recommend");
-            } }>
+          ${
+            recommends.map(e => html`
             <div
-              class="w-2/4 h-2/4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/mod-noise.png?v=1723729953814')] bg-contain"
-            >
-            </div>
-            Kaleid
-          </div>
-          <div
-            class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
-            onclick=${ () => {
-              if (state.codeStack.length > 0) {
-                state.codeStack.push(`${state.codeStack[state.codeStack.length - 1]}.colorama(0.1)`);
-                eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
-              }
+              class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
+              onclick=${ () => {
+                if (state.codeStack.length > 0) {
+                  state.codeStack.push(`${state.codeStack[state.codeStack.length - 1]}.${e.code}`);
+                  eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
+                }
 
-              emit("pushState", "#ui/recommend");
-            } }>
-            <div
-              class="w-2/4 h-2/4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/mod-color-osc.png?v=1723729953814')] bg-contain"
-            >
-            </div>
-            Colorama
-          </div>
+                emit("pushState", "#ui/recommend");
+              } }>
+              <div
+                class="w-2/4 h-2/4 bg-[url('${ e.url }')] bg-contain"
+              >
+              </div>
+              ${ e.name }
+            </div>`)
+          }
         </div>
         <div
           class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2"
