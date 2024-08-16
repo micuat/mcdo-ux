@@ -117,45 +117,39 @@ const items = [
   },
 ];
 
+const tabs = [
+  {
+    type: "burger",
+    name: "Burgers",
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/burger.jpg?v=1723615402488",
+  },
+  {
+    type: "side",
+    name: "Sides",
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/sides.jpg?v=1723615401807",
+  },
+  {
+    type: "mcnugget",
+    name: "McNuggets",
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/mcnuggetsandmeals.jpg?v=1723615402144",
+  },
+  {
+    type: "source",
+    name: "Sources",
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/source.png?v=1723643700775",
+  },
+]
+
+const recommends = [
+  
+]
+
 // export module
-export default function(state, emit) {
-  let dom = "";
-  
-  if (state.funcs !== undefined) {
-    dom = html`
-    <div class="">
-    </div>
-    `;
-  }
-  
-  let funcs = glslFunctions.filter(e => e.type === "src");
-  let tabs = [
-    {
-      type: "burger",
-      name: "Burgers",
-      url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/burger.jpg?v=1723615402488",
-    },
-    {
-      type: "side",
-      name: "Sides",
-      url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/sides.jpg?v=1723615401807",
-    },
-    {
-      type: "mcnugget",
-      name: "McNuggets",
-      url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/mcnuggetsandmeals.jpg?v=1723615402144",
-    },
-    {
-      type: "source",
-      name: "Sources",
-      url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/source.png?v=1723643700775",
-    },
-  ]
-  
+export default function(state, emit) {  
   const uipage = state.params.uipage !== undefined ? state.params.uipage : "where";
   const subpage = state.params.subpage !== undefined ? state.params.subpage : "burger";
 
-  let uiDom = "a";
+  let uiDom = "placeholder";
   switch (uipage) {
     case "where":
       uiDom = html`
@@ -263,7 +257,7 @@ export default function(state, emit) {
         <div
           class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2"
           onclick=${ () => {
-            state.curFunc = undefined; // should be "clear" event
+            emit("clear order");
             emit("pushState", "#ui/menutop");
           } }>
           Cancel
@@ -371,7 +365,7 @@ export default function(state, emit) {
         <div
           class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2"
           onclick=${ () => {
-            state.curFunc = undefined; // should be "clear" event
+            emit("clear order");
             emit("pushState", "#ui/checkout");
           } }>
           Not Today

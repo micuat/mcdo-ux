@@ -7,6 +7,9 @@ export default function(state, emitter) {
   state.isMobile = isMobile();
   state.codeStack = [];
 
+  emitter.on("clear order", () => {
+    state.curFunc = undefined;
+  });
   emitter.on("DOMContentLoaded", () => {
     // emitter.emit("render");
 
