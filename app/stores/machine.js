@@ -10,6 +10,7 @@ export default function(state, emitter) {
   emitter.on("clear order", () => {
     state.codeStack = [];
     state.eatIn = undefined;
+    state.price = 0;
   });
   emitter.on("DOMContentLoaded", () => {
     // emitter.emit("render");

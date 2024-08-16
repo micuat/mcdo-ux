@@ -372,9 +372,6 @@ export default function(state, emit) {
   
   return html`
     <div class="absolute left-0 top-0 w-screen h-screen">
-      <div class="absolute bottom-0 z-10 w-full hidden">
-        ${ state.cache(Editor, 'editor').render() }
-      </div>
       <div class="absolute right-0 w-60">
       ${ state.cache(HydraCanvas, 'hydra').render(state, emit) }
       </div>
