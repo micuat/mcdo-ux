@@ -151,7 +151,76 @@ const recommends = [
     code: "colorama(0.1)",
     url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/colorama.png?v=1723836781098"
   },
-
+  {
+    id: "contrast",
+    name: "Contrast",
+    type: "recommend",
+    code: "contrast(2)",
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/contrast.png?v=1723837863441"
+  },
+  {
+    id: "invert",
+    name: "Invert",
+    type: "recommend",
+    code: "invert()",
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/invert.png?v=1723837863441"
+  },
+  {
+    id: "pixelate",
+    name: "Pixelate",
+    type: "recommend",
+    code: "pixelate(8,8)",
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/pixelate.png?v=1723837863441"
+  },
+  {
+    id: "posterize",
+    name: "Posterize",
+    type: "recommend",
+    code: "posterize(4,1)",
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/posterize.png?v=1723837863441"
+  },
+  {
+    id: "scrollx",
+    name: "ScrollX",
+    type: "recommend",
+    code: "scrollX(0,0.1)",
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/scrollx.png?v=1723837863441"
+  },
+  {
+    id: "scrolly",
+    name: "ScrollY",
+    type: "recommend",
+    code: "scrollY(0,0.1)",
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/scrolly.png?v=1723837863441"
+  },
+  {
+    id: "rotate",
+    name: "Rotate",
+    type: "recommend",
+    code: "rotate(0,0.1)",
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/rotate.png?v=1723837863441"
+  },
+  {
+    id: "thresh",
+    name: "Thresh",
+    type: "recommend",
+    code: "thresh()",
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/thresh.png?v=1723837863441"
+  },
+  {
+    id: "saturate",
+    name: "Saturate",
+    type: "recommend",
+    code: "saturate(2)",
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/saturate.png?v=1723837863441"
+  },
+  {
+    id: "repeat",
+    name: "Repeat",
+    type: "recommend",
+    code: "repeat(3,3)",
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/repeat.png?v=1723837863441"
+  },
 ]
 
 // export module
@@ -350,10 +419,13 @@ export default function(state, emit) {
 
                 emit("pushState", "#ui/recommend");
               } }>
-              <div
+              <!--<div
                 class="w-2/4 h-2/4 bg-[url('${ e.url }')] bg-contain"
+              >-->
+              <img
+                class="w-2/4 h-2/4 bg-contain"
+                src=${ e.url }
               >
-              </div>
               ${ e.name }
             </div>`)
           }
