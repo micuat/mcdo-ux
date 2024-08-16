@@ -141,15 +141,15 @@ const recommends = [
     id: "kaleid",
     name: "Kaleid",
     type: "recommend",
-    code: "kaleid()",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/mod-noise.png?v=1723729953814"
+    code: "scale(.5).kaleid()",
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/kaleid.png?v=1723836783044"
   },
   {
     id: "colorama",
     name: "Colorama",
     type: "recommend",
     code: "colorama(0.1)",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/mod-color-osc.png?v=1723729953814"
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/colorama.png?v=1723836781098"
   },
 
 ]
@@ -291,7 +291,7 @@ export default function(state, emit) {
               emit("pushState", "#ui/recommend");
             } }>
             <div
-              class="w-2/4 h-2/4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/mod-cam.png?v=1723732025219')] bg-contain"
+              class="w-2/4 h-2/4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/mod-camera.png?v=1723836785544')] bg-contain"
             >
             </div>
             Camera
@@ -307,7 +307,7 @@ export default function(state, emit) {
               emit("pushState", "#ui/recommend");
             } }>
             <div
-              class="w-2/4 h-2/4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/mod-noise.png?v=1723729953814')] bg-contain"
+              class="w-2/4 h-2/4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/mod-noise.png?v=1723836868558')] bg-contain"
             >
             </div>
             Noise
@@ -323,7 +323,7 @@ export default function(state, emit) {
               emit("pushState", "#ui/recommend");
             } }>
             <div
-              class="w-2/4 h-2/4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/mod-color-osc.png?v=1723729953814')] bg-contain"
+              class="w-2/4 h-2/4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/mod-color-osc.png?v=1723837044391')] bg-contain"
             >
             </div>
             Color Osc
