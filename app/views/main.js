@@ -112,7 +112,7 @@ const items = [
     id: "camera",
     name: "Camera",
     type: "source",
-    code: "src(s0)",
+    code: "src(s0).scale(1, window.x)",
     url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/cam.png?v=1723643856940"
   },
 ];
@@ -261,7 +261,7 @@ export default function(state, emit) {
           </div>
         </div>
         <div
-          class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2"
+          class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2"
           onclick=${ () => {
             state.curFunc = undefined; // should be "clear" event
             emit("pushState", "#ui/menutop");
@@ -281,7 +281,7 @@ export default function(state, emit) {
             class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
             onclick=${ () => {
               if (state.codeStack.length > 0) {
-                state.codeStack.push(`${state.codeStack[state.codeStack.length - 1]}.modulate(src(s0))`);
+                state.codeStack.push(`${state.codeStack[state.codeStack.length - 1]}.modulate(src(s0).scale(1, window.x))`);
                 eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
               }
 
@@ -368,6 +368,14 @@ export default function(state, emit) {
             Colorama
           </div>
         </div>
+        <div
+          class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2"
+          onclick=${ () => {
+            state.curFunc = undefined; // should be "clear" event
+            emit("pushState", "#ui/checkout");
+          } }>
+          Not Today
+        </div>
       </div>`;
       break;
   }
@@ -382,7 +390,7 @@ export default function(state, emit) {
       </div>
       <div class="absolute left-0 top-0 w-full h-full flex justify-center">
         <div class="max-w-screen-md w-full">
-          <div class="h-screen grid grid-rows-[2em_1fr_2em]">
+          <div class="h-screen grid grid-rows-[1.5em_1fr_1.5em]">
             <div class="flex justify-between">
               <div class="inline bg-white">
                 SFDCANBACDonalds++
