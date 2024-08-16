@@ -191,39 +191,43 @@ export default function(state, emit) {
       break;
     case "menutop":
       uiDom = html`
-      <div class="">
-        ${
-          tabs.map(e => html`
-            <div
-              class="cursor-pointer"
-              onclick=${ () => emit("pushState", `#ui/menutop/${ e.type }`) }>
-              <img class="w-14" src="${ e.url }">
+      <div class="grid grid-cols-[100px_1fr]">
+        <div>
+          ${
+            tabs.map(e => html`
+              <div
+                class="cursor-pointer"
+                onclick=${ () => emit("pushState", `#ui/menutop/${ e.type }`) }>
+                <img class="w-14" src="${ e.url }">
+                ${ e.name }
+              </div>
+            `)
+          }
+        </div>
+        <div>
+          ${
+            items
+              .filter(e => e.type == subpage)
+              .map(e => html`
+            <button class="bg-white border-2 border-black rounded w-1/3"
+              onclick=${ () => {
+                state.curFunc = e;
+                emit("pushState", "#ui/topping")
+                if (e.code !== undefined) {
+                  eval(`${e.code}.out()`);
+                  state.codeStack.push(e.code);
+                }
+                else {
+                  s3.initImage(e.url);
+                  osc(6,0.1,1.5).layer(src(s3)).out();
+                  state.codeStack.push("osc().layer(src(s3))");
+                }
+              } }>
+              <img src="${ e.url }">
               ${ e.name }
-            </div>
-          `)
-        }
-        ${
-          items
-            .filter(e => e.type == subpage)
-            .map(e => html`
-          <button class="bg-white border-2 border-black rounded w-1/3"
-            onclick=${ () => {
-              state.curFunc = e;
-              emit("pushState", "#ui/topping")
-              if (e.code !== undefined) {
-                eval(`${e.code}.out()`);
-                state.codeStack.push(e.code);
-              }
-              else {
-                s3.initImage(e.url);
-                osc().layer(src(s3)).out();
-                state.codeStack.push("osc().layer(src(s3))");
-              }
-            } }>
-            <img src="${ e.url }">
-            ${ e.name }
-          </button>`)
-        }
+            </button>`)
+          }
+        </div>
       </div>`;
       break;
     case "topping":
@@ -231,7 +235,6 @@ export default function(state, emit) {
       <div class="grid grid-rows-[150px_1fr_20px] gap-4">
         <div class="text-3xl">
           Would you like a side and a modulation?
-          ${ state.curFunc?.name }
         </div>
         <div class="grid gap-4 grid-cols-2 w-full">
           <div
@@ -272,7 +275,6 @@ export default function(state, emit) {
       <div class="grid grid-rows-[150px_1fr_20px] gap-4">
         <div class="text-3xl">
           Select a modulation
-          ${ state.curFunc?.name }
         </div>
         <div class="grid gap-4 grid-cols-3 w-full">
           <div
@@ -328,8 +330,10 @@ export default function(state, emit) {
       break;
     case "recommend":
       uiDom = html`
-      <div class="">
-      Can we recommend?
+      <div class="grid grid-rows-[150px_1fr_20px] gap-4">
+        <div class="text-3xl">
+          Can we recommend?
+        </div>
         <div class="grid gap-4 grid-cols-3 w-full">
           <div
             class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
@@ -378,7 +382,7 @@ export default function(state, emit) {
       </div>
       <div class="absolute left-0 top-0 w-full h-full flex justify-center">
         <div class="max-w-screen-md w-full">
-          <div class="">
+          <div class="h-screen grid grid-rows-[2em_1fr_2em]">
             <div class="flex justify-between">
               <div class="inline bg-white">
                 SFDCANBACDonalds++
@@ -387,8 +391,12 @@ export default function(state, emit) {
                 ℹ️
               </div>
             </div>
-            ${ uiDom }
-            ${ dom }
+            <div>
+              ${ uiDom }
+            </div>
+            <div>
+              Price
+            </div>
           </div>
         </div>
       </div>
