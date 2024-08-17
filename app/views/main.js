@@ -288,11 +288,13 @@ export default function(state, emit) {
                 if (e.code !== undefined) {
                   eval(`${e.code}.out()`);
                   state.codeStack.push(e.code);
+                  state.idStack.push(e.id);
                 }
                 else {
                   s3.initImage(e.url);
                   osc(6,0.1,1.5).layer(src(s3)).out();
                   state.codeStack.push("osc().layer(src(s3))");
+                  state.idStack.push(e.id);
                 }
               } }>
               <img src="${ e.url }">
@@ -355,6 +357,7 @@ export default function(state, emit) {
               if (state.codeStack.length > 0) {
                 state.codeStack.push(`${state.codeStack[state.codeStack.length - 1]}.modulate(src(s0).scale(1, window.x))`);
                 eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
+                state.idStack.push("combocamera");
               }
 
               emit("pushState", "#ui/recommend");
@@ -371,6 +374,7 @@ export default function(state, emit) {
               if (state.codeStack.length > 0) {
                 state.codeStack.push(`${state.codeStack[state.codeStack.length - 1]}.modulate(noise(3))`);
                 eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
+                state.idStack.push("combonoise");
               }
 
               emit("pushState", "#ui/recommend");
@@ -387,6 +391,7 @@ export default function(state, emit) {
               if (state.codeStack.length > 0) {
                 state.codeStack.push(`osc(6,0,1.5).modulate(${state.codeStack[state.codeStack.length - 1]}.sub(gradient()),1)`);
                 eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
+                state.idStack.push("combocolorosc");
               }
 
               emit("pushState", "#ui/recommend");
@@ -415,9 +420,10 @@ export default function(state, emit) {
                 if (state.codeStack.length > 0) {
                   state.codeStack.push(`${state.codeStack[state.codeStack.length - 1]}.${e.code}`);
                   eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
+                  state.idStack.push(e.id);
                 }
 
-                emit("pushState", "#ui/recommend");
+                emit("pushState", "#ui/checkout");
               } }>
               <!--<div
                 class="w-2/4 h-2/4 bg-[url('${ e.url }')] bg-contain"
@@ -434,7 +440,7 @@ export default function(state, emit) {
           class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2"
           onclick=${ () => {
             emit("clear order");
-            emit("pushState", "#ui/checkout");
+            emit("pushState", "#ui/where");
           } }>
           Not Today
         </div>
@@ -444,42 +450,26 @@ export default function(state, emit) {
       uiDom = html`
       <div class="grid grid-rows-[150px_1fr_20px] gap-4">
         <div class="text-3xl">
-          Can we recommend?
+          Checkout
         </div>
         <div class="grid gap-4 grid-cols-3 w-full">
-          ${
-            recommends.map(e => html`
-            <div
-              class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
-              onclick=${ () => {
-                if (state.codeStack.length > 0) {
-                  state.codeStack.push(`${state.codeStack[state.codeStack.length - 1]}.${e.code}`);
-                  eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
-                }
-
-                emit("pushState", "#ui/recommend");
-              } }>
-              <!--<div
-                class="w-2/4 h-2/4 bg-[url('${ e.url }')] bg-contain"
-              >-->
-              <img
-                class="w-2/4 h-2/4 bg-contain"
-                src=${ e.url }
-              >
-              ${ e.name }
-            </div>`)
-          }
+          
         </div>
         <div
           class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2"
           onclick=${ () => {
             emit("clear order");
-            emit("pushState", "#ui/checkout");
+            emit("pushState", "#ui/where");
           } }>
           Not Today
         </div>
       </div>`;
       break;
+  }
+  
+  if (uipage === "checkout") {
+    console.log(state.codeStack)
+    console.log(state.idStack)
   }
   
   return html`

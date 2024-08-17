@@ -7,11 +7,13 @@ export default function(state, emitter) {
   state.isMobile = isMobile();
 
   state.codeStack = [];
+  state.idStack = [];
   state.eatIn = undefined;
   state.price = 0;
   
   emitter.on("clear order", () => {
     state.codeStack = [];
+    state.idStack = [];
     state.eatIn = undefined;
     state.price = 0;
   });
