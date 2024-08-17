@@ -440,6 +440,46 @@ export default function(state, emit) {
         </div>
       </div>`;
       break;
+    case "checkout":
+      uiDom = html`
+      <div class="grid grid-rows-[150px_1fr_20px] gap-4">
+        <div class="text-3xl">
+          Can we recommend?
+        </div>
+        <div class="grid gap-4 grid-cols-3 w-full">
+          ${
+            recommends.map(e => html`
+            <div
+              class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
+              onclick=${ () => {
+                if (state.codeStack.length > 0) {
+                  state.codeStack.push(`${state.codeStack[state.codeStack.length - 1]}.${e.code}`);
+                  eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
+                }
+
+                emit("pushState", "#ui/recommend");
+              } }>
+              <!--<div
+                class="w-2/4 h-2/4 bg-[url('${ e.url }')] bg-contain"
+              >-->
+              <img
+                class="w-2/4 h-2/4 bg-contain"
+                src=${ e.url }
+              >
+              ${ e.name }
+            </div>`)
+          }
+        </div>
+        <div
+          class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2"
+          onclick=${ () => {
+            emit("clear order");
+            emit("pushState", "#ui/checkout");
+          } }>
+          Not Today
+        </div>
+      </div>`;
+      break;
   }
   
   return html`

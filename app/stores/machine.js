@@ -49,7 +49,7 @@ export default function(state, emitter) {
           //;
           video.addEventListener("loadeddata", () => {
             s0.init({ src: video });
-            window.x = ()=>-state.videoElement.width/state.videoElement.height/(window.innerWidth/window.innerHeight);
+            window.x = ()=>-state.videoElement.width/state.videoElement.height///(window.innerWidth/window.innerHeight);
             src(s0).scale(1, window.x).out()
           });
         });
