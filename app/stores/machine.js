@@ -16,6 +16,7 @@ export default function(state, emitter) {
     state.idStack = [];
     state.eatIn = undefined;
     state.price = 0;
+    src(s0).scale(1, window.x).out()
   });
 
   emitter.on("DOMContentLoaded", () => {

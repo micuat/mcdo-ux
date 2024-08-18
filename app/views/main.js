@@ -277,12 +277,12 @@ export default function(state, emit) {
             `)
           }
         </div>
-        <div>
+        <div class="grid gap-4 grid-cols-3">
           ${
             items
               .filter(e => e.type == subpage)
               .map(e => html`
-            <button class="bg-white border-2 border-black rounded w-1/3"
+            <button class="bg-white border-2 border-black rounded w-full"
               onclick=${ () => {
                 emit("pushState", "#ui/topping")
                 if (e.code !== undefined) {
@@ -340,7 +340,7 @@ export default function(state, emit) {
             emit("clear order");
             emit("pushState", "#ui/menutop");
           } }>
-          Cancel
+          Back
         </div>
       </div>`;
       break;
@@ -407,7 +407,7 @@ export default function(state, emit) {
       break;
     case "recommend":
       uiDom = html`
-      <div class="grid grid-rows-[150px_1fr_20px] gap-4">
+      <div class="grid grid-rows-[150px_1fr_150px] gap-4">
         <div class="text-3xl">
           Can we recommend?
         </div>
@@ -474,25 +474,30 @@ export default function(state, emit) {
   
   return html`
     <div class="absolute left-0 top-0 w-screen h-screen">
-      <div class="absolute right-0 w-60">
+      <div class="absolute left-0 bottom-0 w-60">
       ${ state.cache(HydraCanvas, 'hydra').render(state, emit) }
       </div>
       <div class="absolute left-0 top-0 w-full h-full flex justify-center">
         <div class="max-w-screen-md w-full">
           <div class="h-screen grid grid-rows-[1.5em_1fr_1.5em]">
             <div class="flex justify-between">
-              <div class="inline bg-white">
+              <div class="hidden inline bg-white">
                 SFDCANBACDonalds++
               </div>
-              <div class="cursor-pointer inline" onclick=${ infoClicked }>
+              <div class="hidden cursor-pointer inline" onclick=${ infoClicked }>
                 ℹ️
               </div>
             </div>
             <div>
               ${ uiDom }
             </div>
-            <div class="text-right">
-              Total ${ state.price }€
+            <div class="flex flex-cols justify-between">
+              <div>
+                ${ state.codeStack.length > 0 ? state.codeStack[state.codeStack.length - 1] + ".out()" : "" }
+              </div>
+              <div>
+                Total ${ state.price }€
+              </div>
             </div>
           </div>
         </div>
