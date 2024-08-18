@@ -247,14 +247,19 @@ export default function(state, emit) {
               state.eatIn = true;
               emit("pushState", "#ui/menutop");
         
-              const url_string = window.location.origin + "/#hydra";
-              const w = window.open(
-                url_string,
-                "",
-                "menubar=no,location=no,resizable=yes,scrollbars=no,status=no"
-              );
-              w.resizeTo(600, 400);
-              state.popupWindow = w;
+              if (state.popupWindow === undefined) {
+                const url_string = window.location.origin + "/#hydra";
+                const w = window.open(
+                  url_string,
+                  "",
+                  "menubar=no,location=no,resizable=yes,scrollbars=no,status=no"
+                );
+                w.resizeTo(600, 400);
+                state.popupWindow = w;
+                window.addEventListener("beforeunload", function(e){
+                  w.close();
+                });
+              }
             } }>
             <div
               class="w-2/4 h-2/4 mb-4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/fast-food-svgrepo-com.svg?v=1723712001110')] bg-contain"
@@ -270,14 +275,19 @@ export default function(state, emit) {
               state.eatIn = false;
               emit("pushState", "#ui/menutop");
 
-              const url_string = window.location.origin + "/#hydra";
-              const w = window.open(
-                url_string,
-                "",
-                "menubar=no,location=no,resizable=yes,scrollbars=no,status=no"
-              );
-              w.resizeTo(600, 400);
-              state.popupWindow = w;
+              if (state.popupWindow === undefined) {
+                const url_string = window.location.origin + "/#hydra";
+                const w = window.open(
+                  url_string,
+                  "",
+                  "menubar=no,location=no,resizable=yes,scrollbars=no,status=no"
+                );
+                w.resizeTo(600, 400);
+                state.popupWindow = w;
+                window.addEventListener("beforeunload", function(e){
+                  w.close();
+                });
+              }
             } }>
             <div
               class="w-2/4 h-2/4 mb-4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/take-away-svgrepo-com.svg?v=1723712005688')] bg-contain"
@@ -446,7 +456,7 @@ export default function(state, emit) {
     case "recommend":
       uiDom = html`
       <div class="grid grid-rows-[150px_1fr_150px] gap-4">
-        <div class="text-3xl">
+        <div class="text-3xl font-bold">
           Can we recommend?
         </div>
         <div class="grid gap-4 grid-cols-3 w-full">
@@ -488,7 +498,7 @@ export default function(state, emit) {
     case "checkout":
       uiDom = html`
       <div class="grid grid-rows-[150px_1fr_20px] gap-4">
-        <div class="text-3xl">
+        <div class="text-3xl font-bold">
           Checkout
         </div>
         <div class="grid gap-4 grid-cols-3 w-full">
@@ -497,10 +507,34 @@ export default function(state, emit) {
         <div
           class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2"
           onclick=${ () => {
+            emit("pushState", "#ui/payment");
+          } }>
+          Pay Here
+        </div>
+      </div>`;
+      break;
+    case "payment":
+      uiDom = html`
+      <div class="grid grid-rows-[150px_1fr_20px] gap-4">
+        <div class="text-3xl font-bold">
+          Total
+        </div>
+        <div class="grid gap-4 grid-rows-2 w-full">
+          <div class="font-mono">
+            ${ state.codeStack.length > 0 ? state.codeStack[state.codeStack.length - 1] + ".out()" : "" }
+          </div>
+          <div class="text-left">
+            Total ${ /*state.price*/ state.idStack.length }€
+          </div>
+
+        </div>
+        <div
+          class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2"
+          onclick=${ () => {
             emit("clear order");
             emit("pushState", "#ui/where");
           } }>
-          Pay Here
+          Start Over
         </div>
       </div>`;
       break;
@@ -513,7 +547,7 @@ export default function(state, emit) {
   
   return html`
     <div class="absolute left-0 top-0 w-screen h-screen">
-      <div class="absolute left-0 bottom-0 w-60">
+      <div class="absolute left-0 bottom-32 w-60">
       ${ state.cache(HydraCanvas, 'hydra').render(state, emit) }
       </div>
       <div class="absolute left-0 top-0 w-full h-full flex justify-center">
