@@ -240,6 +240,14 @@ export default function(state, emit) {
             onclick=${ () => {
               state.eatIn = true;
               emit("pushState", "#ui/menutop");
+        
+              const url_string = window.location.origin + "/#hydra";
+              const w = window.open(
+                url_string,
+                "",
+                "menubar=no,location=no,resizable=yes,scrollbars=no,status=no"
+              );
+              state.popupWindow = w;
             } }>
             <div
               class="w-2/4 h-2/4 mb-4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/fast-food-svgrepo-com.svg?v=1723712001110')] bg-contain"
@@ -254,6 +262,14 @@ export default function(state, emit) {
             onclick=${ () => {
               state.eatIn = false;
               emit("pushState", "#ui/menutop");
+
+              const url_string = window.location.origin + "/#hydra";
+              const w = window.open(
+                url_string,
+                "",
+                "menubar=no,location=no,resizable=yes,scrollbars=no,status=no"
+              );
+              state.popupWindow = w;
             } }>
             <div
               class="w-2/4 h-2/4 mb-4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/take-away-svgrepo-com.svg?v=1723712005688')] bg-contain"

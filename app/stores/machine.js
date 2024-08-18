@@ -34,7 +34,7 @@ export default function(state, emitter) {
     // emitter.emit("render");
 
     console.log(state.route)
-    if (state.route == "/" || state.route.startsWith("ui/")) {
+    if (state.route == "/" || state.route.startsWith("ui/") || state.route.startsWith("hydra")) {
 
       let video = html`<video id="webcam" autoplay muted playsinline width="640" height="480" class="hidden"></video>`;
       document.body.appendChild(video)
@@ -63,7 +63,12 @@ export default function(state, emitter) {
           //;
           video.addEventListener("loadeddata", () => {
             s0.init({ src: video });
-            window.x = ()=>-state.videoElement.width/state.videoElement.height///(window.innerWidth/window.innerHeight);
+            if (state.route.startsWith("hydra")) {
+              window.x = ()=>-state.videoElement.width/state.videoElement.height/(window.innerWidth/window.innerHeight);
+            }
+            else {
+              window.x = ()=>-state.videoElement.width/state.videoElement.height;
+            }
             src(s0).scale(1, window.x).out()
           });
         });

@@ -60,7 +60,7 @@ export default class Map extends Component {
 
   createElement(center) {
     return html`
-      <div>
+      <div class="w-full h-full z-0">
         <canvas class="w-full h-full z-0"></canvas>
       </div>
     `;

@@ -23,8 +23,10 @@ function notFound() {
 
 // import a template
 import main from "./views/main";
+import hydra from "./views/hydra";
 
 app.route("/", main);
+app.route("/hydra", hydra);
 app.route("/ui/:uipage", main);
 app.route("/ui/:uipage/:subpage", main);
 
