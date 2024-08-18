@@ -306,7 +306,7 @@ export default function(state, emit) {
       break;
     case "topping":
       uiDom = html`
-      <div class="grid grid-rows-[150px_1fr_128px_128px] gap-4">
+      <div class="grid grid-rows-[150px_1fr_128px] gap-4">
         <div class="text-3xl font-bold">
           Would you like a side and a modulation?
         </div>
@@ -341,14 +341,6 @@ export default function(state, emit) {
             emit("pushState", "#ui/menutop");
           } }>
           Back
-        </div>
-        <div
-          class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2"
-          onclick=${ () => {
-            emit("render");
-            state.cancelConfirm = true;
-          } }>
-          Cancel Order
         </div>
       </div>`;
       break;
@@ -487,7 +479,7 @@ export default function(state, emit) {
       </div>
       <div class="absolute left-0 top-0 w-full h-full flex justify-center">
         <div class="max-w-screen-md w-full">
-          <div class="h-screen grid grid-rows-[1.5em_1fr_1.5em]">
+          <div class="h-screen grid grid-rows-[1.5em_1fr_32px_1.5em]">
             <div class="flex justify-between">
               <div class="hidden inline bg-white">
                 SFDCANBACDonalds++
@@ -498,6 +490,14 @@ export default function(state, emit) {
             </div>
             <div>
               ${ uiDom }
+            </div>
+            <div
+              class="text-xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-8 p-2"
+              onclick=${ () => {
+                emit("render");
+                state.cancelConfirm = true;
+              } }>
+              Cancel Order
             </div>
             <div class="flex flex-cols justify-between">
               <div class="font-mono">
@@ -526,11 +526,11 @@ export default function(state, emit) {
       </div>
       <div class="absolute ${ state.cancelConfirm ? "" : "hidden" } w-full h-full m-0 bg-black/60">
         <div class="w-full h-full flex justify-center items-center">
-          <div class="bg-white max-w-sm p-4 relative">
-            <div class="text-3xl">
-            Are you sure to cancel the order?
+          <div class="bg-white max-w-sm p-4 w-full relative">
+            <div class="font-bold text-3xl">
+              Are you sure to cancel the order?
             </div>
-            <div class="grid gap-4 grid-rows-2">
+            <div class="grid gap-4 grid-cols-2">
               <div
                 class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2"
                 onclick=${ () => {
@@ -542,7 +542,7 @@ export default function(state, emit) {
               <div
                 class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2"
                 onclick=${ () => {
-                  emit("cancel order");
+                  emit("clear order");
                   emit("pushState", "#ui/where");
                   state.cancelConfirm = false;
                 } }>
@@ -555,21 +555,21 @@ export default function(state, emit) {
     </div>
   `;
   
-  function hoverInput(ev) {
-    emit("hover input", ev);
-  }
-  function selectInput(ev) {
-    emit("select input", ev);
-  }
-  function startOver() {
-    emit("start over");
-  }
-  function nextHover() {
-    emit("next hover");
-  }
-  function nextOption() {
-    emit("next option");
-  }
+  // function hoverInput(ev) {
+  //   emit("hover input", ev);
+  // }
+  // function selectInput(ev) {
+  //   emit("select input", ev);
+  // }
+  // function startOver() {
+  //   emit("start over");
+  // }
+  // function nextHover() {
+  //   emit("next hover");
+  // }
+  // function nextOption() {
+  //   emit("next option");
+  // }
   function infoClicked() {
     state.dialogOpen = !state.dialogOpen;
     emit("render");
