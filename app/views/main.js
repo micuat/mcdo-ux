@@ -306,7 +306,7 @@ export default function(state, emit) {
       break;
     case "topping":
       uiDom = html`
-      <div class="grid grid-rows-[150px_1fr_20px] gap-4">
+      <div class="grid grid-rows-[150px_1fr_128px_128px] gap-4">
         <div class="text-3xl font-bold">
           Would you like a side and a modulation?
         </div>
@@ -337,10 +337,18 @@ export default function(state, emit) {
         <div
           class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2"
           onclick=${ () => {
-            emit("clear order");
+            emit("back order");
             emit("pushState", "#ui/menutop");
           } }>
           Back
+        </div>
+        <div
+          class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2"
+          onclick=${ () => {
+            emit("render");
+            state.cancelConfirm = true;
+          } }>
+          Cancel Order
         </div>
       </div>`;
       break;
@@ -492,7 +500,7 @@ export default function(state, emit) {
               ${ uiDom }
             </div>
             <div class="flex flex-cols justify-between">
-              <div>
+              <div class="font-mono">
                 ${ state.codeStack.length > 0 ? state.codeStack[state.codeStack.length - 1] + ".out()" : "" }
               </div>
               <div>
@@ -513,6 +521,34 @@ export default function(state, emit) {
             <form method="dialog" class="absolute top-2 right-2">
               <button autofocus class="text-lg" onclick=${ infoClicked }>❌</button>
             </form>
+          </div>
+        </div>
+      </div>
+      <div class="absolute ${ state.cancelConfirm ? "" : "hidden" } w-full h-full m-0 bg-black/60">
+        <div class="w-full h-full flex justify-center items-center">
+          <div class="bg-white max-w-sm p-4 relative">
+            <div class="text-3xl">
+            Are you sure to cancel the order?
+            </div>
+            <div class="grid gap-4 grid-rows-2">
+              <div
+                class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2"
+                onclick=${ () => {
+                  emit("render");
+                  state.cancelConfirm = false;
+                } }>
+                Continue Order
+              </div>
+              <div
+                class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2"
+                onclick=${ () => {
+                  emit("cancel order");
+                  emit("pushState", "#ui/where");
+                  state.cancelConfirm = false;
+                } }>
+                Start Over
+              </div>
+            </div>
           </div>
         </div>
       </div>

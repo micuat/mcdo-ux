@@ -10,13 +10,24 @@ export default function(state, emitter) {
   state.idStack = [];
   state.eatIn = undefined;
   state.price = 0;
+  state.cancelConfirm = false;
   
   emitter.on("clear order", () => {
     state.codeStack = [];
     state.idStack = [];
     state.eatIn = undefined;
     state.price = 0;
+    state.cancelConfirm = false;
     src(s0).scale(1, window.x).out()
+  });
+
+  emitter.on("back order", () => {
+    state.codeStack.pop();
+    state.idStack.pop();
+    //state.price = 0; // need work
+    if (state.codeStack.length > 0) {
+      eval(state.codeStack[state.codeStack.length - 1]);
+    }
   });
 
   emitter.on("DOMContentLoaded", () => {
