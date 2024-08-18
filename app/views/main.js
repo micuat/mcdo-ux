@@ -337,7 +337,7 @@ export default function(state, emit) {
                     console.log(`s3.initImage("${ e.url }");`)
                     state.popupWindow?.eval(`s3.initImage("${ e.url }");`);
                     state.popupWindow?.eval(`osc(6,0.1,()=>window.slider0*1.5).layer(src(s3).scale(1,window.ix)).out();`);
-                    state.codeStack.push("osc().layer(src(s3))");
+                    state.codeStack.push("osc(6,0.1,()=>window.slider0*1.5).layer(src(s3).scale(1,window.ix))");
                     state.idStack.push(e.id);
                   }
                 } }>
@@ -365,6 +365,13 @@ export default function(state, emit) {
             } }
             />
           <label for="size">Size</label>
+        </div>
+        <div
+          class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2"
+          onclick=${ () => {
+            emit("pushState", "#ui/topping");
+          } }>
+          Next
         </div>
         <div
           class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2"
@@ -551,7 +558,7 @@ export default function(state, emit) {
             ${ state.codeStack.length > 0 ? state.codeStack[state.codeStack.length - 1] + ".out()" : "" }
           </div>
           <div class="text-left">
-            Total ${ /*state.price*/ state.idStack.length }€
+            Total ${ /*state.price*/ state.codeStack.length > 0 ? state.codeStack[state.codeStack.length-1].length : "0" }€
           </div>
 
         </div>
@@ -574,7 +581,7 @@ export default function(state, emit) {
   
   return html`
     <div class="absolute left-0 top-0 w-screen h-screen">
-      <div class="absolute left-0 bottom-32 w-60">
+      <div class="absolute hidden left-0 bottom-32 w-60">
       ${ state.cache(HydraCanvas, 'hydra').render(state, emit) }
       </div>
       <div class="absolute left-0 top-0 w-full h-full flex justify-center">
@@ -604,7 +611,7 @@ export default function(state, emit) {
                 Cancel Order
               </div>
               <div class="text-right">
-                Total ${ /*state.price*/ state.idStack.length }€
+                Total ${ /*state.price*/ state.codeStack.length > 0 ? state.codeStack[state.codeStack.length-1].length : "0" }€
               </div>
             </div>
           </div>
