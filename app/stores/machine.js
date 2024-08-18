@@ -31,6 +31,14 @@ export default function(state, emitter) {
   });
 
   emitter.on("DOMContentLoaded", () => {
+    console.log(state.params.uipage)
+    if (state.params.uipage !== "where" && state.params.uipage !== undefined) {
+        console.log("oi")
+      if (state.codeStack.length === 0) {
+        emitter.emit("pushState", "#ui/where");
+      }
+    }
+    
     // emitter.emit("render");
 
     console.log(state.route)

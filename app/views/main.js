@@ -309,12 +309,15 @@ export default function(state, emit) {
                   emit("pushState", "#ui/topping")
                   if (e.code !== undefined) {
                     eval(`${e.code}.out()`);
+                    state.popupWindow?.eval(`${e.code}.out()`);
                     state.codeStack.push(e.code);
                     state.idStack.push(e.id);
                   }
                   else {
                     s3.initImage(e.url);
                     osc(6,0.1,1.5).layer(src(s3)).out();
+                    state.popupWindow?.eval(`s3.initImage(${ e.url });`);
+                    state.popupWindow?.eval(`osc(6,0.1,1.5).layer(src(s3)).out();`);
                     state.codeStack.push("osc().layer(src(s3))");
                     state.idStack.push(e.id);
                   }
