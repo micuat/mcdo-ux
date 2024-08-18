@@ -224,9 +224,15 @@ const recommends = [
 ]
 
 // export module
-export default function(state, emit) {  
-  const uipage = state.params.uipage !== undefined ? state.params.uipage : "where";
+export default function(state, emit) {
+  let uipage = state.params.uipage !== undefined ? state.params.uipage : "where";
   const subpage = state.params.subpage !== undefined ? state.params.subpage : "burger";
+
+  if (state.params.uipage !== "where") {
+    if (state.eatIn === undefined) {
+      uipage = "where";
+    }
+  }
 
   let uiDom = "placeholder";
   switch (uipage) {
@@ -247,6 +253,7 @@ export default function(state, emit) {
                 "",
                 "menubar=no,location=no,resizable=yes,scrollbars=no,status=no"
               );
+              w.resizeTo(600, 400);
               state.popupWindow = w;
             } }>
             <div
@@ -269,6 +276,7 @@ export default function(state, emit) {
                 "",
                 "menubar=no,location=no,resizable=yes,scrollbars=no,status=no"
               );
+              w.resizeTo(600, 400);
               state.popupWindow = w;
             } }>
             <div
@@ -316,8 +324,9 @@ export default function(state, emit) {
                   else {
                     s3.initImage(e.url);
                     osc(6,0.1,1.5).layer(src(s3)).out();
-                    state.popupWindow?.eval(`s3.initImage(${ e.url });`);
-                    state.popupWindow?.eval(`osc(6,0.1,1.5).layer(src(s3)).out();`);
+                    console.log(`s3.initImage("${ e.url }");`)
+                    state.popupWindow?.eval(`s3.initImage("${ e.url }");`);
+                    state.popupWindow?.eval(`osc(6,0.1,1.5).layer(src(s3).scale(1,window.x)).out();`);
                     state.codeStack.push("osc().layer(src(s3))");
                     state.idStack.push(e.id);
                   }
@@ -383,6 +392,7 @@ export default function(state, emit) {
               if (state.codeStack.length > 0) {
                 state.codeStack.push(`${state.codeStack[state.codeStack.length - 1]}.layer(src(s0).luma().scale(1, window.x))`);
                 eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
+                state.popupWindow?.eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
                 state.idStack.push("combocamera");
               }
 
@@ -400,6 +410,7 @@ export default function(state, emit) {
               if (state.codeStack.length > 0) {
                 state.codeStack.push(`${state.codeStack[state.codeStack.length - 1]}.modulate(noise(3))`);
                 eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
+                state.popupWindow?.eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
                 state.idStack.push("combonoise");
               }
 
@@ -417,6 +428,7 @@ export default function(state, emit) {
               if (state.codeStack.length > 0) {
                 state.codeStack.push(`osc(6,0,1.5).modulate(${state.codeStack[state.codeStack.length - 1]}.sub(gradient()),1)`);
                 eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
+                state.popupWindow?.eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
                 state.idStack.push("combocolorosc");
               }
 
@@ -446,6 +458,7 @@ export default function(state, emit) {
                 if (state.codeStack.length > 0) {
                   state.codeStack.push(`${state.codeStack[state.codeStack.length - 1]}.${e.code}`);
                   eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
+                  state.popupWindow?.eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
                   state.idStack.push(e.id);
                 }
 

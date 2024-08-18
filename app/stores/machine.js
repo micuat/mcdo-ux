@@ -19,6 +19,7 @@ export default function(state, emitter) {
     state.price = 0;
     state.cancelConfirm = false;
     src(s0).scale(1, window.x).out()
+    state.popupWindow?.eval("src(s0).scale(1, window.x).out()");
   });
 
   emitter.on("back order", () => {
@@ -27,18 +28,11 @@ export default function(state, emitter) {
     //state.price = 0; // need work
     if (state.codeStack.length > 0) {
       eval(state.codeStack[state.codeStack.length - 1]);
+      state.popupWindow?.eval(state.codeStack[state.codeStack.length - 1]);
     }
   });
 
   emitter.on("DOMContentLoaded", () => {
-    console.log(state.params.uipage)
-    if (state.params.uipage !== "where" && state.params.uipage !== undefined) {
-        console.log("oi")
-      if (state.codeStack.length === 0) {
-        emitter.emit("pushState", "#ui/where");
-      }
-    }
-    
     // emitter.emit("render");
 
     console.log(state.route)
