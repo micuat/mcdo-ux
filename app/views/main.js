@@ -233,7 +233,7 @@ export default function(state, emit) {
     case "where":
       uiDom = html`
       <div class="grid grid-rows-[150px_1fr_20px] gap-4">
-        <div class="text-3xl font-bold">Where will you be eating today?</div>
+        <div class="text-3xl font-bold">Where will you be coding today?</div>
         <div class="grid gap-4 grid-cols-2 w-full">
           <div
             class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
@@ -242,10 +242,10 @@ export default function(state, emit) {
               emit("pushState", "#ui/menutop");
             } }>
             <div
-              class="w-2/4 h-2/4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/fast-food-svgrepo-com.svg?v=1723712001110')] bg-contain"
+              class="w-2/4 h-2/4 mb-4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/fast-food-svgrepo-com.svg?v=1723712001110')] bg-contain"
             >
             </div>
-            Eat In
+            Code In
           </div>
           <div
             class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
@@ -254,10 +254,10 @@ export default function(state, emit) {
               emit("pushState", "#ui/menutop");
             } }>
             <div
-              class="w-2/4 h-2/4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/take-away-svgrepo-com.svg?v=1723712005688')] bg-contain"
+              class="w-2/4 h-2/4 mb-4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/take-away-svgrepo-com.svg?v=1723712005688')] bg-contain"
             >
             </div>
-            Take Away
+            Code Away
           </div>
         </div>
       </div>`;
@@ -491,19 +491,19 @@ export default function(state, emit) {
             <div>
               ${ uiDom }
             </div>
-            <div
-              class="text-xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-8 p-2"
-              onclick=${ () => {
-                emit("render");
-                state.cancelConfirm = true;
-              } }>
-              Cancel Order
-            </div>
-            <div class="flex flex-cols justify-between">
+            <div class="grid gap-4 grid-cols-3">
               <div class="font-mono">
                 ${ state.codeStack.length > 0 ? state.codeStack[state.codeStack.length - 1] + ".out()" : "" }
               </div>
-              <div>
+              <div
+                class="text-xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-8 p-2"
+                onclick=${ () => {
+                  emit("render");
+                  state.cancelConfirm = true;
+                } }>
+                Cancel Order
+              </div>
+              <div class="text-right">
                 Total ${ state.price }€
               </div>
             </div>
