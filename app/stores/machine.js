@@ -67,10 +67,14 @@ export default function(state, emitter) {
             s0.init({ src: video });
             if (state.route.startsWith("hydra")) {
               window.x = ()=>-state.videoElement.width/state.videoElement.height/(window.innerWidth/window.innerHeight);
+              window.ix = ()=>1/(window.innerWidth/window.innerHeight);
             }
             else {
               window.x = ()=>-state.videoElement.width/state.videoElement.height;
+              window.ix = ()=>1;
             }
+            window.slider0 = 0;
+            window.ss0 = ()=>window.slider0;
             src(s0).scale(1, window.x).out()
           });
         });

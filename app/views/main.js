@@ -324,7 +324,7 @@ export default function(state, emit) {
                 .map(e => html`
               <button class="bg-white border-2 border-black rounded w-full"
                 onclick=${ () => {
-                  emit("pushState", "#ui/topping")
+                  emit("pushState", "#ui/size")
                   if (e.code !== undefined) {
                     eval(`${e.code}.out()`);
                     state.popupWindow?.eval(`${e.code}.out()`);
@@ -333,10 +333,10 @@ export default function(state, emit) {
                   }
                   else {
                     s3.initImage(e.url);
-                    osc(6,0.1,1.5).layer(src(s3)).out();
+                    osc(6,0.1,()=>window.slider0*1.5).layer(src(s3)).out();
                     console.log(`s3.initImage("${ e.url }");`)
                     state.popupWindow?.eval(`s3.initImage("${ e.url }");`);
-                    state.popupWindow?.eval(`osc(6,0.1,1.5).layer(src(s3).scale(1,window.x)).out();`);
+                    state.popupWindow?.eval(`osc(6,0.1,()=>window.slider0*1.5).layer(src(s3).scale(1,window.ix)).out();`);
                     state.codeStack.push("osc().layer(src(s3))");
                     state.idStack.push(e.id);
                   }
@@ -346,6 +346,33 @@ export default function(state, emit) {
               </button>`)
             }
           </div>
+        </div>
+      </div>`;
+      break;
+    case "size":
+      uiDom = html`
+      <div class="grid grid-rows-[150px_1fr_128px] gap-4">
+        <div class="text-3xl font-bold">
+          Choose the size
+        </div>
+        <div>
+          <input type="range" id="size" name="size" min="0" max="128"
+            oninput=${ (e) => {
+              window.slider0 = e.target.value / 128;
+              if (state.popupWindow !== undefined) {
+                state.popupWindow.slider0 = e.target.value / 128;
+              }
+            } }
+            />
+          <label for="size">Size</label>
+        </div>
+        <div
+          class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2"
+          onclick=${ () => {
+            emit("back order");
+            emit("pushState", "#ui/menutop");
+          } }>
+          Back
         </div>
       </div>`;
       break;
