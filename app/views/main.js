@@ -504,7 +504,7 @@ export default function(state, emit) {
                 Cancel Order
               </div>
               <div class="text-right">
-                Total ${ state.price }€
+                Total ${ /*state.price*/ state.idStack.length }€
               </div>
             </div>
           </div>
