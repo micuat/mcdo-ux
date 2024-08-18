@@ -355,7 +355,7 @@ export default function(state, emit) {
             class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
             onclick=${ () => {
               if (state.codeStack.length > 0) {
-                state.codeStack.push(`${state.codeStack[state.codeStack.length - 1]}.modulate(src(s0).scale(1, window.x))`);
+                state.codeStack.push(`${state.codeStack[state.codeStack.length - 1]}.layer(src(s0).luma().scale(1, window.x))`);
                 eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
                 state.idStack.push("combocamera");
               }
@@ -461,7 +461,7 @@ export default function(state, emit) {
             emit("clear order");
             emit("pushState", "#ui/where");
           } }>
-          Not Today
+          Pay Here
         </div>
       </div>`;
       break;
