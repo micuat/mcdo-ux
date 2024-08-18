@@ -245,7 +245,9 @@ export default function(state, emit) {
               class="w-2/4 h-2/4 mb-4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/fast-food-svgrepo-com.svg?v=1723712001110')] bg-contain"
             >
             </div>
-            Code In
+            <div class="text-xl">
+              Code In
+            </div>
           </div>
           <div
             class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
@@ -257,50 +259,55 @@ export default function(state, emit) {
               class="w-2/4 h-2/4 mb-4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/take-away-svgrepo-com.svg?v=1723712005688')] bg-contain"
             >
             </div>
-            Code Away
+            <div class="text-xl">
+              Code Away
+            </div>
           </div>
         </div>
       </div>`;
       break;
     case "menutop":
       uiDom = html`
-      <div class="grid grid-cols-[100px_1fr]">
-        <div>
-          ${
-            tabs.map(e => html`
-              <div
-                class="cursor-pointer"
-                onclick=${ () => emit("pushState", `#ui/menutop/${ e.type }`) }>
-                <img class="w-14" src="${ e.url }">
+      <div class="grid grid-rows-[150px_1fr_20px] gap-4">
+        <div class="font-bold text-4xl">Explore our menu</div>
+        <div class="grid grid-cols-[100px_1fr]">
+          <div>
+            ${
+              tabs.map(e => html`
+                <div
+                  class="cursor-pointer"
+                  onclick=${ () => emit("pushState", `#ui/menutop/${ e.type }`) }>
+                  <img class="w-14" src="${ e.url }">
+                  ${ e.name }
+                </div>
+              `)
+            }
+          </div>
+          <div class="grid gap-4 grid-cols-3">
+            ${
+              items
+                .filter(e => e.type == subpage)
+                .map(e => html`
+              <button class="bg-white border-2 border-black rounded w-full"
+                onclick=${ () => {
+                  emit("pushState", "#ui/topping")
+                  if (e.code !== undefined) {
+                    eval(`${e.code}.out()`);
+                    state.codeStack.push(e.code);
+                    state.idStack.push(e.id);
+                  }
+                  else {
+                    s3.initImage(e.url);
+                    osc(6,0.1,1.5).layer(src(s3)).out();
+                    state.codeStack.push("osc().layer(src(s3))");
+                    state.idStack.push(e.id);
+                  }
+                } }>
+                <img src="${ e.url }">
                 ${ e.name }
-              </div>
-            `)
-          }
-        </div>
-        <div class="grid gap-4 grid-cols-3">
-          ${
-            items
-              .filter(e => e.type == subpage)
-              .map(e => html`
-            <button class="bg-white border-2 border-black rounded w-full"
-              onclick=${ () => {
-                emit("pushState", "#ui/topping")
-                if (e.code !== undefined) {
-                  eval(`${e.code}.out()`);
-                  state.codeStack.push(e.code);
-                  state.idStack.push(e.id);
-                }
-                else {
-                  s3.initImage(e.url);
-                  osc(6,0.1,1.5).layer(src(s3)).out();
-                  state.codeStack.push("osc().layer(src(s3))");
-                  state.idStack.push(e.id);
-                }
-              } }>
-              <img src="${ e.url }">
-              ${ e.name }
-            </button>`)
-          }
+              </button>`)
+            }
+          </div>
         </div>
       </div>`;
       break;
