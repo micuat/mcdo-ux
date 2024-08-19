@@ -14,9 +14,9 @@ export default function(state, emitter) {
   state.cancelConfirm = false;
   state.forceCombo = false;
   state.recommended = false;
-  window.slider0 = 0.5;
-  window.slider1 = 0.5;
-  window.slider2 = 0.5;
+  window.slider0 = 0.02;
+  window.slider1 = 0.02;
+  window.slider2 = 0.02;
   
   emitter.on("clear order", () => {
     state.codeStack = [];
@@ -27,9 +27,9 @@ export default function(state, emitter) {
     state.cancelConfirm = false;
     state.forceCombo = false;
     state.recommended = false;
-    window.slider0 = 0.5;
-    window.slider1 = 0.5;
-    window.slider2 = 0.5;
+    window.slider0 = 0.02;
+    window.slider1 = 0.02;
+    window.slider2 = 0.02;
     src(s0).scale(1, window.x).out()
     state.popupWindow?.eval("src(s0).scale(1, window.x).out()");
   });

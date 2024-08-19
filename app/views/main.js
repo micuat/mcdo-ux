@@ -236,11 +236,11 @@ export default function(state, emit) {
   const subpage = state.params.subpage !== undefined ? state.params.subpage : "burger";
 
   // comment out for debugging
-  // if (state.params.uipage !== "where") {
-  //   if (state.eatIn === undefined) {
-  //     uipage = "where";
-  //   }
-  // }
+  if (state.params.uipage !== "where") {
+    if (state.eatIn === undefined) {
+      uipage = "where";
+    }
+  }
 
   let uiDom = "placeholder";
   switch (uipage) {
@@ -365,9 +365,9 @@ export default function(state, emit) {
         <div class="text-3xl font-bold">
           Adjust the size
         </div>
-        <div class="w-full mb-32">
-          <label class="" for="size0">${ state.nameStack.length > 0 ? state.nameStack[state.nameStack-1] : "a" }</label>
-          <input type="range" id="size0" name="size0" min="0" max="128" value="64"
+        <div class="w-full mb-32 grid gap-4 grid-cols-[1fr_3fr]">
+          <label class="text-xl text-right mt-[-0.35em]" for="size0">${ state.nameStack.length > 0 ? state.nameStack[state.nameStack.length-1] : "" }</label>
+          <input type="range" id="size0" name="size0" min="0" max="128" value="${window.slider0*128}"
             class="w-full h-4 bg-gray-400 rounded-sm range-lg appearance-none cursor-pointer"
             oninput=${ (e) => {
               window.slider0 = e.target.value / 128;
@@ -517,8 +517,9 @@ export default function(state, emit) {
         <div class="text-3xl font-bold">
           Adjust the modulation size
         </div>
-        <div class="w-full mb-32">
-          <input type="range" id="size1" name="size1" min="0" max="128" value="64"
+        <div class="w-full mb-32 grid gap-4 grid-cols-[1fr_3fr]">
+          <label class="text-xl text-right mt-[-0.35em]" for="size1">${ state.nameStack.length > 0 ? state.nameStack[state.nameStack.length-1] : "" }</label>
+          <input type="range" id="size1" name="size1" min="0" max="128" value="${window.slider1*128}"
             class="w-full h-4 bg-gray-400 rounded-sm range-lg appearance-none cursor-pointer"
             oninput=${ (e) => {
               window.slider1 = e.target.value / 128;
@@ -527,7 +528,6 @@ export default function(state, emit) {
               }
             } }
             />
-          <label class="hidden" for="size1">Size</label>
         </div>
         <div
           class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2 bg-mcdo"
@@ -551,8 +551,9 @@ export default function(state, emit) {
       <div class="grid grid-rows-[150px_1fr_150px] gap-4">
         <div class="text-3xl font-bold">
           Can we recommend${ state.recommended === true ? " more" : "" }?
-          <div class="w-full mb-32">
-            <input type="range" id="size2" name="size2" min="0" max="128" value="64"
+          <div class="w-full mb-32 grid gap-4 grid-cols-[1fr_3fr]">
+            <label class="text-xl text-right mt-[-0.35em]" for="size2">${ state.nameStack.length > 0 ? state.nameStack[state.nameStack.length-1] : "" }</label>
+            <input type="range" id="size2" name="size2" min="0" max="128" value="${window.slider2*128}"
               class="w-full h-4 bg-gray-400 rounded-sm range-lg appearance-none cursor-pointer"
               oninput=${ (e) => {
                 window.slider2 = e.target.value / 128;
@@ -630,8 +631,8 @@ export default function(state, emit) {
           Total
         </div>
         <div class="grid gap-4 grid-rows-2 w-full">
-          <div class="font-mono">
-            ${ state.codeStack.length > 0 ? state.codeStack[state.codeStack.length - 1] + ".out()" : "" }
+          <div class="font-mono w-full overflow-clip">
+            ${ state.codeStack.length > 0 ? raw(state.codeStack[state.codeStack.length - 1].split(".").join("<br>.")) + ".out()" : "" }
           </div>
           <div class="text-left">
             Total ${ /*state.price*/ state.codeStack.length > 0 ? Number.parseFloat(state.codeStack[state.codeStack.length-1].length*0.01).toFixed(2).replace(".", ",") : "0" }€
@@ -675,7 +676,7 @@ export default function(state, emit) {
               ${ uiDom }
             </div>
             <div class="grid gap-4 grid-cols-3">
-              <div class="font-mono">
+              <div class="font-mono invisible">
                 ${ state.codeStack.length > 0 ? state.codeStack[state.codeStack.length - 1] + ".out()" : "" }
               </div>
               <div
