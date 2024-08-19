@@ -492,7 +492,7 @@ export default function(state, emit) {
       uiDom = html`
       <div class="grid grid-rows-[150px_1fr_150px] gap-4">
         <div class="text-3xl font-bold">
-          Can we recommend?
+          Can we recommend${ state.recommended === true ? " more" : "" }?
         </div>
         <div class="grid gap-4 grid-cols-3 w-full">
           ${
@@ -524,10 +524,9 @@ export default function(state, emit) {
         <div
           class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2"
           onclick=${ () => {
-            emit("clear order");
             emit("pushState", "#ui/checkout");
           } }>
-          Not Today
+          ${ state.recommended === true ? "Checkout" : "Not Today" }
         </div>
       </div>`;
       break;
