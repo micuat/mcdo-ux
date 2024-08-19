@@ -11,6 +11,7 @@ export default function(state, emitter) {
   state.eatIn = undefined;
   state.price = 0;
   state.cancelConfirm = false;
+  state.recommended = false;
   
   emitter.on("clear order", () => {
     state.codeStack = [];
@@ -18,6 +19,7 @@ export default function(state, emitter) {
     state.eatIn = undefined;
     state.price = 0;
     state.cancelConfirm = false;
+    state.recommended = false;
     src(s0).scale(1, window.x).out()
     state.popupWindow?.eval("src(s0).scale(1, window.x).out()");
   });

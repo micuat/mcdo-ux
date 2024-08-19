@@ -337,8 +337,8 @@ export default function(state, emit) {
                     osc(6,0.1,()=>window.slider0*1.5).layer(src(s3)).out();
                     console.log(`s3.initImage("${ e.url }");`)
                     state.popupWindow?.eval(`s3.initImage("${ e.url }");`);
-                    state.popupWindow?.eval(`osc(6,0.1,()=>window.slider0*1.5).layer(src(s3).scale(1,window.ix)).out();`);
-                    state.codeStack.push("osc(6,0.1,()=>window.slider0*1.5).layer(src(s3).scale(1,window.ix))");
+                    state.popupWindow?.eval(`osc(6,0.1,1.5).layer(src(s3).scale(()=>window.slider0+.5,window.ix)).out();`);
+                    state.codeStack.push("osc(6,0.1,1.5).layer(src(s3).scale(()=>window.slider0+.5,window.ix))");
                     state.idStack.push(e.id);
                   }
                 } }>
@@ -505,9 +505,10 @@ export default function(state, emit) {
                   eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
                   state.popupWindow?.eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
                   state.idStack.push(e.id);
+                  state.recommended = true;
                 }
 
-                emit("pushState", "#ui/checkout");
+                emit("pushState", "#ui/recommend");
               } }>
               <!--<div
                 class="w-2/4 h-2/4 bg-[url('${ e.url }')] bg-contain"
@@ -524,7 +525,7 @@ export default function(state, emit) {
           class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2"
           onclick=${ () => {
             emit("clear order");
-            emit("pushState", "#ui/where");
+            emit("pushState", "#ui/checkout");
           } }>
           Not Today
         </div>
