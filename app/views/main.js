@@ -87,28 +87,28 @@ const items = [
     id: "osc",
     name: "OSC",
     type: "source",
-    code: "osc()",
+    code: "osc(()=>window.slider0*29+1)",
     url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/osc.png?v=1723643856940"
   },
   {
     id: "noise",
     name: "Noise",
     type: "source",
-    code: "noise()",
+    code: "noise(()=>window.slider0*29+1)",
     url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/noise.png?v=1723643856940"
   },
   {
     id: "voronoi",
     name: "Voronoi",
     type: "source",
-    code: "voronoi()",
+    code: "voronoi(()=>window.slider0*29+1)",
     url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/voronoi.png?v=1723643856940"
   },
   {
     id: "camera",
     name: "Camera",
     type: "source",
-    code: "src(s0).scale(1, window.x)",
+    code: "src(s0).scale(()=>window.slider0+0.5, window.x)",
     url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/cam.png?v=1723643856940"
   },
 ];
@@ -141,21 +141,21 @@ const recommends = [
     id: "kaleid",
     name: "Kaleid",
     type: "recommend",
-    code: "scale(.5).kaleid()",
+    code: "scale(.5).kaleid(()=>window.slider1*7+1)",
     url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/kaleid.png?v=1723836783044"
   },
   {
     id: "colorama",
     name: "Colorama",
     type: "recommend",
-    code: "colorama(0.1)",
+    code: "colorama(()=>window.slider0)",
     url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/colorama.png?v=1723836781098"
   },
   {
     id: "contrast",
     name: "Contrast",
     type: "recommend",
-    code: "contrast(2)",
+    code: "contrast(()=>window.slider0*5)",
     url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/contrast.png?v=1723837863441"
   },
   {
@@ -163,6 +163,13 @@ const recommends = [
     name: "Invert",
     type: "recommend",
     code: "invert()",
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/invert.png?v=1723837863441"
+  },
+  {
+    id: "hue",
+    name: "Hue",
+    type: "recommend",
+    code: "invert(()=>window.slider0)",
     url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/invert.png?v=1723837863441"
   },
   {
@@ -403,9 +410,10 @@ export default function(state, emit) {
             Yes, make it a modulation
           </div>
           <div
-            class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
+            class="${state.forceCombo === true ? "hidden" : ""} cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
             onclick=${ () => {
-              emit("pushState", "#ui/recommend");
+              emit("pushState", "#ui/topping");
+              state.forceCombo = true;
             } }>
             <div
               class="w-2/4 h-2/4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/hamburger-svgrepo-com.svg?v=1723728329453')] bg-contain"
@@ -441,7 +449,7 @@ export default function(state, emit) {
                 state.idStack.push("combocamera");
               }
 
-              emit("pushState", "#ui/recommend");
+              emit("pushState", "#ui/size2");
             } }>
             <div
               class="w-2/4 h-2/4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/mod-camera.png?v=1723836785544')] bg-contain"
@@ -459,7 +467,7 @@ export default function(state, emit) {
                 state.idStack.push("combonoise");
               }
 
-              emit("pushState", "#ui/recommend");
+              emit("pushState", "#ui/size2");
             } }>
             <div
               class="w-2/4 h-2/4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/mod-noise.png?v=1723836868558')] bg-contain"
@@ -477,7 +485,7 @@ export default function(state, emit) {
                 state.idStack.push("combocolorosc");
               }
 
-              emit("pushState", "#ui/recommend");
+              emit("pushState", "#ui/size2");
             } }>
             <div
               class="w-2/4 h-2/4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/mod-color-osc.png?v=1723837044391')] bg-contain"
@@ -485,6 +493,40 @@ export default function(state, emit) {
             </div>
             Color Osc
           </div>
+        </div>
+      </div>`;
+      break;
+    case "size2":
+      uiDom = html`
+      <div class="grid grid-rows-[150px_1fr_128px] gap-4">
+        <div class="text-3xl font-bold">
+          Adjust the modulation size
+        </div>
+        <div>
+          <input type="range" id="size" name="size" min="0" max="128"
+            oninput=${ (e) => {
+              window.slider1 = e.target.value / 128;
+              if (state.popupWindow !== undefined) {
+                state.popupWindow.slider1 = e.target.value / 128;
+              }
+            } }
+            />
+          <label for="size">Size</label>
+        </div>
+        <div
+          class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2"
+          onclick=${ () => {
+            emit("pushState", "#ui/topping");
+          } }>
+          Next
+        </div>
+        <div
+          class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2"
+          onclick=${ () => {
+            emit("back order");
+            emit("pushState", "#ui/menutop");
+          } }>
+          Back
         </div>
       </div>`;
       break;
