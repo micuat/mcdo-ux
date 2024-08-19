@@ -228,6 +228,7 @@ export default function(state, emit) {
   let uipage = state.params.uipage !== undefined ? state.params.uipage : "where";
   const subpage = state.params.subpage !== undefined ? state.params.subpage : "burger";
 
+  // comment out for debugging
   // if (state.params.uipage !== "where") {
   //   if (state.eatIn === undefined) {
   //     uipage = "where";
@@ -353,7 +354,7 @@ export default function(state, emit) {
       uiDom = html`
       <div class="grid grid-rows-[150px_1fr_128px] gap-4">
         <div class="text-3xl font-bold">
-          Choose the size
+          Adjust the size
         </div>
         <div>
           <input type="range" id="size" name="size" min="0" max="128"
