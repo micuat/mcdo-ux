@@ -376,7 +376,7 @@ export default function(state, emit) {
           <label for="size0">Size</label>
         </div>
         <div
-          class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2"
+          class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2 bg-mcdo"
           onclick=${ () => {
             emit("pushState", "#ui/topping");
           } }>
@@ -515,7 +515,7 @@ export default function(state, emit) {
           <label for="size1">Size</label>
         </div>
         <div
-          class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2"
+          class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2 bg-mcdo"
           onclick=${ () => {
             emit("pushState", "#ui/recommend");
           } }>
@@ -695,14 +695,6 @@ export default function(state, emit) {
             </div>
             <div class="grid gap-4 grid-cols-2">
               <div
-                class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2 bg-mcdo"
-                onclick=${ () => {
-                  emit("render");
-                  state.cancelConfirm = false;
-                } }>
-                Continue Order
-              </div>
-              <div
                 class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2"
                 onclick=${ () => {
                   emit("clear order");
@@ -710,6 +702,14 @@ export default function(state, emit) {
                   state.cancelConfirm = false;
                 } }>
                 Start Over
+              </div>
+              <div
+                class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2 bg-mcdo"
+                onclick=${ () => {
+                  emit("render");
+                  state.cancelConfirm = false;
+                } }>
+                Continue Order
               </div>
             </div>
           </div>
