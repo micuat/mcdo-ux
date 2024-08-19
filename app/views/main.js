@@ -337,6 +337,7 @@ export default function(state, emit) {
                     eval(`${e.code}.out()`);
                     state.popupWindow?.eval(`${e.code}.out()`);
                     state.codeStack.push(e.code);
+                    state.nameStack.push(e.name);
                     state.idStack.push(e.id);
                   }
                   else {
@@ -346,6 +347,7 @@ export default function(state, emit) {
                     state.popupWindow?.eval(`s3.initImage("${ e.url }");`);
                     state.popupWindow?.eval(`osc(6,0.1,1.5).layer(src(s3).scale(()=>window.slider0+.5,window.ix)).out();`);
                     state.codeStack.push("osc(6,0.1,1.5).layer(src(s3).scale(()=>window.slider0+.5,window.ix))");
+                    state.nameStack.push(e.name);
                     state.idStack.push(e.id);
                   }
                 } }>
@@ -363,7 +365,8 @@ export default function(state, emit) {
         <div class="text-3xl font-bold">
           Adjust the size
         </div>
-        <div>
+        <div class="w-full mb-32">
+          <label class="" for="size0">${ state.nameStack.length > 0 ? state.nameStack[state.nameStack-1] : "a" }</label>
           <input type="range" id="size0" name="size0" min="0" max="128" value="64"
             class="w-full h-4 bg-gray-400 rounded-sm range-lg appearance-none cursor-pointer"
             oninput=${ (e) => {
@@ -373,7 +376,6 @@ export default function(state, emit) {
               }
             } }
             />
-          <label for="size0">Size</label>
         </div>
         <div
           class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2 bg-mcdo"
@@ -442,13 +444,15 @@ export default function(state, emit) {
         <div class="grid gap-4 grid-cols-3 w-full">
           <div
             class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
-            onclick=${ () => {
+            onmouseenter=${ () => {
+              state.popupWindow?.eval(`${state.codeStack[state.codeStack.length - 1]}.layer(src(s0).luma(()=>window.slider1).scale(1, window.x)).out()`);
             } }
             onclick=${ () => {
               if (state.codeStack.length > 0) {
                 state.codeStack.push(`${state.codeStack[state.codeStack.length - 1]}.layer(src(s0).luma(()=>window.slider1).scale(1, window.x))`);
                 eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
                 state.popupWindow?.eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
+                state.nameStack.push("Camera");
                 state.idStack.push("combocamera");
               }
 
@@ -462,11 +466,15 @@ export default function(state, emit) {
           </div>
           <div
             class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
+            onmouseenter=${ () => {
+              state.popupWindow?.eval(`${state.codeStack[state.codeStack.length - 1]}.modulate(noise(3),()=>window.slider1).out()`);
+            } }
             onclick=${ () => {
               if (state.codeStack.length > 0) {
                 state.codeStack.push(`${state.codeStack[state.codeStack.length - 1]}.modulate(noise(3),()=>window.slider1)`);
                 eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
                 state.popupWindow?.eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
+                state.nameStack.push("Noise");
                 state.idStack.push("combonoise");
               }
 
@@ -480,11 +488,15 @@ export default function(state, emit) {
           </div>
           <div
             class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
+            onmouseenter=${ () => {
+              state.popupWindow?.eval(`osc(6,0,()=>window.slider1*3).modulate(${state.codeStack[state.codeStack.length - 1]}.sub(gradient()),1).out()`);
+            } }
             onclick=${ () => {
               if (state.codeStack.length > 0) {
                 state.codeStack.push(`osc(6,0,()=>window.slider1*3).modulate(${state.codeStack[state.codeStack.length - 1]}.sub(gradient()),1)`);
                 eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
                 state.popupWindow?.eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
+                state.nameStack.push("Color Osc");
                 state.idStack.push("combocolorosc");
               }
 
@@ -505,8 +517,9 @@ export default function(state, emit) {
         <div class="text-3xl font-bold">
           Adjust the modulation size
         </div>
-        <div>
+        <div class="w-full mb-32">
           <input type="range" id="size1" name="size1" min="0" max="128" value="64"
+            class="w-full h-4 bg-gray-400 rounded-sm range-lg appearance-none cursor-pointer"
             oninput=${ (e) => {
               window.slider1 = e.target.value / 128;
               if (state.popupWindow !== undefined) {
@@ -514,7 +527,7 @@ export default function(state, emit) {
               }
             } }
             />
-          <label for="size1">Size</label>
+          <label class="hidden" for="size1">Size</label>
         </div>
         <div
           class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2 bg-mcdo"
@@ -538,8 +551,9 @@ export default function(state, emit) {
       <div class="grid grid-rows-[150px_1fr_150px] gap-4">
         <div class="text-3xl font-bold">
           Can we recommend${ state.recommended === true ? " more" : "" }?
-          <div>
+          <div class="w-full mb-32">
             <input type="range" id="size2" name="size2" min="0" max="128" value="64"
+              class="w-full h-4 bg-gray-400 rounded-sm range-lg appearance-none cursor-pointer"
               oninput=${ (e) => {
                 window.slider2 = e.target.value / 128;
                 if (state.popupWindow !== undefined) {
@@ -547,7 +561,7 @@ export default function(state, emit) {
                 }
               } }
               />
-            <label for="size2">hidden slider</label>
+            <label class="" for="size2">hidden slider</label>
           </div>
         </div>
         <div class="grid gap-4 grid-cols-3 w-full">
@@ -555,11 +569,15 @@ export default function(state, emit) {
             recommends.map(e => html`
             <div
               class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
+              onmouseenter=${ () => {
+                state.popupWindow?.eval(`${state.codeStack[state.codeStack.length - 1]}.${e.code}.out()`);
+              } }
               onclick=${ () => {
                 if (state.codeStack.length > 0) {
                   state.codeStack.push(`${state.codeStack[state.codeStack.length - 1]}.${e.code}`);
                   eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
                   state.popupWindow?.eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
+                  state.nameStack.push(e.name);
                   state.idStack.push(e.id);
                   // state.recommended = true;
                 }

@@ -7,6 +7,7 @@ export default function(state, emitter) {
   state.isMobile = isMobile();
 
   state.codeStack = [];
+  state.nameStack = [];
   state.idStack = [];
   state.eatIn = undefined;
   state.price = 0;
@@ -19,6 +20,7 @@ export default function(state, emitter) {
   
   emitter.on("clear order", () => {
     state.codeStack = [];
+    state.nameStack = [];
     state.idStack = [];
     state.eatIn = undefined;
     state.price = 0;
