@@ -1,4 +1,5 @@
 import html from "choo/html";
+import raw from "choo/html/raw";
 
 import HydraCanvas from "../components/hydra-canvas.js";
 import Editor from "../components/editor.js";
@@ -496,7 +497,7 @@ export default function(state, emit) {
                 state.codeStack.push(`osc(6,0,()=>window.slider1*3).modulate(${state.codeStack[state.codeStack.length - 1]}.sub(gradient()),1)`);
                 eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
                 state.popupWindow?.eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
-                state.nameStack.push("Color Osc");
+                state.nameStack.push("Osc");
                 state.idStack.push("combocolorosc");
               }
 
@@ -506,7 +507,7 @@ export default function(state, emit) {
               class="w-2/4 h-2/4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/mod-color-osc.png?v=1723837044391')] bg-contain"
             >
             </div>
-            Color Osc
+            Osc
           </div>
         </div>
       </div>`;
@@ -632,9 +633,9 @@ export default function(state, emit) {
         </div>
         <div class="grid gap-4 grid-rows-2 w-full">
           <div class="font-mono w-full overflow-clip">
-            ${ state.codeStack.length > 0 ? raw(state.codeStack[state.codeStack.length - 1].split(".").join("<br>.")) + ".out()" : "" }
+            ${ state.codeStack.length > 0 ? raw(state.codeStack[state.codeStack.length - 1].split(").").join(")<br>.") + ".out()") : "" }
           </div>
-          <div class="text-left">
+          <div class="text-left text-3xl">
             Total ${ /*state.price*/ state.codeStack.length > 0 ? Number.parseFloat(state.codeStack[state.codeStack.length-1].length*0.01).toFixed(2).replace(".", ",") : "0" }€
           </div>
 
