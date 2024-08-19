@@ -443,6 +443,8 @@ export default function(state, emit) {
           <div
             class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
             onclick=${ () => {
+            } }
+            onclick=${ () => {
               if (state.codeStack.length > 0) {
                 state.codeStack.push(`${state.codeStack[state.codeStack.length - 1]}.layer(src(s0).luma(()=>window.slider1).scale(1, window.x))`);
                 eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
