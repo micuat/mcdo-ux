@@ -228,11 +228,11 @@ export default function(state, emit) {
   let uipage = state.params.uipage !== undefined ? state.params.uipage : "where";
   const subpage = state.params.subpage !== undefined ? state.params.subpage : "burger";
 
-  if (state.params.uipage !== "where") {
-    if (state.eatIn === undefined) {
-      uipage = "where";
-    }
-  }
+  // if (state.params.uipage !== "where") {
+  //   if (state.eatIn === undefined) {
+  //     uipage = "where";
+  //   }
+  // }
 
   let uiDom = "placeholder";
   switch (uipage) {
@@ -558,7 +558,7 @@ export default function(state, emit) {
             ${ state.codeStack.length > 0 ? state.codeStack[state.codeStack.length - 1] + ".out()" : "" }
           </div>
           <div class="text-left">
-            Total ${ /*state.price*/ state.codeStack.length > 0 ? state.codeStack[state.codeStack.length-1].length : "0" }€
+            Total ${ /*state.price*/ state.codeStack.length > 0 ? Number.parseFloat(state.codeStack[state.codeStack.length-1].length*0.01).toFixed(2).replace(".", ",") : "0" }€
           </div>
 
         </div>
@@ -611,7 +611,7 @@ export default function(state, emit) {
                 Cancel Order
               </div>
               <div class="text-right">
-                Total ${ /*state.price*/ state.codeStack.length > 0 ? state.codeStack[state.codeStack.length-1].length : "0" }€
+            Total ${ /*state.price*/ state.codeStack.length > 0 ? Number.parseFloat(state.codeStack[state.codeStack.length-1].length*0.01).toFixed(2).replace(".", ",") : "0" }€
               </div>
             </div>
           </div>
