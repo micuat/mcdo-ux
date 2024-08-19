@@ -13,6 +13,9 @@ export default function(state, emitter) {
   state.cancelConfirm = false;
   state.forceCombo = false;
   state.recommended = false;
+  window.slider0 = 0.5;
+  window.slider1 = 0.5;
+  window.slider2 = 0.5;
   
   emitter.on("clear order", () => {
     state.codeStack = [];
@@ -22,6 +25,9 @@ export default function(state, emitter) {
     state.cancelConfirm = false;
     state.forceCombo = false;
     state.recommended = false;
+    window.slider0 = 0.5;
+    window.slider1 = 0.5;
+    window.slider2 = 0.5;
     src(s0).scale(1, window.x).out()
     state.popupWindow?.eval("src(s0).scale(1, window.x).out()");
   });
@@ -77,8 +83,6 @@ export default function(state, emitter) {
               window.x = ()=>-state.videoElement.width/state.videoElement.height;
               window.ix = ()=>1;
             }
-            window.slider0 = 0;
-            window.ss0 = ()=>window.slider0;
             src(s0).scale(1, window.x).out()
           });
         });

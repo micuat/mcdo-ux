@@ -141,91 +141,91 @@ const recommends = [
     id: "kaleid",
     name: "Kaleid",
     type: "recommend",
-    code: "scale(.5).kaleid(()=>window.slider1*7+1)",
+    code: "scale(.5).kaleid(()=>window.slider2*7+1)",
     url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/kaleid.png?v=1723836783044"
   },
   {
     id: "colorama",
     name: "Colorama",
     type: "recommend",
-    code: "colorama(()=>window.slider0)",
+    code: "colorama(()=>window.slider2)",
     url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/colorama.png?v=1723836781098"
   },
   {
     id: "contrast",
     name: "Contrast",
     type: "recommend",
-    code: "contrast(()=>window.slider0*5)",
+    code: "contrast(()=>window.slider2*5)",
     url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/contrast.png?v=1723837863441"
   },
   {
     id: "invert",
     name: "Invert",
     type: "recommend",
-    code: "invert()",
+    code: "invert(()=>window.slider2)",
     url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/invert.png?v=1723837863441"
   },
   {
     id: "hue",
     name: "Hue",
     type: "recommend",
-    code: "invert(()=>window.slider0)",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/invert.png?v=1723837863441"
+    code: "hue(()=>window.slider2)",
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/hue.png?v=1724060663740"
   },
   {
     id: "pixelate",
     name: "Pixelate",
     type: "recommend",
-    code: "pixelate(8,8)",
+    code: "pixelate(()=>window.slider2*64,()=>window.slider2*64)",
     url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/pixelate.png?v=1723837863441"
   },
   {
     id: "posterize",
     name: "Posterize",
     type: "recommend",
-    code: "posterize(4,1)",
+    code: "posterize(()=>window.slider2*8,1)",
     url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/posterize.png?v=1723837863441"
   },
   {
     id: "scrollx",
     name: "ScrollX",
     type: "recommend",
-    code: "scrollX(0,0.1)",
+    code: "scrollX(0,()=>window.slider2)",
     url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/scrollx.png?v=1723837863441"
   },
   {
     id: "scrolly",
     name: "ScrollY",
     type: "recommend",
-    code: "scrollY(0,0.1)",
+    code: "scrollY(0,()=>window.slider2)",
     url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/scrolly.png?v=1723837863441"
   },
   {
     id: "rotate",
     name: "Rotate",
     type: "recommend",
-    code: "rotate(0,0.1)",
+    code: "rotate(0,()=>window.slider2)",
     url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/rotate.png?v=1723837863441"
   },
   {
     id: "thresh",
     name: "Thresh",
     type: "recommend",
-    code: "thresh()",
+    code: "thresh(()=>window.slider2)",
     url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/thresh.png?v=1723837863441"
   },
   {
     id: "saturate",
     name: "Saturate",
     type: "recommend",
-    code: "saturate(2)",
+    code: "saturate(()=>window.slider2*10)",
     url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/saturate.png?v=1723837863441"
   },
   {
     id: "repeat",
     name: "Repeat",
     type: "recommend",
-    code: "repeat(3,3)",
+    code: "repeat(()=>window.slider2*12,()=>window.slider2*12)",
     url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/repeat.png?v=1723837863441"
   },
 ]
@@ -364,7 +364,7 @@ export default function(state, emit) {
           Adjust the size
         </div>
         <div>
-          <input type="range" id="size" name="size" min="0" max="128"
+          <input type="range" id="size0" name="size0" min="0" max="128" value="64"
             oninput=${ (e) => {
               window.slider0 = e.target.value / 128;
               if (state.popupWindow !== undefined) {
@@ -372,7 +372,7 @@ export default function(state, emit) {
               }
             } }
             />
-          <label for="size">Size</label>
+          <label for="size0">Size</label>
         </div>
         <div
           class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2"
@@ -443,7 +443,7 @@ export default function(state, emit) {
             class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
             onclick=${ () => {
               if (state.codeStack.length > 0) {
-                state.codeStack.push(`${state.codeStack[state.codeStack.length - 1]}.layer(src(s0).luma().scale(1, window.x))`);
+                state.codeStack.push(`${state.codeStack[state.codeStack.length - 1]}.layer(src(s0).luma(()=>window.slider1).scale(1, window.x))`);
                 eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
                 state.popupWindow?.eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
                 state.idStack.push("combocamera");
@@ -461,7 +461,7 @@ export default function(state, emit) {
             class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
             onclick=${ () => {
               if (state.codeStack.length > 0) {
-                state.codeStack.push(`${state.codeStack[state.codeStack.length - 1]}.modulate(noise(3))`);
+                state.codeStack.push(`${state.codeStack[state.codeStack.length - 1]}.modulate(noise(3),()=>window.slider1)`);
                 eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
                 state.popupWindow?.eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
                 state.idStack.push("combonoise");
@@ -479,7 +479,7 @@ export default function(state, emit) {
             class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
             onclick=${ () => {
               if (state.codeStack.length > 0) {
-                state.codeStack.push(`osc(6,0,1.5).modulate(${state.codeStack[state.codeStack.length - 1]}.sub(gradient()),1)`);
+                state.codeStack.push(`osc(6,0,()=>window.slider1*3).modulate(${state.codeStack[state.codeStack.length - 1]}.sub(gradient()),1)`);
                 eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
                 state.popupWindow?.eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
                 state.idStack.push("combocolorosc");
@@ -503,7 +503,7 @@ export default function(state, emit) {
           Adjust the modulation size
         </div>
         <div>
-          <input type="range" id="size" name="size" min="0" max="128"
+          <input type="range" id="size1" name="size1" min="0" max="128" value="64"
             oninput=${ (e) => {
               window.slider1 = e.target.value / 128;
               if (state.popupWindow !== undefined) {
@@ -511,12 +511,12 @@ export default function(state, emit) {
               }
             } }
             />
-          <label for="size">Size</label>
+          <label for="size1">Size</label>
         </div>
         <div
           class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2"
           onclick=${ () => {
-            emit("pushState", "#ui/topping");
+            emit("pushState", "#ui/recommend");
           } }>
           Next
         </div>
@@ -524,7 +524,7 @@ export default function(state, emit) {
           class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2"
           onclick=${ () => {
             emit("back order");
-            emit("pushState", "#ui/menutop");
+            emit("pushState", "#ui/side");
           } }>
           Back
         </div>
@@ -535,6 +535,17 @@ export default function(state, emit) {
       <div class="grid grid-rows-[150px_1fr_150px] gap-4">
         <div class="text-3xl font-bold">
           Can we recommend${ state.recommended === true ? " more" : "" }?
+          <div>
+            <input type="range" id="size2" name="size2" min="0" max="128" value="64"
+              oninput=${ (e) => {
+                window.slider2 = e.target.value / 128;
+                if (state.popupWindow !== undefined) {
+                  state.popupWindow.slider2 = e.target.value / 128;
+                }
+              } }
+              />
+            <label for="size2">hidden slider</label>
+          </div>
         </div>
         <div class="grid gap-4 grid-cols-3 w-full">
           ${
@@ -547,10 +558,11 @@ export default function(state, emit) {
                   eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
                   state.popupWindow?.eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
                   state.idStack.push(e.id);
-                  state.recommended = true;
+                  // state.recommended = true;
                 }
 
-                emit("pushState", "#ui/recommend");
+                emit("pushState", "#ui/checkout");
+                // emit("pushState", "#ui/recommend");
               } }>
               <!--<div
                 class="w-2/4 h-2/4 bg-[url('${ e.url }')] bg-contain"
