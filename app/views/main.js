@@ -365,6 +365,7 @@ export default function(state, emit) {
         </div>
         <div>
           <input type="range" id="size0" name="size0" min="0" max="128" value="64"
+            class="w-full h-4 bg-gray-400 rounded-sm range-lg appearance-none cursor-pointer"
             oninput=${ (e) => {
               window.slider0 = e.target.value / 128;
               if (state.popupWindow !== undefined) {
@@ -694,7 +695,7 @@ export default function(state, emit) {
             </div>
             <div class="grid gap-4 grid-cols-2">
               <div
-                class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2"
+                class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2 bg-mcdo"
                 onclick=${ () => {
                   emit("render");
                   state.cancelConfirm = false;

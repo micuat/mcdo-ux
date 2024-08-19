@@ -21,7 +21,8 @@
     "autoprefixer": "^10.4.17",
     "vite": "^5.1.0",
     "@codemirror/language": "^6.10.1",
-    "is-mobile": "^4.0.0"
+    "is-mobile": "^4.0.0",
+    "flowbite": "^2.5.1"
   },
   "devDependencies": {},
   "browserslist": [

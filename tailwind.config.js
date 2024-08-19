@@ -2,12 +2,18 @@
 module.exports = {
   content: [],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        mcdo: '#FFC72C',
+      }
+    },
   },
   content: [
     "./index.html",
     "./app/**/*.{js,ts,jsx,tsx}",
   ],
-  plugins: [],
+  plugins: [
+    require('flowbite/plugin')
+  ],
 }
 
