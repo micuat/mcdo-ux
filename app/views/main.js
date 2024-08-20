@@ -590,7 +590,11 @@ export default function(state, emit) {
                   
                   const data = {
                     formatted: {
-                      
+                      in0: window.slider0,
+                      in1: window.slider1,
+                      in2: state.elementStack[1].id,
+                      out0: window.slider2,
+                      out1: state.elementStack[2].id,
                     },
                     raw: {
                       stack: state.elementStack,
@@ -599,8 +603,8 @@ export default function(state, emit) {
                       slider2: window.slider2,
                     },
                   }
-                  
-                  console.log(data)
+                  state.trainingSamples.push(data);
+                  console.log(state.trainingSamples);
                   // state.recommended = true;
                 }
 
