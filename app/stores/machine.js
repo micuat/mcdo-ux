@@ -8,6 +8,7 @@ export default function(state, emitter) {
 
   state.codeStack = [];
   state.nameStack = [];
+  state.elementStack = [];
   state.idStack = [];
   state.eatIn = undefined;
   state.price = 0;
@@ -18,9 +19,12 @@ export default function(state, emitter) {
   window.slider1 = 0.02;
   window.slider2 = 0.02;
   
+  state.trainingSamples = [];
+  
   emitter.on("clear order", () => {
     state.codeStack = [];
     state.nameStack = [];
+    state.elementStack = [];
     state.idStack = [];
     state.eatIn = undefined;
     state.price = 0;

@@ -337,6 +337,7 @@ export default function(state, emit) {
                   if (e.code !== undefined) {
                     eval(`${e.code}.out()`);
                     state.popupWindow?.eval(`${e.code}.out()`);
+                    state.elementStack.push(e);
                     state.codeStack.push(e.code);
                     state.nameStack.push(e.name);
                     state.idStack.push(e.id);
@@ -348,6 +349,7 @@ export default function(state, emit) {
                     state.popupWindow?.eval(`s3.initImage("${ e.url }");`);
                     state.popupWindow?.eval(`osc(6,0.1,1.5).layer(src(s3).scale(()=>window.slider0+.5,window.ix)).out();`);
                     state.codeStack.push("osc(6,0.1,1.5).layer(src(s3).scale(()=>window.slider0+.5,window.ix))");
+                    state.elementStack.push(e);
                     state.nameStack.push(e.name);
                     state.idStack.push(e.id);
                   }
@@ -369,7 +371,7 @@ export default function(state, emit) {
         <div class="w-full mb-32 grid gap-4 grid-cols-[1fr_3fr]">
           <label class="text-xl text-right mt-[-0.35em]" for="size0">${ state.nameStack.length > 0 ? state.nameStack[state.nameStack.length-1] : "" }</label>
           <input type="range" id="size0" name="size0" min="0" max="128" value="${window.slider0*128}"
-            class="w-full h-4 bg-gray-400 rounded-sm range-lg appearance-none cursor-pointer "
+            class="w-full h-4 bg-gray-400 rounded-sm range-lg appearance-none cursor-pointer"
             oninput=${ (e) => {
               window.slider0 = e.target.value / 128;
               if (state.popupWindow !== undefined) {
@@ -453,6 +455,7 @@ export default function(state, emit) {
                 state.codeStack.push(`${state.codeStack[state.codeStack.length - 1]}.layer(src(s0).luma(()=>window.slider1).scale(1, window.x))`);
                 eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
                 state.popupWindow?.eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
+                state.elementStack.push({ name: "Camera", id: "combocamera" });
                 state.nameStack.push("Camera");
                 state.idStack.push("combocamera");
               }
@@ -475,6 +478,7 @@ export default function(state, emit) {
                 state.codeStack.push(`${state.codeStack[state.codeStack.length - 1]}.modulate(noise(3),()=>window.slider1)`);
                 eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
                 state.popupWindow?.eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
+                state.elementStack.push({ name: "Noise", id: "combonoise" });
                 state.nameStack.push("Noise");
                 state.idStack.push("combonoise");
               }
@@ -497,6 +501,7 @@ export default function(state, emit) {
                 state.codeStack.push(`osc(6,0,()=>window.slider1*3).modulate(${state.codeStack[state.codeStack.length - 1]}.sub(gradient()),1)`);
                 eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
                 state.popupWindow?.eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
+                state.elementStack.push({ name: "Osc", id: "combocolorosc" });
                 state.nameStack.push("Osc");
                 state.idStack.push("combocolorosc");
               }
@@ -579,8 +584,23 @@ export default function(state, emit) {
                   state.codeStack.push(`${state.codeStack[state.codeStack.length - 1]}.${e.code}`);
                   eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
                   state.popupWindow?.eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
+                  state.elementStack.push(e);
                   state.nameStack.push(e.name);
                   state.idStack.push(e.id);
+                  
+                  const data = {
+                    formatted: {
+                      
+                    },
+                    raw: {
+                      stack: state.elementStack,
+                      slider0: window.slider0,
+                      slider1: window.slider1,
+                      slider2: window.slider2,
+                    },
+                  }
+                  
+                  console.log(data)
                   // state.recommended = true;
                 }
 
