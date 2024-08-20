@@ -369,7 +369,7 @@ export default function(state, emit) {
         <div class="w-full mb-32 grid gap-4 grid-cols-[1fr_3fr]">
           <label class="text-xl text-right mt-[-0.35em]" for="size0">${ state.nameStack.length > 0 ? state.nameStack[state.nameStack.length-1] : "" }</label>
           <input type="range" id="size0" name="size0" min="0" max="128" value="${window.slider0*128}"
-            class="w-full h-4 bg-gray-400 rounded-sm range-lg appearance-none cursor-pointer"
+            class="w-full h-4 bg-gray-400 rounded-sm range-lg appearance-none cursor-pointer "
             oninput=${ (e) => {
               window.slider0 = e.target.value / 128;
               if (state.popupWindow !== undefined) {
