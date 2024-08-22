@@ -3,6 +3,8 @@ import isMobile from "is-mobile";
 
 import Editor from "../components/editor.js";
 
+import { items, tabs, recommends } from "../libs/menu.js"
+
 export default function(state, emitter) {
   state.isMobile = isMobile();
   
@@ -66,6 +68,12 @@ export default function(state, emitter) {
       });
     }
     if (state.trainingMode) {
+      window.slider0 = Math.random();
+      window.slider1 = Math.random();
+      if (state.popupWindow !== undefined) {
+        state.popupWindow.slider0 = window.slider0;
+        state.popupWindow.slider1 = window.slider1;
+      }
       emitter.emit("menu select");
       emitter.emit("pushState", "#ui/hidden");
     }
@@ -76,7 +84,7 @@ export default function(state, emitter) {
   
   emitter.on("menu select", e => {
     if (state.trainingMode) {
-      // set e
+      e = items[Math.floor(Math.random() * items.length)];
     }
     if (e.code !== undefined) {
       eval(`${e.code}.out()`);
@@ -106,8 +114,9 @@ export default function(state, emitter) {
   });
   
   emitter.on("side select", name => {
+    const labels = ["combocamera", "combonoise", "combocolorosc"]
     if (state.trainingMode) {
-      // set name
+      name = labels[Math.floor(Math.random() * labels.length)];
     }
 
     if (state.codeStack.length > 0) {
@@ -138,7 +147,33 @@ export default function(state, emitter) {
     }
 
     if (state.trainingMode) {
-      emitter.emit("recommend select");
+      let e = recommends[Math.floor(Math.random() * recommends.length)];
+      // emitter.emit("recommend select");
+      state.codeStack.push(`${state.codeStack[state.codeStack.length - 1]}.${e.code}`);
+      eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
+      state.popupWindow?.eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
+      state.elementStack.push(e);
+      state.nameStack.push(e.name);
+      state.idStack.push(e.id);
+
+      const data = {
+        formatted: {
+          in0: window.slider0,
+          in1: window.slider1,
+          in2: state.elementStack[1].id,
+          out0: window.slider2,
+          out1: state.elementStack[2].id,
+        },
+        raw: {
+          stack: state.elementStack,
+          slider0: window.slider0,
+          slider1: window.slider1,
+          slider2: window.slider2,
+        },
+      }
+      state.trainingSamples.push(data);
+      console.log(state.trainingSamples);
+      // state.recommended = true;
     }
     else {
       emitter.emit("pushState", "#ui/size2");
