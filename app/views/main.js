@@ -497,7 +497,7 @@ export default function(state, emit) {
             <div
               class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
               onclick=${ () => {
-                emit("recommend select", e)
+                emit("recommend select", e);
               } }>
               <!--<div
                 class="w-2/4 h-2/4 bg-[url('${ e.url }')] bg-contain"
@@ -517,6 +517,29 @@ export default function(state, emit) {
           } }>
           ${ state.recommended === true ? "Checkout" : "Not Today" }
         </div>
+      </div>`;
+      break;
+    case "hidden":
+      uiDom = html`
+      <div class="grid grid-rows-[150px_1fr_150px] gap-4">
+        <div class="text-3xl font-bold">
+          hidden page
+          <div class="w-full mb-32 grid gap-4 grid-cols-[1fr_3fr]">
+            <label class="text-xl text-right mt-[-0.35em]" for="size2">${ state.nameStack.length > 0 ? state.nameStack[state.nameStack.length-1] : "" }</label>
+            <input type="range" id="size2" name="size2" min="0" max="128" value="${window.slider2*128}"
+              class="w-full h-4 bg-gray-400 rounded-sm range-lg appearance-none cursor-pointer"
+              oninput=${ (e) => {
+                window.slider2 = e.target.value / 128;
+                if (state.popupWindow !== undefined) {
+                  state.popupWindow.slider2 = e.target.value / 128;
+                }
+              } }
+              />
+            <label class="" for="size2">hidden slider</label>
+          </div>
+        </div>
+        oioi
+
       </div>`;
       break;
     case "checkout":

@@ -65,7 +65,12 @@ export default function(state, emitter) {
         w.close();
       });
     }
-    emitter.emit("pushState", "#ui/menutop");
+    if (state.trainingMode) {
+      emitter.emit("pushState", "#ui/hidden");
+    }
+    else {
+      emitter.emit("pushState", "#ui/menutop");
+    }
   });
   
   emitter.on("menu select", e => {
@@ -120,7 +125,40 @@ export default function(state, emitter) {
     }
 
     emitter.emit("pushState", "#ui/size2");
-  })
+  });
+  
+  emitter.on("recommend select", e => {
+    if (state.codeStack.length > 0) {
+      state.codeStack.push(`${state.codeStack[state.codeStack.length - 1]}.${e.code}`);
+      eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
+      state.popupWindow?.eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
+      state.elementStack.push(e);
+      state.nameStack.push(e.name);
+      state.idStack.push(e.id);
+
+      const data = {
+        formatted: {
+          in0: window.slider0,
+          in1: window.slider1,
+          in2: state.elementStack[1].id,
+          out0: window.slider2,
+          out1: state.elementStack[2].id,
+        },
+        raw: {
+          stack: state.elementStack,
+          slider0: window.slider0,
+          slider1: window.slider1,
+          slider2: window.slider2,
+        },
+      }
+      state.trainingSamples.push(data);
+      console.log(state.trainingSamples);
+      // state.recommended = true;
+    }
+
+    emitter.emit("pushState", "#ui/checkout");
+    // emit("pushState", "#ui/recommend");
+  });
   
   emitter.on("DOMContentLoaded", () => {
     // emitter.emit("render");
