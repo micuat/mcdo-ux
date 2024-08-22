@@ -155,29 +155,30 @@ export default function(state, emitter) {
       state.elementStack.push(e);
       state.nameStack.push(e.name);
       state.idStack.push(e.id);
-
-      const data = {
-        formatted: {
-          in0: window.slider0,
-          in1: window.slider1,
-          in2: state.elementStack[1].id,
-          out0: window.slider2,
-          out1: state.elementStack[2].id,
-        },
-        raw: {
-          stack: state.elementStack,
-          slider0: window.slider0,
-          slider1: window.slider1,
-          slider2: window.slider2,
-        },
-      }
-      state.trainingSamples.push(data);
-      console.log(state.trainingSamples);
-      // state.recommended = true;
     }
     else {
       emitter.emit("pushState", "#ui/size2");
     }
+  });
+  
+  emitter.on("training save", e => {
+    const data = {
+      formatted: {
+        in0: window.slider0,
+        in1: window.slider1,
+        in2: state.elementStack[1].id,
+        out0: window.slider2,
+        out1: state.elementStack[2].id,
+      },
+      raw: {
+        stack: state.elementStack,
+        slider0: window.slider0,
+        slider1: window.slider1,
+        slider2: window.slider2,
+      },
+    }
+    state.trainingSamples.push(data);
+    console.log(state.trainingSamples);
   });
   
   emitter.on("recommend select", e => {

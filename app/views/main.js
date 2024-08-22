@@ -313,6 +313,13 @@ export default function(state, emit) {
               />
             <label class="" for="size2">hidden slider</label>
           </div>
+          <button onclick=${() => {
+            emit("training save");
+            emit("clear order");
+            emit("pushState", "#ui/where");
+          }}>
+          save
+          </button>
         </div>
         oioi
 
