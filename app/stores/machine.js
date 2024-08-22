@@ -50,6 +50,77 @@ export default function(state, emitter) {
     }
   });
 
+  emitter.on("where select", (eatIn) => {
+    state.eatIn = eatIn;
+    if (state.popupWindow === undefined) {
+      const url_string = window.location.origin + "/#hydra";
+      const w = window.open(
+        url_string,
+        "",
+        "menubar=no,location=no,resizable=yes,scrollbars=no,status=no"
+      );
+      w.resizeTo(600, 400);
+      state.popupWindow = w;
+      window.addEventListener("beforeunload", function(e){
+        w.close();
+      });
+    }
+    emitter.emit("pushState", "#ui/menutop");
+  });
+  
+  emitter.on("menu select", e => {
+    if (e.code !== undefined) {
+      eval(`${e.code}.out()`);
+      state.popupWindow?.eval(`${e.code}.out()`);
+      state.elementStack.push(e);
+      state.codeStack.push(e.code);
+      state.nameStack.push(e.name);
+      state.idStack.push(e.id);
+    }
+    else {
+      s3.initImage(e.url);
+      osc(6,0.1,()=>window.slider0*1.5).layer(src(s3)).out();
+      console.log(`s3.initImage("${ e.url }");`)
+      state.popupWindow?.eval(`s3.initImage("${ e.url }");`);
+      state.popupWindow?.eval(`osc(6,0.1,1.5).layer(src(s3).scale(()=>window.slider0+.5,window.ix)).out();`);
+      state.codeStack.push("osc(6,0.1,1.5).layer(src(s3).scale(()=>window.slider0+.5,window.ix))");
+      state.elementStack.push(e);
+      state.nameStack.push(e.name);
+      state.idStack.push(e.id);
+    }
+    emitter.emit("pushState", "#ui/size");
+  });
+  
+  emitter.on("side select", name => {
+    if (state.codeStack.length > 0) {
+      if (name === "combocamera") {
+        state.codeStack.push(`${state.codeStack[state.codeStack.length - 1]}.layer(src(s0).luma(()=>window.slider1).scale(1, window.x))`);
+        eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
+        state.popupWindow?.eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
+        state.elementStack.push({ name: "Camera", id: "combocamera" });
+        state.nameStack.push("Camera");
+        state.idStack.push("combocamera");
+      }
+      if (name === "combonoise") {
+        state.codeStack.push(`${state.codeStack[state.codeStack.length - 1]}.modulate(noise(3),()=>window.slider1)`);
+        eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
+        state.popupWindow?.eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
+        state.elementStack.push({ name: "Noise", id: "combonoise" });
+        state.nameStack.push("Noise");
+        state.idStack.push("combonoise");
+      }
+      if (name === "combocolorosc") {
+        state.codeStack.push(`osc(6,0,()=>window.slider1*3).modulate(${state.codeStack[state.codeStack.length - 1]}.sub(gradient()),1)`);
+        eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
+        state.popupWindow?.eval(`${state.codeStack[state.codeStack.length - 1]}.out()`);
+        state.elementStack.push({ name: "Osc", id: "combocolorosc" });
+        state.nameStack.push("Osc");
+        state.idStack.push("combocolorosc");
+      }
+    }
+
+    emitter.emit("pushState", "#ui/size2");
+  })
   
   emitter.on("DOMContentLoaded", () => {
     // emitter.emit("render");
