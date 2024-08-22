@@ -66,6 +66,7 @@ export default function(state, emitter) {
       });
     }
     if (state.trainingMode) {
+      emitter.emit("menu select");
       emitter.emit("pushState", "#ui/hidden");
     }
     else {
@@ -74,6 +75,9 @@ export default function(state, emitter) {
   });
   
   emitter.on("menu select", e => {
+    if (state.trainingMode) {
+      // set e
+    }
     if (e.code !== undefined) {
       eval(`${e.code}.out()`);
       state.popupWindow?.eval(`${e.code}.out()`);
@@ -93,10 +97,19 @@ export default function(state, emitter) {
       state.nameStack.push(e.name);
       state.idStack.push(e.id);
     }
-    emitter.emit("pushState", "#ui/size");
+    if (state.trainingMode) {
+      emitter.emit("side select");
+    }
+    else {
+      emitter.emit("pushState", "#ui/size");
+    }
   });
   
   emitter.on("side select", name => {
+    if (state.trainingMode) {
+      // set name
+    }
+
     if (state.codeStack.length > 0) {
       if (name === "combocamera") {
         state.codeStack.push(`${state.codeStack[state.codeStack.length - 1]}.layer(src(s0).luma(()=>window.slider1).scale(1, window.x))`);
@@ -124,7 +137,12 @@ export default function(state, emitter) {
       }
     }
 
-    emitter.emit("pushState", "#ui/size2");
+    if (state.trainingMode) {
+      emitter.emit("recommend select");
+    }
+    else {
+      emitter.emit("pushState", "#ui/size2");
+    }
   });
   
   emitter.on("recommend select", e => {
@@ -156,8 +174,12 @@ export default function(state, emitter) {
       // state.recommended = true;
     }
 
-    emitter.emit("pushState", "#ui/checkout");
-    // emit("pushState", "#ui/recommend");
+    if (state.trainingMode) {
+    }
+    else {
+      emitter.emit("pushState", "#ui/checkout");
+      // emit("pushState", "#ui/recommend");
+    }
   });
   
   emitter.on("DOMContentLoaded", () => {
