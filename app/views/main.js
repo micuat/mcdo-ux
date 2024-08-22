@@ -238,6 +238,9 @@ export default function(state, emit) {
 
   // comment out for debugging
   if (state.params.uipage !== "where") {
+    if (state.params.uipage === "training") {
+      uipage = "where";
+    }
     if (state.eatIn === undefined) {
       uipage = "where";
     }
@@ -255,20 +258,7 @@ export default function(state, emit) {
             onclick=${ () => {
               state.eatIn = true;
               emit("pushState", "#ui/menutop");
-        
-              if (state.popupWindow === undefined) {
-                const url_string = window.location.origin + "/#hydra";
-                const w = window.open(
-                  url_string,
-                  "",
-                  "menubar=no,location=no,resizable=yes,scrollbars=no,status=no"
-                );
-                w.resizeTo(600, 400);
-                state.popupWindow = w;
-                window.addEventListener("beforeunload", function(e){
-                  w.close();
-                });
-              }
+              emit("where select", true);
             } }>
             <div
               class="w-2/4 h-2/4 mb-4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/fast-food-svgrepo-com.svg?v=1723712001110')] bg-contain"
@@ -283,20 +273,7 @@ export default function(state, emit) {
             onclick=${ () => {
               state.eatIn = false;
               emit("pushState", "#ui/menutop");
-
-              if (state.popupWindow === undefined) {
-                const url_string = window.location.origin + "/#hydra";
-                const w = window.open(
-                  url_string,
-                  "",
-                  "menubar=no,location=no,resizable=yes,scrollbars=no,status=no"
-                );
-                w.resizeTo(600, 400);
-                state.popupWindow = w;
-                window.addEventListener("beforeunload", function(e){
-                  w.close();
-                });
-              }
+              emit("where select", false);
             } }>
             <div
               class="w-2/4 h-2/4 mb-4 bg-[url('https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/take-away-svgrepo-com.svg?v=1723712005688')] bg-contain"
@@ -698,6 +675,7 @@ export default function(state, emit) {
               </div>
             </div>
             <div>
+              ${ state.trainingMode ? "🟡training mode" : "" }
               ${ uiDom }
             </div>
             <div class="grid gap-4 grid-cols-3">

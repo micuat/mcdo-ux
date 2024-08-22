@@ -5,6 +5,8 @@ import Editor from "../components/editor.js";
 
 export default function(state, emitter) {
   state.isMobile = isMobile();
+  
+  state.trainingMode = state.params.uipage === "training";
 
   state.codeStack = [];
   state.nameStack = [];
@@ -48,6 +50,7 @@ export default function(state, emitter) {
     }
   });
 
+  
   emitter.on("DOMContentLoaded", () => {
     // emitter.emit("render");
 
