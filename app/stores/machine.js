@@ -5,7 +5,7 @@ import Editor from "../components/editor.js";
 
 import { items, tabs, recommends } from "../libs/menu.js"
 
-let classifer;
+let predictor;
 
 export default function(state, emitter) {
   ml5.setBackend("webgl");
@@ -15,20 +15,30 @@ export default function(state, emitter) {
   };
 
   // Step 3: initialize your neural network
-  classifier = ml5.neuralNetwork(options);
+  predictor = ml5.neuralNetwork(options);
   const modelDetails = {
-      model: "model/model.json",
-      metadata: "model/model_meta.json",
-      weights: "model/model.weights.bin",
-    };
+    model: "https://cdn.glitches.me/model.json",
+    metadata: "https://cdn.glitches.me/model_meta.json",
+    weights: "https://cdn.glitches.me/model.weights.bin",
+  };
 
-    classifier.load(modelDetails, modelLoaded);
-  }
+  predictor.load(modelDetails, modelLoaded);
+
   // Step 7: use the trained model
   function modelLoaded() {
-    // classifier.save();
-    classify();
+    state.modelLoaded = true;
+    emitter.emit("predict", [0.5, 0.5, "combonoise", "invert"]);
   }
+  
+  emitter.on("predict", inputs => {
+    predictor.predict(inputs, (results, error) => {
+      if (error) {
+        console.error(error);
+        return;
+      }
+      console.log(results[0])
+    });
+  });
 
   state.isMobile = isMobile();
   
