@@ -5,7 +5,31 @@ import Editor from "../components/editor.js";
 
 import { items, tabs, recommends } from "../libs/menu.js"
 
+let classifer;
+
 export default function(state, emitter) {
+  ml5.setBackend("webgl");
+  let options = {
+    task: "regression",
+    debug: true,
+  };
+
+  // Step 3: initialize your neural network
+  classifier = ml5.neuralNetwork(options);
+  const modelDetails = {
+      model: "model/model.json",
+      metadata: "model/model_meta.json",
+      weights: "model/model.weights.bin",
+    };
+
+    classifier.load(modelDetails, modelLoaded);
+  }
+  // Step 7: use the trained model
+  function modelLoaded() {
+    // classifier.save();
+    classify();
+  }
+
   state.isMobile = isMobile();
   
   state.trainingMode = state.params.uipage === "training";
