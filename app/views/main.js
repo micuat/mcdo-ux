@@ -114,6 +114,8 @@ export default function(state, emit) {
         </div>
         <div
           class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2 bg-mcdo"
+          style="background-color: #FFC72C"
+          
           onclick=${ () => {
             emit("pushState", "#ui/topping");
           } }>
@@ -233,6 +235,8 @@ export default function(state, emit) {
         </div>
         <div
           class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2 bg-mcdo"
+          style="background-color: #FFC72C"
+          
           onclick=${ () => {
             emit("predict batch");
           } }>
@@ -271,7 +275,7 @@ export default function(state, emit) {
           ${
             recommends.map(e => html`
             <div
-              class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
+              class="hidden cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
               onclick=${ () => {
                 emit("recommend select", e);
               } }>
@@ -285,7 +289,24 @@ export default function(state, emit) {
               ${ e.name }
             </div>`)
           }
-          ${ state.recommends.map(e => html`${e[0]}${e[1]}`)}
+          ${ state.recommends.map(f => {
+            let e = recommends.find(r => r.id == f.id);
+            return html`
+            <div
+              class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
+              onclick=${ () => {
+                emit("recommend select", e);
+              } }>
+              <!--<div
+                class="w-2/4 h-2/4 bg-[url('${ e.url }')] bg-contain"
+              >-->
+              <img
+                class="w-2/4 h-2/4 bg-contain"
+                src=${ e.url }
+              >
+              ${ e.name }(${ Number.parseFloat(f.slider).toFixed(2) })
+              </div>
+            `}) }
         </div>
         <div
           class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2"
@@ -361,6 +382,7 @@ export default function(state, emit) {
         </div>
         <div
           class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2"
+          style="background-color: #FFC72C"
           onclick=${ () => {
             emit("clear order");
             emit("pushState", "#ui/where");
@@ -447,6 +469,7 @@ export default function(state, emit) {
               </div>
               <div
                 class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2 bg-mcdo"
+                style="background-color: #FFC72C"
                 onclick=${ () => {
                   emit("render");
                   state.cancelConfirm = false;

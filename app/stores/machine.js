@@ -33,7 +33,16 @@ export default function(state, emitter) {
   emitter.on("predict batch", () => {
     emitter.emit("pushState", "#ui/recommend");
     let count = 0;
-    const funcs = ["invert", "colorama", "scrollx"];
+    const funcs2 = [];
+    const funcs = [];
+    for (let i = 0; i < recommends.length; i++) {
+      funcs2.push(recommends[i].id);
+    }
+    for (let i = 0; i < 3; i++) {
+      let j = Math.floor(Math.random() * funcs2.length);
+      funcs.push(funcs2.splice(j, 1)[0]);
+    }
+    
     predict();
     function predict() {
       let func = funcs[count];
@@ -44,7 +53,7 @@ export default function(state, emitter) {
           return;
         }
         console.log(results[0]);
-        state.recommends.push([funcs[count], results[0][0]]);
+        state.recommends.push({id: func, slider: results[0][0]});
         emitter.emit("render");
         count++;
         if (count < 3) {
