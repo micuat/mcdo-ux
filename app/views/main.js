@@ -234,7 +234,7 @@ export default function(state, emit) {
         <div
           class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2 bg-mcdo"
           onclick=${ () => {
-            emit("pushState", "#ui/recommend");
+            emit("predict batch");
           } }>
           Next
         </div>
@@ -254,9 +254,9 @@ export default function(state, emit) {
         <div class="text-3xl font-bold">
           Can we recommend${ state.recommended === true ? " more" : "" }?
           <div class="w-full mb-32 grid gap-4 grid-cols-[1fr_3fr]">
-            <label class="text-xl text-right mt-[-0.35em]" for="size2">${ state.nameStack.length > 0 ? state.nameStack[state.nameStack.length-1] : "" }</label>
+            <label class="hidden text-xl text-right mt-[-0.35em]" for="size2">${ state.nameStack.length > 0 ? state.nameStack[state.nameStack.length-1] : "" }</label>
             <input type="range" id="size2" name="size2" min="0" max="128" value="${window.slider2*128}"
-              class="w-full h-4 bg-gray-400 rounded-sm range-lg appearance-none cursor-pointer"
+              class="hidden w-full h-4 bg-gray-400 rounded-sm range-lg appearance-none cursor-pointer"
               oninput=${ (e) => {
                 window.slider2 = e.target.value / 128;
                 if (state.popupWindow !== undefined) {
@@ -264,7 +264,7 @@ export default function(state, emit) {
                 }
               } }
               />
-            <label class="" for="size2">hidden slider</label>
+            <label class="hidden " for="size2">hidden slider</label>
           </div>
         </div>
         <div class="grid gap-4 grid-cols-3 w-full">
@@ -285,6 +285,7 @@ export default function(state, emit) {
               ${ e.name }
             </div>`)
           }
+          ${ state.recommends.map(e => html`${e[0]}${e[1]}`)}
         </div>
         <div
           class="text-3xl cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full h-32 p-2"

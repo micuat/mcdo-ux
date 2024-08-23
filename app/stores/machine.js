@@ -30,6 +30,31 @@ export default function(state, emitter) {
     emitter.emit("predict", [0.5, 0.5, "combonoise", "invert"]);
   }
   
+  emitter.on("predict batch", () => {
+    emitter.emit("pushState", "#ui/recommend");
+    let count = 0;
+    const funcs = ["invert", "colorama", "scrollx"];
+    predict();
+    function predict() {
+      let func = funcs[count];
+      let inputs = [window.slider0, window.slider1, state.elementStack[1].id, func];
+      predictor.predict(inputs, (results, error) => {
+        if (error) {
+          console.error(error);
+          return;
+        }
+        console.log(results[0]);
+        state.recommends.push([funcs[count], results[0][0]]);
+        emitter.emit("render");
+        count++;
+        if (count < 3) {
+          predict();
+        }
+        else {
+        }
+      });
+    }    
+  });
   emitter.on("predict", inputs => {
     predictor.predict(inputs, (results, error) => {
       if (error) {
@@ -48,6 +73,7 @@ export default function(state, emitter) {
   state.nameStack = [];
   state.elementStack = [];
   state.idStack = [];
+  state.recommends = [];
   state.eatIn = undefined;
   state.price = 0;
   state.cancelConfirm = false;
@@ -64,6 +90,7 @@ export default function(state, emitter) {
     state.nameStack = [];
     state.elementStack = [];
     state.idStack = [];
+    state.recommends = [];
     state.eatIn = undefined;
     state.price = 0;
     state.cancelConfirm = false;
