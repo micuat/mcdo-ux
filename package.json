@@ -22,7 +22,8 @@
     "vite": "^5.1.0",
     "@codemirror/language": "^6.10.1",
     "is-mobile": "^4.0.0",
-    "flowbite": "^2.5.1"
+    "flowbite": "^2.5.1",
+    "ml5": "^1.0.2"
   },
   "devDependencies": {},
   "browserslist": [
