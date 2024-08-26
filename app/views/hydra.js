@@ -6,6 +6,7 @@ import TextTweenElement from "../components/tween-text.js";
 
 // export module
 export default function(state, emit) {
+  emit('DOMTitleChange', "hydra-window");
   return html`
     <div class="absolute left-0 top-0 w-screen h-screen">
       <div class="absolute left-0 top-0 w-screen h-screen">
