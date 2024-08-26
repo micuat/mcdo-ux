@@ -136,91 +136,104 @@ const recommends = [
     name: "Kaleid",
     type: "recommend",
     code: "scale(.5).kaleid(()=>window.slider2*7+1)",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/kaleid.png?v=1723836783044"
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/kaleid.png?v=1723836783044",
+    eq: "x*7+1",
   },
   {
     id: "colorama",
     name: "Colorama",
     type: "recommend",
     code: "colorama(()=>window.slider2)",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/colorama.png?v=1723836781098"
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/colorama.png?v=1723836781098",
+    eq: "x",
   },
   {
     id: "contrast",
     name: "Contrast",
     type: "recommend",
     code: "contrast(()=>window.slider2*5)",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/contrast.png?v=1723837863441"
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/contrast.png?v=1723837863441",
+    eq: "x*5",
   },
   {
     id: "invert",
     name: "Invert",
     type: "recommend",
     code: "invert(()=>window.slider2)",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/invert.png?v=1723837863441"
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/invert.png?v=1723837863441",
+    eq: "x",
   },
   {
     id: "hue",
     name: "Hue",
     type: "recommend",
     code: "hue(()=>window.slider2)",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/hue.png?v=1724060663740"
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/hue.png?v=1724060663740",
+    eq: "x",
   },
   {
     id: "pixelate",
     name: "Pixelate",
     type: "recommend",
     code: "pixelate(()=>window.slider2*64,()=>window.slider2*64)",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/pixelate.png?v=1723837863441"
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/pixelate.png?v=1723837863441",
+    eq: "x*64",
   },
   {
     id: "posterize",
     name: "Posterize",
     type: "recommend",
     code: "posterize(()=>window.slider2*8,1)",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/posterize.png?v=1723837863441"
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/posterize.png?v=1723837863441",
+    eq: "x*8",
   },
   {
     id: "scrollx",
     name: "ScrollX",
     type: "recommend",
     code: "scrollX(0,()=>window.slider2)",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/scrollx.png?v=1723837863441"
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/scrollx.png?v=1723837863441",
+    eq: "x",
   },
   {
     id: "scrolly",
     name: "ScrollY",
     type: "recommend",
     code: "scrollY(0,()=>window.slider2)",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/scrolly.png?v=1723837863441"
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/scrolly.png?v=1723837863441",
+    eq: "x",
   },
   {
     id: "rotate",
     name: "Rotate",
     type: "recommend",
     code: "rotate(0,()=>window.slider2)",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/rotate.png?v=1723837863441"
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/rotate.png?v=1723837863441",
+    eq: "x",
   },
   {
     id: "thresh",
     name: "Thresh",
     type: "recommend",
     code: "thresh(()=>window.slider2)",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/thresh.png?v=1723837863441"
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/thresh.png?v=1723837863441",
+    eq: "x",
   },
   {
     id: "saturate",
     name: "Saturate",
     type: "recommend",
     code: "saturate(()=>window.slider2*10)",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/saturate.png?v=1723837863441"
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/saturate.png?v=1723837863441",
+    eq: "x*10",
   },
   {
     id: "repeat",
     name: "Repeat",
     type: "recommend",
     code: "repeat(()=>window.slider2*12,()=>window.slider2*12)",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/repeat.png?v=1723837863441"
+    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/repeat.png?v=1723837863441",
+    eq: "x*12",
   },
 ]
 

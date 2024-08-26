@@ -291,6 +291,7 @@ export default function(state, emit) {
           }
           ${ state.recommends.map(f => {
             let e = recommends.find(r => r.id == f.id);
+            let arg = eval(`x=f.slider;${e.eq}`);
             return html`
             <div
               class="cursor-pointer flex flex-col justify-center items-center bg-white border-2 border-black rounded w-full aspect-square"
@@ -304,7 +305,7 @@ export default function(state, emit) {
                 class="w-2/4 h-2/4 bg-contain"
                 src=${ e.url }
               >
-              ${ e.name }(${ Number.parseFloat(f.slider).toFixed(2) })
+              ${ e.name }(arg=${ Number.parseFloat(arg).toFixed(2) })
               </div>
             `}) }
         </div>
