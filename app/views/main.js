@@ -377,7 +377,7 @@ export default function(state, emit) {
             ${ state.codeStack.length > 0 ? raw(state.codeStack[state.codeStack.length - 1].split(").").join(")<br>.") + ".out()") : "" }
           </div>
           <div class="text-left text-3xl">
-            Total ${ /*state.price*/ state.codeStack.length > 0 ? Number.parseFloat(state.codeStack[state.codeStack.length-1].length*0.01).toFixed(2).replace(".", ",") : "0" }€
+            Total ${ /*state.price*/ state.codeStack.length > 0 ? Number.parseFloat(state.codeStack[state.codeStack.length-1].length*0.01).toFixed(2).replace(".", ",") : "0" }🍔
           </div>
 
         </div>
@@ -432,7 +432,7 @@ export default function(state, emit) {
                 Cancel Order
               </div>
               <div class="text-right">
-            Total ${ /*state.price*/ state.codeStack.length > 0 ? Number.parseFloat(state.codeStack[state.codeStack.length-1].length*0.01).toFixed(2).replace(".", ",") : "0" }€
+            Total ${ /*state.price*/ state.codeStack.length > 0 ? Number.parseFloat(state.codeStack[state.codeStack.length-1].length*0.01).toFixed(2).replace(".", ",") : "0" }🍔
               </div>
             </div>
           </div>
