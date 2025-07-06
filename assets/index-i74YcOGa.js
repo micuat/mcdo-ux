@@ -17408,129 +17408,129 @@ const items = [
     id: "bigmac",
     name: "Big Mac",
     type: "burger",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/bigmac.png?v=1723614406350"
+    url: "/bigmac.png"
   },
   {
     id: "quarterpounder",
     name: "Quarter Pounder",
     type: "burger",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/quaterpounder.png?v=1723614412005"
+    url: "/quaterpounder.png"
   },
   {
     id: "cheeseburger",
     name: "Cheeseburger",
     type: "burger",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/cheeseburger.png?v=1723614407227"
+    url: "/cheeseburger.png"
   },
   {
     id: "filetofish",
     name: "Filet-O-Fish",
     type: "burger",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/filetofish.png?v=1723614408590"
+    url: "/filetofish.png"
   },
   {
     id: "mcdouble",
     name: "McDouble",
     type: "burger",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/mcdouble.png?v=1723614411230"
+    url: "/mcdouble.png"
   },
   {
     id: "mcchicken",
     name: "McChiken",
     type: "burger",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/mcchicken.png?v=1723614409836"
+    url: "/mcchicken.png"
   },
   {
     id: "mccrispy",
     name: "McCrispy",
     type: "burger",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/mccrispy.png?v=1723614410713"
+    url: "/mccrispy.png"
   },
   {
     id: "worldfamousfries",
     name: "World Famous Fries",
     type: "side",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/worldfamousfries.png?v=1723614413673"
+    url: "/worldfamousfries.png"
   },
   {
     id: "ketchup",
     name: "Ketchup",
     type: "side",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/ketchuppacket.png?v=1723614409214"
+    url: "/ketchuppacket.png"
   },
   {
     id: "spicybuffalosauce",
     name: "Spicy Buffalo Sauce",
     type: "side",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/spicybuffalosauce.png?v=1723614412567"
+    url: "/spicybuffalosauce.png"
   },
   {
     id: "barbequesauce",
     name: "Barbeque Sauce",
     type: "side",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/tangybarbequesauce.png?v=1723614413086"
+    url: "/tangybarbequesauce.png"
   },
   {
     id: "chickenmcnuggets",
     name: "Chicken McNuggets",
     type: "mcnugget",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/chickenmcnuggets.png?v=1723614407823"
+    url: "/chickenmcnuggets.png"
   },
   {
     id: "tenpiecechickenmcnuggets",
     name: "10 Piece Chicken McNuggets",
     type: "mcnugget",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/10piecechickenmcnuggets.png?v=1723614404301"
+    url: "/10piecechickenmcnuggets.png"
   },
   {
     id: "osc",
     name: "OSC",
     type: "source",
     code: "osc(()=>window.slider0*29+1)",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/osc.png?v=1723643856940"
+    url: "/osc.png"
   },
   {
     id: "noise",
     name: "Noise",
     type: "source",
     code: "noise(()=>window.slider0*29+1)",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/noise.png?v=1723643856940"
+    url: "/noise.png"
   },
   {
     id: "voronoi",
     name: "Voronoi",
     type: "source",
     code: "voronoi(()=>window.slider0*29+1)",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/voronoi.png?v=1723643856940"
+    url: "/voronoi.png"
   },
   {
     id: "camera",
     name: "Camera",
     type: "source",
     code: "src(s0).scale(()=>window.slider0+0.5, window.x)",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/cam.png?v=1723643856940"
+    url: "/cam.png"
   }
 ];
 const tabs = [
   {
     type: "burger",
     name: "Burgers",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/burger.jpg?v=1723615402488"
+    url: "/burger.jpg"
   },
   {
     type: "side",
     name: "Sides",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/sides.jpg?v=1723615401807"
+    url: "/sides.jpg"
   },
   {
     type: "mcnugget",
     name: "McNuggets",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/mcnuggetsandmeals.jpg?v=1723615402144"
+    url: "/mcnuggetsandmeals.jpg"
   },
   {
     type: "source",
     name: "Sources",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/source.png?v=1723643700775"
+    url: "/source.png"
   }
 ];
 const recommends = [
@@ -17539,7 +17539,7 @@ const recommends = [
     name: "Kaleid",
     type: "recommend",
     code: "scale(.5).kaleid(()=>window.slider2*7+1)",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/kaleid.png?v=1723836783044",
+    url: "/kaleid.png",
     eq: "x*7+1"
   },
   {
@@ -17547,7 +17547,7 @@ const recommends = [
     name: "Colorama",
     type: "recommend",
     code: "colorama(()=>window.slider2)",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/colorama.png?v=1723836781098",
+    url: "/colorama.png",
     eq: "x"
   },
   {
@@ -17555,7 +17555,7 @@ const recommends = [
     name: "Contrast",
     type: "recommend",
     code: "contrast(()=>window.slider2*5)",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/contrast.png?v=1723837863441",
+    url: "/contrast.png",
     eq: "x*5"
   },
   {
@@ -17563,7 +17563,7 @@ const recommends = [
     name: "Invert",
     type: "recommend",
     code: "invert(()=>window.slider2)",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/invert.png?v=1723837863441",
+    url: "/invert.png",
     eq: "x"
   },
   {
@@ -17571,7 +17571,7 @@ const recommends = [
     name: "Hue",
     type: "recommend",
     code: "hue(()=>window.slider2)",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/hue.png?v=1724060663740",
+    url: "/hue.png",
     eq: "x"
   },
   {
@@ -17579,7 +17579,7 @@ const recommends = [
     name: "Pixelate",
     type: "recommend",
     code: "pixelate(()=>window.slider2*64,()=>window.slider2*64)",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/pixelate.png?v=1723837863441",
+    url: "/pixelate.png",
     eq: "x*64"
   },
   {
@@ -17587,7 +17587,7 @@ const recommends = [
     name: "Posterize",
     type: "recommend",
     code: "posterize(()=>window.slider2*8,1)",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/posterize.png?v=1723837863441",
+    url: "/posterize.png",
     eq: "x*8"
   },
   {
@@ -17595,7 +17595,7 @@ const recommends = [
     name: "ScrollX",
     type: "recommend",
     code: "scrollX(0,()=>window.slider2)",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/scrollx.png?v=1723837863441",
+    url: "/scrollx.png",
     eq: "x"
   },
   {
@@ -17603,7 +17603,7 @@ const recommends = [
     name: "ScrollY",
     type: "recommend",
     code: "scrollY(0,()=>window.slider2)",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/scrolly.png?v=1723837863441",
+    url: "/scrolly.png",
     eq: "x"
   },
   {
@@ -17611,7 +17611,7 @@ const recommends = [
     name: "Rotate",
     type: "recommend",
     code: "rotate(0,()=>window.slider2)",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/rotate.png?v=1723837863441",
+    url: "/rotate.png",
     eq: "x"
   },
   {
@@ -17619,7 +17619,7 @@ const recommends = [
     name: "Thresh",
     type: "recommend",
     code: "thresh(()=>window.slider2)",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/thresh.png?v=1723837863441",
+    url: "/thresh.png",
     eq: "x"
   },
   {
@@ -17627,7 +17627,7 @@ const recommends = [
     name: "Saturate",
     type: "recommend",
     code: "saturate(()=>window.slider2*10)",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/saturate.png?v=1723837863441",
+    url: "/saturate.png",
     eq: "x*10"
   },
   {
@@ -17635,7 +17635,7 @@ const recommends = [
     name: "Repeat",
     type: "recommend",
     code: "repeat(()=>window.slider2*12,()=>window.slider2*12)",
-    url: "https://cdn.glitch.global/09ba2dc1-e5a4-4f5a-a0ca-3b8ac5b81d42/repeat.png?v=1723837863441",
+    url: "/repeat.png",
     eq: "x*12"
   }
 ];
